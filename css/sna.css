@@ -1,0 +1,1479 @@
+/*
+@media screen and (min-height: 601px) {
+	#resultDiv {
+		transform: scale(1.1);
+		margin-left: 270px;
+	}
+}
+*/
+
+body {
+	/* background:url("../images/bg_repeaty.jpg") repeat-y scroll 100% 100% #FFFFFF !important; */
+	/*background: #F8F8F8 ;*/
+	background: #fff;
+	/* background: #000000 ; Noir */
+}
+
+#wrapper {
+	margin: 28% auto;
+	height: 102px;
+	width: 494px;
+	background-image: url("../images/loxam_logo.png");
+	display: none;
+}
+
+#wrapper:hover {
+	cursor: cell;
+}
+
+.center {
+	text-align: center;
+}
+
+/* Base style of static text outside of tables*/
+
+span.colorblue span.title2 {
+	text-decoration: none;
+	color: #000;
+	font: normal 13px myriad pro, arial, sans, sans-serif;
+}
+
+.bgcolorred span.colorblack .title2 {
+	text-decoration: none;
+	color: #e40115;
+	font: bold 14px myriad pro, arial, sans, sans-serif;
+	background-color: #fff;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.bgcolorblack span.colorwhite .title2 {
+	text-decoration: none;
+	/*color:#e40115;*/
+	color: black;
+	font: bold 14px myriad pro, arial, sans, sans-serif;
+	/*background-color : #e6e6e6;*/
+}
+
+.bgcolorblack span.colorwhite .title1 {
+	color: #e40115 !important;
+	text-transform: uppercase !important;
+}
+
+.bgcolorblack span.colorgreen .title2 {
+	text-decoration: none;
+	color: #000;
+	font: normal 13px myriad pro, arial, sans, sans-serif;
+}
+
+.bgcolorblack .title2 {
+	/* 	font-size: 20px;  */
+	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	font-weight: bold;
+	color: #e40115;
+}
+
+span.title2 {
+	text-decoration: none;
+	color: #e40115;
+	font: bold 14px myriad pro, arial, sans, sans-serif;
+}
+
+span.title {
+	font-size: 20px;
+	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	font-weight: bold;
+	color: #e40115;
+}
+
+span.subTitle {
+	font-size: 14px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-weight: bold;
+	/*color: #e40115;*/
+	color: black;
+}
+
+span.staticText {
+	font-size: 12px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	/*font-weight: normal;
+	color: #000;*/
+}
+
+span.consigne {
+	font-size: 14px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-weight: bold;
+	/*color: #e40115;*/
+	color: #666;
+}
+
+/* Base style of static text outside of tables*/
+
+span.tableText {
+	font-size: 12px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-weight: normal;
+	/* font-family: 'Ubuntu', sans-serif; */
+	margin-left: 4px;
+}
+
+/* Base style of static text as radio buttons labels */
+
+span.radioText {
+	font-size: 14px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+}
+
+span hr {
+	color: #8f8f8f;
+	/*background-color: #8f8f8f;*/
+	height: 1px;
+	border: 0;
+	border-top: 1px dashed #8f8f8f;
+}
+
+/*###################################################################################################*/
+
+/* Couleur de police pour texte statics (libell� et champ en sortie) */
+
+/*###################################################################################################*/
+
+span.colorwhite {
+	color: Black;
+}
+
+span.colorblack {
+	color: #000000;
+}
+
+span.colorcyan {
+	color: #00BFFF;
+	/* DeepSkyBlue */
+}
+
+span.colormagenta {
+	color: Fuchsia;
+}
+
+span.coloryellow {
+	color: #D0C000;
+}
+
+span.colorred {
+	color: Red;
+}
+
+@media screen and (min-width: 1370px) {
+	span.colorgreen {
+		/*color: #228B22;*/
+		font-weight: bold;
+		/* ForestGreen */
+		/*color: #22B522;*/
+	}
+}
+
+@media screen and (max-width: 1370px) {
+	span.colorgreen {
+		/*color: #228B22;*/
+		font-weight: normal;
+		/* ForestGreen */
+		/*color: #22B522;*/
+	}
+}
+
+span.colorblue {
+	/* intitule */
+	color: #6495ED;
+	/* CornflowBlue */
+}
+
+/*###################################################################################################*/
+
+/* Couleur de police pour texte static de l'ecran RepartitionCamions_* */
+
+/*###################################################################################################*/
+
+/* Pour Delevery*/
+
+span.coloryellow .trueColors {
+	/*color: #ff8000;*/
+	color: #ED7F10;
+}
+
+span.colorgreen .trueColors {
+	/*color: #0080ff;*/
+	color: #000000;
+}
+
+/*Marron*/
+
+span.colorwhite .trueColors {
+	/*color: #000000;*/
+	color: #582900;
+}
+
+span.colorblack .trueColors {
+	color: #000000;
+}
+
+/* Pour Pickup*/
+
+span.colorcyan .trueColors {
+	/*color: #804000;*/
+	color: #26C4EC;
+}
+
+span.colormagenta .trueColors {
+	color: Fuchsia;
+	/*color: #582900;*/
+}
+
+/* Pour Intercompany*/
+
+span.colorred .trueColors {
+	/*color: #8080ff;*/
+	color: #9E0E40;
+}
+
+/*Service call*/
+
+span.colorblue .trueColors {
+	/*color: #808080;*/
+	color: #798081;
+}
+
+/*###################################################################################################*/
+
+/* Inverse vid�o pour texte statics (libell� et champ en sortie) */
+
+/*###################################################################################################*/
+
+span.bgcolorblue {
+	background-color: #9999ff;
+	/* Blue 80 % */
+}
+
+span.bgcolorgreen {
+	background-color: #99ff99;
+	/* Green 80 % */
+	/*background-color: #ccff99;*/
+}
+
+span.bgcolormagenta {
+	background-color: #ff99ff;
+	/* magenta 80% */
+	;
+}
+
+span.bgcolorred {
+	background-color: #ff9999;
+	/* Red 80% */
+}
+
+span.bgcolorcyan {
+	background-color: #99ffff;
+	/* cyan 80% */
+}
+
+span.bgcolorwhite {
+	background-color: #f2f2f2;
+	/* Grey 95 % */
+}
+
+span.bgcoloryellow {
+	background-color: #ffff99;
+	/* yellow 80% */
+}
+
+/* span.bgcolorblack {} */
+
+/*###################################################################################################*/
+
+/* Other static text decoration styles */
+
+/* span.blink {} */
+
+/* Used when a 	static text element gets the focus  */
+
+/*
+span.focusedStatic {
+	border:2px dashed #000;
+}*/
+
+/* Used when a static text element looses the focus  */
+
+span.unfocusedStatic {
+	border-style: none;
+}
+
+/*  Used for text in input fields */
+
+.fieldText {
+	font-size: 10px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-weight: bold;
+}
+
+/* Used on buttons, like keyword buttons when they are selectable*/
+
+input.keywordButton {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: #000000;
+	background-color: #F1FAF9;
+}
+
+/* Used on disabled buttons, like keyword buttons when they are not selectable*/
+
+input.disabledKeywordButton {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: #000000;
+	background-color: #F1FAF9;
+}
+
+input:invalid:focus {
+	border: 2px solid red;
+}
+
+.footerText {
+	font-size: 18px;
+	line-height: 12px;
+	color: #666666;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.footerTextBold {
+	font-size: 18px;
+	line-height: 12px;
+	color: #666666;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.menu_title,
+.menu_title_closed {
+	color: #e40115;
+	font-size: 12px;
+	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	text-decoration: none;
+	height: 18px;
+	margin-left: 22px;
+}
+
+.menu_title_closed {
+	position: fixed;
+	top: -4px;
+	left: -1px;
+	z-index: 999;
+	background-color: #fff;
+	height: 114px;
+	width: 206px;
+}
+
+.menu_title_closed img {
+	position: relative;
+	top: 3px;
+	/*4px*/
+	left: 1px;
+	/*2px*/
+}
+
+.bg {
+	background-color: #fff;
+	height: 40px;
+	width: 206px;
+	z-index: 999999;
+}
+
+.menu_title:hover,
+.menu_title_closed:hover {
+	color: #e40115;
+	/*text-decoration: underline;*/
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.menu_title:before {
+	content: url('./images/icn_close_menu.png');
+	position: relative;
+	top: 2px;
+	left: 0px;
+	height: 18px;
+	width: 18px;
+}
+
+a.menuItem {
+	font-weight: normal;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	border: none;
+	color: #000;
+	line-height: 32px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+a.menuItem:active {
+	color: #FCA956;
+}
+
+a.menuItem:hover {
+	color: #ff0000;
+	text-decoration: underline;
+}
+
+/*
+a.menuItem:visited {
+	 	color: #002B82; 
+}*/
+
+/* contextual menu */
+
+.menuitems:hover {
+	background-color: #ff9900 !important;
+	cursor: pointer;
+}
+
+/* Style for tables title cells */
+
+.datatitle {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	/* 	background-color: #CAD8FD; */
+	/* 	background: transparent url(../images/bg_titletable.jpg) repeat-x scroll 0 0;	 */
+	background-color: #ff0000;
+	border: none;
+	/* 	cursor: pointer; */
+	vertical-align: middle;
+	text-align: center;
+}
+
+/* style specific input over table title cell */
+
+span[id="__field_c4_l7_n1parent"] {
+	z-index: 15 !important;
+}
+
+span.datatitle {
+	background: none;
+	border: 0;
+}
+
+/* Foreground style for active (enabled) panels */
+
+span.panel {
+	background-color: #fff;
+	margin-left: -5px;
+	margin-top: -6px;
+	padding-bottom: 6px;
+	border: 1px solid #ccc;
+	/*ombre porte*/
+	background-color: #ffffff;
+	-webkit-box-shadow: 2px 2px 5px 1px #999999;
+	-moz-box-shadow: 2px 2px 5px 1px #999999;
+	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='#999999', Positive='true');
+	zoom: 1;
+	box-shadow: 2px 2px 5px 1px #999999;
+	/*[if gte IE 9]*/
+	@media only screen {
+		#selecteur {
+			filter: none;
+		}
+	}
+	/*Ie9+*/
+}
+
+/* Background style for active (enabled) panels */
+
+span.panelOmbre {
+	margin-left: -7px;
+	margin-top: -8px;
+	padding-bottom: 6px;
+}
+
+/* Foreground style for active (disabled) panels */
+
+span.disabledPanel {
+	background-color: #fff;
+}
+
+/* Background style for inactive (disabled) panels */
+
+span.disabledPanelOmbre {
+	background-color: #C1C1C1;
+	border-right: #D7D7D7 2px solid;
+	border-bottom: #D7D7D7 2px solid;
+	border-top: #D7D7D7 2px solid;
+}
+
+/* Panel top title style  for active (enabled) panels */
+
+span.panelTopTitle {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: black;
+	/*#FF0000;*/
+	/* 	background-color: #FFFFFF; */
+}
+
+/* Panel bottom title style  for active (enabled) panels */
+
+span.panelBottomTitle {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: black;
+	/* #FF0000; */
+	/* 	background-color: #FFFFFF; */
+}
+
+/* Panel top title style  for inactive (disabled) panels */
+
+span.disabledPanelTopTitle {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: #4C4C4C;
+	/* 	background-color: #FFFFFF; */
+}
+
+/* Panel bottom title style  for inactive (disabled) panels */
+
+span.disabledPanelBottomTitle {
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	color: #4C4C4C;
+	/* 	background-color: #FFFFFF; */
+}
+
+/* background color of an line of a table */
+
+.datarowodd {
+	background-color: #fff;
+}
+
+.dataroweven {
+	/*background-color: #909090;*/
+	background-color: #c0c0c0;
+}
+
+/* background color of an line of a table over */
+
+.datarowodd:hover {
+	/*background-color:  #999;*/
+	background-color: rgba(225, 1, 23, 0.95);
+	cursor: pointer;
+}
+
+.dataroweven:hover {
+	/*background-color: #999;*/
+	background-color: rgba(225, 1, 23, 0.95);
+	cursor: pointer;
+}
+
+/* color table */
+
+.dataroweven .colorgreen,
+.datarowodd .colorgreen {
+	color: #000000;
+}
+
+.dataroweven:hover .tableText,
+.datarowodd:hover .tableText {
+	color: #fff;
+}
+
+/***********************************************/
+
+/* background color of an line of a table */
+
+.datarowoddTC {
+	background-color: #fff;
+}
+
+.datarowevenTC {
+	background-color: #e2e2e2;
+}
+
+/* background color of an line of a table over */
+
+.datarowoddTC:hover {
+	background-color: #ffb3ba;
+	cursor: pointer;
+}
+
+.datarowevenTC:hover {
+	background-color: #ffb3ba;
+	cursor: pointer;
+}
+
+/************************************************/
+
+.dataitem {
+	border-left: 1px solid gray;
+}
+
+.actDiv {
+	position: absolute;
+	border: 2px solid #ff9900;
+	background-color: #fff;
+	visibility: hidden !important;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	/*z-index:200px;*/
+}
+
+/* Table borders */
+
+table.titletable {
+	border: none;
+}
+
+div.Grid {
+	border: none;
+	/* 	margin-top: 179px; */
+}
+
+/* Base style for table cells */
+
+td.cell {
+	/* 	border-right: 1px solid #333333; */
+	margin: 10px;
+	/* text-align: center; */
+	/*text-align: right;*/
+}
+
+td.cell input.fieldText {
+	text-align: right;
+}
+
+#waitDiv div {
+	-moz-opacity: 0.2;
+	background-color: #ccc;
+	filter: alpha(opacity=20);
+	height: 100%;
+	left: 0;
+	opacity: 0.2;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	z-index: 99998;
+}
+
+#waitDiv img {
+	left: 45%;
+	position: absolute;
+	top: 40%;
+	width: 100px;
+	z-index: 99990;
+	/*border:2px solid #ccc;*/
+}
+
+.tabsheet {
+	border: 1px solid black;
+	background-color: #fff;
+}
+
+/* Style for spaces between tabs */
+
+td.tabSpacer {
+	border-bottom: solid 1px #000;
+	background-color: #fff;
+}
+
+/* Style for selected tab */
+
+td.selectedTab {
+	border-left: 1px solid #000;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	white-space: nowrap;
+	font-size: 18px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	;
+	background-color: #DFDFDF;
+	color: #000;
+}
+
+/* Style for unselected tabs */
+
+td.unselectedTab {
+	border: 1px solid #000;
+	white-space: nowrap;
+	cursor: pointer;
+	background-color: #9C9C9C;
+	font-size: 18px;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	;
+	color: #000;
+}
+
+/* Style for the whole opened tab zone */
+
+td.openedTab {
+	border-left: 1px solid #000;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	background-color: #DFDFDF;
+	filter: alpha(opacity=60);
+	/* Tabbox transparency for IE */
+	opacity: 0.6;
+	/* Tabbox transparency for CSS3 (Firefox) */
+}
+
+/* Style for the (optional) commands panel */
+
+div.commandsButtons {
+	position: fixed;
+	border: 1px solid #dadada;
+	background-color: #fff;
+	top: 10px;
+	left: 0;
+	width: 204px;
+	min-height: 300px !important;
+}
+
+/* Style for the back button F12 */
+
+.btn_back,
+.btn_back2 {
+	font: normal 12px arial, sans, sans-serif;
+	color: #e40115;
+	padding: 0 0 0 30px;
+	border-left: 1px solid #ccc;
+}
+
+.btn_back {
+	position: fixed;
+	top: 77px;
+	left: 100px;
+}
+
+.btn_back2 {
+	position: fixed;
+	top: 77px;
+	left: 80px;
+	display: block;
+}
+
+.btn_back a,
+.btn_back2 a {
+	color: #e40115;
+	text-decoration: none;
+}
+
+.btn_back a:hover,
+.btn_back2 a:hover {
+	text-decoration: underline;
+}
+
+.btn_back a:before,
+.btn_back2 a:before {
+	content: url('../images/icn_back.png');
+	position: relative;
+	top: 2px;
+	left: -5px;
+}
+
+/* Active/enabled keyword buttons/commands new styles */
+
+table.buttontab {
+	cursor: pointer;
+	/* 	position: relative; */
+	top: 127px;
+	left: 8px;
+}
+
+td.buttonl {
+	/*background-color: #fff;*/
+	width: 3px;
+	height: 21px;
+}
+
+td.buttonr {
+	/*background-color: #fff;*/
+	width: 3px;
+	height: 21px;
+}
+
+td.buttonc {
+	text-align: center;
+	margin-bottom: 5px;
+	padding: 0;
+	font-size: small;
+	width: 100%;
+	/*text-transform: uppercase;*/
+	/*border: 1px solid ;*/
+	/*border-radius: 0px;*/
+}
+
+input.insidebutton {
+	cursor: pointer;
+	/*font-family: Myriad pro, "Lucida console", "Courrier New", monospace;*/
+	font-size: 12px;
+	font-weight: 300;
+	margin: 0;
+	padding: 0 20px;
+	width: 100% !important;
+	min-height: 40px;
+	text-align: left;
+	color: black;
+	border: 0;
+	border-bottom: 1px solid #dadada;
+	white-space: pre-wrap;
+	/* css-3 */
+	white-space: -moz-pre-wrap;
+	/* Mozilla, since 1999 */
+	white-space: -pre-wrap;
+	/* Opera 4-6 */
+	white-space: -o-pre-wrap;
+	/* Opera 7 */
+	word-wrap: break-word;
+	/* Internet Explorer 5.5+ */
+}
+
+input.insidebutton:hover {
+	background: #fff;
+	/* For browsers that do not support gradients */
+}
+
+/*###################################################################################################*/
+
+/* Personnalisation : couleurs des touches de fonction */
+
+/*###################################################################################################*/
+
+/*===================================================================================================*/
+
+/* Couleur noire forc�e */
+
+/*===================================================================================================*/
+
+input.insidebuttonBlue {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #e6ffe6;
+}
+
+input.insidebuttonBlue:hover {
+	background-color: white;
+}
+
+input.insidebuttonGreen {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #e6ffe6;
+}
+
+input.insidebuttonGreen:hover {
+	background-color: white;
+}
+
+/*===================================================================================================*/
+
+/* Rendu de la couleur d'origine */
+
+/*===================================================================================================*/
+
+input.insidebuttonCyan {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #ccffff;
+	/* Cyan 90 % */
+}
+
+input.insidebuttonCyan:hover {
+	background-color: white;
+}
+
+input.insidebuttonMagenta {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #ffccff;
+	/* Magenta 90 % */
+}
+
+input.insidebuttonMagenta:hover {
+	background-color: white;
+}
+
+input.insidebuttonRed {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #ffcccc;
+	/* Red 90 %*/
+}
+
+input.insidebuttonRed:hover {
+	background-color: white;
+}
+
+input.insidebuttonYellow {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: #ffffcc;
+	/* Yellow 90 % */
+}
+
+input.insidebuttonYellow:hover {
+	background-color: white;
+}
+
+input.insidebuttonWhite {
+	border: 1px solid grey;
+	border-radius: 2px;
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	padding: 0;
+	-x-system-font: none;
+	color: #000000;
+	background: none;
+	background-color: white;
+}
+
+input.insidebuttonWhite:hover {
+	background-color: white;
+}
+
+/*###################################################################################################*
+/* Inactive/disabled keyword buttons/commands new styles */
+
+/*###################################################################################################*
+
+table.disabledbuttontab {
+/* 	 width: 80px; 
+
+
+}*/
+
+td.disabledbuttonl {
+	/*background: transparent url(../images/disabledbutton-gfx.png) no-repeat scroll 0 0;*/
+	width: 3px;
+	height: 21px;
+}
+
+td.disabledbuttonr {
+	/*background: transparent url(../images/disabledbutton-gfx.png) no-repeat scroll 0 -21px;*/
+	width: 3px;
+	height: 21px;
+}
+
+td.disabledbuttonc {
+	/*background: transparent url(../images/disabledbutton-gfx.png) repeat-x scroll 0 -42px;*/
+	background-color: #CAD2CA;
+	font-size: 18px;
+	text-align: center;
+}
+
+input.disabledinsidebutton {
+	background: none;
+	/* 	border : 0; */
+	/*font-family : Verdana, Arial, Helvetica, Sans-Serif;*/
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	margin: 0;
+	outline-style: none;
+	outline-width: 0;
+	color: #888;
+	padding: 0;
+	/*overflow : visible;*/
+	-x-system-font: none;
+}
+
+/* extended menus container div*/
+
+div.extmenu {
+	background: #D0DEF0 url(../images/toolbar_bg.png) repeat-x scroll left top;
+	border-color: #A9BFD3;
+	border-style: solid;
+	border-width: 0 0 1px;
+	display: block;
+	padding: 2px;
+}
+
+em.extmenu {
+	padding-right: 8px;
+	background: transparent url(../images/btn-arrow-02.png) no-repeat scroll left 5px;
+	display: block;
+	white-space: nowrap;
+}
+
+input.extmenu {
+	background-position: 0 2px;
+	background-repeat: no-repeat;
+	padding: 3px 10px 2px 5px;
+	-x-system-font: none;
+	background: transparent none repeat scroll 0 0;
+	border: 0 none;
+	/*border: solid 1px red;*/
+	cursor: pointer;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: normal;
+	margin: 0;
+	background-image: url(../images/menu-show.gif) !important;
+	width: 100px;
+	text-align: left;
+}
+
+/*###################################################################################################*/
+
+/* Champs de saisie */
+
+/*###################################################################################################*/
+
+@media screen and (max-width: 1370px) {
+	input.extField {
+		-x-system-font: none;
+		font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+		font-size: 11px;
+		vertical-align: middle;
+		margin: 0;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		padding: 0px 2px;
+		height: 14px;
+	}
+}
+
+@media screen and (min-width: 1370px) {
+	input.extField {
+		-x-system-font: none;
+		font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+		font-size: 11px;
+		vertical-align: middle;
+		margin: 0;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		padding: 0px 2px;
+		height: 20px;
+	}
+}
+
+input:focus {
+	border: 2px solid #e40115;
+}
+
+input.extField[type="password"] {
+	background-color: #fff;
+}
+
+input.extFieldBlue {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	vertical-align: middle;
+	margin: 0;
+	background-color: #9999ff;
+	/* Blue 80 % */
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldGreen {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	vertical-align: middle;
+	margin: 0;
+	background-color: #99ff99;
+	/* Green 80 % */
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldMagenta {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	vertical-align: middle;
+	margin: 0;
+	background-color: #ff99ff;
+	/* magenta 80% */
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldRed {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #ff9999;
+	/* red 80% */
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldCyan {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #99ffff;
+	/* cyan 80% */
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldWhite {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: black;
+	border: 1px solid #B5B8C8;
+	color: white;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+input.extFieldYellow {
+	-x-system-font: none;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #ffff99;
+	/* Yellow 80 %*/
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+/* input.extFieldBlack {} */
+
+/*###################################################################################################*/
+
+/* Textearea de saisie */
+
+/*###################################################################################################*/
+
+textarea.extField {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 16px;
+	background-color: #fff;
+	/* Grey 80 % */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea:focus {
+	border: 2px solid #e40115;
+}
+
+textarea.extFieldBlue {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #9999ff;
+	/* Blue 80 % */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldGreen {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #99ff99;
+	/* Green 80 % */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldMagenta {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #ff99ff;
+	/* magenta 80% */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldRed {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #ff9999;
+	/* red 80% */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldCyan {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #99ffff;
+	/* cyan 80% */
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldWhite {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: black;
+	color: white;
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+textarea.extFieldYellow {
+	-x-system-font: none;
+	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-size: 18px;
+	background-color: #ffff99;
+	/* Yellow 80 %*/
+	resize: none;
+	border: 1px solid #ccc;
+	padding: 0px 2px;
+	height: 20px;
+}
+
+/* textarea.extFieldBlack {} */
+
+/* Tableau de données + Style scrollbar */
+
+body {
+	scrollbar-base-color: #999;
+	scrollbar-base-color: #999;
+	scrollbar-3dlight-color: #ccc;
+	scrollbar-highlight-color: #ccc;
+	scrollbar-track-color: #ccc;
+	scrollbar-track: margin: 10px 0;
+	scrollbar-arrow-color: #999;
+	scrollbar-shadow-color: #ccc;
+	scrollbar-dark-shadow-color: #ccc;
+	zoom: 1;
+}
+
+/* pour chrome */
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-color: inset 0 0 6px rgba(204, 204, 204, 1);
+	border-radius: 10px;
+	background: #ccc;
+	margin: 10px 0;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-color: inset 0 0 6px rgba(204, 204, 204, 1);
+	background: #999;
+}
+
+/* Alternative scrollbar = boutons page up / down */
+
+.pageUp {
+	bakcground-image: #fff url(../images/arrow_top.png') no-repeat center center;
+	height: 27px;
+	width: 27px;
+	cursor: pointer;
+	position: absolute;
+	top: 300px;
+	left: 600px;
+}
+
+.pageUp:hover {
+	content: url('./images/arrow_up_hover.png');
+	position: relative;
+	top: 2px;
+	left: -5px;
+}
+
+.pageDown {
+	content: url(./images/arrow_down.png');
+	height: 27px;
+	cursor: pointer;
+}
+
+/*###################################################################################################*/
+
+input.fieldText,
+input.fixed {
+	vertical-align: middle;
+	background-color: #fff;
+	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 14px;
+	text-align: center;
+	margin: 0;
+	border: 1px solid #ccc;
+	padding: 0px 5px;
+	height: 30px;
+}
+
+span.fieldfocused,
+span.fieldfocused input.fieldText {
+	/*border: 1px solid Red;*/
+	background-color: #fff;
+	color: black;
+}
+
+span.fieldfocused input.extField,
+span.fieldfocused input.fixed {
+	/*border: 1px solid Red;*/
+	background-color: #fff;
+	color: black;
+	border: 1px solid black;
+}
+
+/* table span.fieldfocused {} */
+
+.header {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+
+.separator {
+	position: relative;
+	top: 120px;
+	border-color: #4c770b;
+	border-width: 1px 0;
+	border-style: solid;
+}
+
+/*###################################################################################################*/
+
+.MenuTable {
+	border: 1px solid black;
+	border-radius: 7px 0px 10px 0px;
+	background-color: black;
+	color: white;
+	font-size: small;
+	font-weight: bold;
+	width: 100px;
+	height: 25px;
+	text-align: center;
+	margin-bottom: 5px;
+	margin-left: 2px;
+	margin-top: 10px;
+}
+
+.classHideMenu {
+	padding-top: 5px;
+}
+
+.classHideMenuV2 {
+	margin-top: 5px;
+	color: #e0e0eb;
+	padding-right: 70px;
+}
+
+.imgCalendar {
+	position: absolute;
+	top: -8px;
+	left: -18px;
+}
+
+#resultDiv {
+	position: absolute;
+	top: 120px;
+	width: 100%;
+}
+
+iframe {
+	min-height: 700px;
+}

@@ -1,0 +1,296 @@
+<html>
+
+<head>
+	<meta name="viexport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<!--     	<script type="text/javascript" src="scripts/scriptlibXXX.js"></script> -->
+	<style>
+		body {
+			background-color: #fff;
+			height: 100% !important;
+			width: 100% !important;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			overflow: hidden;
+		}
+
+		#tabs {
+			position: absolute;
+			top: -15px;
+			left: 166px;
+			height: 10px !important;
+			/*width:100% !important;*/
+		}
+
+		#tabs ul {
+			font: bold 14px myriad pro, arial, sans, sans-serif;
+			-list-style-type: none;
+			float: left;
+		}
+
+		#tabs ul li {
+			display: block;
+			float: left;
+			height: auto;
+			min-width: 105px;
+			text-align: center;
+			background-color: #e40115;
+			border-right: 1px solid #fff;
+		}
+
+		#tabs ul li.selected {
+			background-color: #fff;
+		}
+
+		#tabs ul li a {
+			float: left;
+			color: #fff;
+			font-weight: bold;
+			text-decoration: none;
+			text-align: center;
+			background-color: #e40115;
+			padding: 22px 20px;
+			min-width: 105px;
+		}
+
+		#tabs ul li a.selected {
+			color: #e40115;
+			font-weight: bold;
+			background-color: #fff;
+			height: 23px;
+			min-width: 105px;
+			text-align: center;
+		}
+
+		#tabs ul li a:hover {
+			color: #e40115;
+			background-color: #fff;
+			font-weight: bold;
+			min-width: 105px;
+			padding-bottom: 28px;
+		}
+
+		.logoBar {
+			height: 25px !important;
+			/*width:100% !important;*/
+			padding: 20px 30px 15px 30px;
+			border-right: 1px solid #fff;
+			float: left;
+		}
+
+		.logoBar img {
+			transition: all 0.3s ease-in-out;
+		}
+
+		.logoBar img:hover {
+			transform: scale(1.15);
+		}
+
+		.redBar {
+			position: absolute;
+			top: 0;
+			background-color: #e40115;
+			height: 60px;
+			width: 100%;
+			z-index: 100;
+		}
+
+		.prodBar {
+			position: absolute;
+			top: 60px;
+			/* background-color:#fdb61c;  orange */
+			/* background-color:#5dbcff;  bleu */
+			/* background-color:#8adb5e;  vert */
+			/* background-color:#BBBDBE;  gris foncé */
+			background-color: #CCCDCE;
+			/* gris clair */
+			height: 6px;
+			width: 100%;
+			z-index: 10;
+		}
+
+		.infoProd {
+			/* background-color:#fdb61c; /* orange */
+			/* background-color:#5dbcff; /* bleu */
+			/* background-color:#8adb5e; /* vert */
+			/* background-color:#BBBDBE; /* gris foncé */
+			/* background-color:#CCCDCE; /* gris clair */
+			background-color: #e40115;
+			/* rouge */
+			float: right;
+			height: 30px;
+			padding: 15px 30px;
+			z-index: 30;
+			margin-right: -1px;
+		}
+
+		.titleProd {
+			font: bold 14px myriad pro, arial, sans, sans-serif;
+			text-transform: uppercase;
+			color: #fff;
+			float: left;
+		}
+
+		.ste-ag {
+			font: bold 12px myriad pro, arial, sans, sans-serif;
+			text-transform: uppercase;
+			color: #fff;
+			float: left;
+			margin-right: 15px;
+		}
+
+		.btn_quit {
+			font: normal 14px myriad pro, arial, sans, sans-serif;
+			color: #fff;
+			padding: 22px 30px 19px 40px;
+			border-left: 1px solid #fff;
+			float: right;
+			z-index: 5;
+		}
+
+		.btn_quit a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		.btn_quit a:hover {
+			text-decoration: underline;
+		}
+
+		.btn_quit a:before {
+			content: url('./images/icn_quit.png');
+			position: relative;
+			top: 2px;
+			left: -5px;
+		}
+
+		.container {
+			/*display: none !important;*/
+			height: 100% !important;
+			width: 100% !important;
+			border: none;
+			padding: 0;
+			margin: 0px 0 0;
+			overflow: hidden;
+		}
+
+		.containerVisible {
+			display: block !important;
+		}
+
+		.containerInvisible {
+			display: none !important;
+		}
+
+		#IamAlive {
+			width: 0;
+			height: 0;
+			position: absolute;
+			display: none;
+		}
+	</style>
+	<!-- GV 20180329 -->
+	<script type="text/javascript" src="scripts/poller.js"></script>
+	<script>
+		function loadit(element) {
+			var tabs;
+			var elcurrent;
+			var ste_session = "";
+			var agc_session = "";
+			var dsp_session = "";
+
+			tabs = document.getElementById('tabs').getElementsByTagName("a");
+			for (var i = 0; i < tabs.length; i++) {
+				elcurrent = document.getElementById("container" + parseInt(i + 1));
+				if (tabs[i].rel == element.rel) {
+					tabs[i].className = "selected";
+					ste_session = localStorage.getItem(element.rel + "_ste");
+					agc_session = localStorage.getItem(element.rel + "_agc");
+					dsp_session = localStorage.getItem(element.rel + "_dsp");
+					ste_session != null ? document.getElementById("ste").innerText = ste_session : document.getElementById("ste").innerText =
+						"";
+					agc_session != null ? document.getElementById("agc").innerText = agc_session : document.getElementById("agc").innerText =
+						"";
+					dsp_session != null ? document.getElementById("dsp").innerText = dsp_session : document.getElementById("dsp").innerText =
+						"";
+					if (!elcurrent.classList.contains('containerVisible')) {
+						elcurrent.classList.add('containerVisible');
+					}
+					if (elcurrent.classList.contains('containerInvisible'))
+						elcurrent.classList.remove('containerInvisible');
+					if (elcurrent.src == "") {
+						elcurrent.src = "index.html?__transaction=XMLize&__context=Lox" + parseInt(i + 1); // correction JG_2018_02_27 sessions fantômes quandd ouvertures simultanées des 3 sessions
+					}
+					elcurrent.contentWindow.focus(); // correction JG_2018_02_23 focus quand changement de sessions
+
+				} else {
+					tabs[i].className = "";
+					if (!elcurrent.classList.contains('containerInvisible'))
+						elcurrent.classList.add('containerInvisible');
+					if (elcurrent.classList.contains('containerVisible')) {
+						elcurrent.classList.remove('containerVisible');
+
+					}
+				}
+
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="redBar">
+		<div class="logoBar">
+			<a href="#">
+				<img src="./images/logo_loxam.png" style="height:22px;" />
+			</a>
+		</div>
+
+		<!-- sessions -->
+		<div id="tabs">
+			<ul>
+				<li>
+					<a href="#" rel="Lox1" onclick="loadit(this)" class="selected">Session 1</a>
+				</li>
+				<li>
+					<a href="#" rel="Lox2" onclick="loadit(this)">Session 2</a>
+				</li>
+				<li>
+					<a href="#" rel="Lox3" onclick="loadit(this)">Session 3</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- bouton quitter -->
+		<div class="btn_quit" id="btnQuitter">
+			<!-- <a href="#" onclick="window.frames['container'].doAction('KEY_PF3');">Quitter</a> -->
+		</div>
+
+		<!-- environnement prod -->
+		<div class="infoProd">
+			<div class="titleProd">SYSTEME :
+				<span id="sys">---</span>
+			</div>
+			<br/>
+			<div class="ste-ag">Societe :
+				<span id="ste">---</span>
+			</div>
+			<div class="ste-ag">Agence :
+				<span id="agc">---</span>
+			</div>
+			<div class="ste-ag">Display :
+				<span id="dsp">---</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- environnement prod barre -->
+	<div class="prodBar"></div>
+	<iframe class="container containerVisible" id="container1" src="index.html?__transaction=XMLize&__context=Lox1"></iframe>
+	<iframe class="container containerInvisible" id="container2"></iframe>
+	<iframe class="container containerInvisible" id="container3"></iframe>
+</body>
+
+</html>

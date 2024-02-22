@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script>
+            function ouvrirPopup()
+            {
+                maPopup = window.open("index.html?__transaction=XMLize&__context=Lox1","_self",false);
+                
+            }
+             
+			function ouvrirPopup2()
+            {
+                maPopup2 = window.open("index.html?__transaction=XMLize&__context=Lox2","Convertigo 2");
+                
+            }
+			function ouvrirPopup3()
+            {
+                maPopup3 = window.open("index.html?__transaction=XMLize&__context=Lox3","Convertigo 3");
+                
+				
+            }
+            function fermeturePopup()
+            {
+                document.getElementById("text").innerHTML = "Sortie";
+            }
+			
+			var howlong = 1000;
+			function ReplaceMe()
+			{
+			
+			t = setTimeout("ouvrirPopup()",howlong);
+			}
+			
+			
+			
+        </script>
+    </head>
+    <body onload="ouvrirPopup2();ouvrirPopup3();ReplaceMe();">
+        <p onclick="ouvrirPopup()">Convertigo 1</p>
+		<p onclick="ouvrirPopup2()">Convertigo 2</p>
+		<p onclick="ouvrirPopup3()">Convertigo 3</p>
+		
+        <div id="text"></div>
+    </body>
+</html>

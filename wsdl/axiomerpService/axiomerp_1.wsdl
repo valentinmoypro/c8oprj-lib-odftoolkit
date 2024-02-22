@@ -1,0 +1,2452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://wynnesystems.com/rm/definitions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch0="http://wynnesystems.com/rm/schema/message" xmlns:sch1="http://wynnesystems.com/rm/schema/type" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://wynnesystems.com/rm/definitions">
+  <wsdl:types>
+    <schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://wynnesystems.com/rm/schema/message" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://wynnesystems.com/rm/schema/type" xmlns:tns="http://wynnesystems.com/rm/schema/message">
+      <import namespace="http://wynnesystems.com/rm/schema/type"/>
+      <element name="GetCurrencyRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCurrencyResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="currencies" type="ns0:Currency"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCurrencyExchangeRateRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCurrencyExchangeRateResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="currencyExchangeRates" type="ns0:CurrencyExchangeRate"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEffectiveCurrencyExchangeRateRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="toCurrencyCode" type="string"/>
+            <element minOccurs="0" name="effectiveDateTime" type="dateTime"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEffectiveCurrencyExchangeRateResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="currencyExchangeRates" type="ns0:CurrencyExchangeRate"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPurchaseOrderRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element default="false" minOccurs="0" name="includeReceivers" type="boolean"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPurchaseOrderResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="purchaseOrders" type="ns0:PurchaseOrder"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPurchaseOrderReceiverRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPurchaseOrderReceiverResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="purchaseOrderReceivers" type="ns0:PurchaseOrderReceiver"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCountryRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="countryCode" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCountryResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="countries" type="ns0:Country"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStateRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="CountryCode" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStateResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="states" type="ns0:State"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetVendorRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element default="false" name="getVendorAlternates" type="boolean"/>
+            <element name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetVendorResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="vendors" type="ns0:Vendor"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetGeneralLedgerAccountRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetGeneralLedgerAccountResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="generalLedgerAccounts" type="ns0:GeneralLedgerAccount"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateServiceMeterAndLocationRequest">
+        <complexType>
+          <sequence>
+            <element name="equipmentNumber" type="string"/>
+            <element minOccurs="0" name="terminalId" type="string"/>
+            <element name="terminalType" type="string"/>
+            <element name="arrivalDateTime" type="dateTime"/>
+            <element minOccurs="0" name="latitude" type="decimal"/>
+            <element minOccurs="0" name="longitude" type="decimal"/>
+            <element minOccurs="0" name="proximity" type="string"/>
+            <element minOccurs="0" name="lastGPSDateTime" type="dateTime"/>
+            <element minOccurs="0" name="serviceMeter" type="decimal"/>
+            <element minOccurs="0" name="serviceMeterDateTime" type="dateTime"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateServiceMeterAndLocationResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="passOrFail" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateEquipmentInspectionRequest">
+        <complexType>
+          <sequence>
+            <element name="equipmentNumber" type="string"/>
+            <element name="inspectionType" type="string"/>
+            <element name="inspectionDate" type="dateTime"/>
+            <element name="inspector" type="string"/>
+            <element minOccurs="0" name="inspectionDescription" type="string"/>
+            <element minOccurs="0" name="equipmentCatClassDescription" type="string"/>
+            <element minOccurs="0" name="equipmentSerialNumber" type="string"/>
+            <element maxOccurs="5" minOccurs="0" name="comments" type="string"/>
+            <element minOccurs="0" name="inspectionTerm" type="integer"/>
+            <element minOccurs="0" name="billToLocation" type="string"/>
+            <element minOccurs="0" name="isValidEquipment" type="boolean"/>
+            <element maxOccurs="unbounded" name="inspectionLine">
+              <complexType>
+                <sequence>
+                  <element name="lineNumber" type="integer"/>
+                  <element minOccurs="0" name="measurement" type="string"/>
+                  <element name="didPass" type="boolean"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateEquipmentInspectionResponse">
+        <complexType>
+          <sequence>
+            <element name="inspectionNumber" type="integer"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateAccountCustomerRequest">
+        <complexType>
+          <sequence>
+            <element name="AccountCustomer" type="ns0:AccountCustomer"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateAccountCustomerResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateAccountCustomerRequest">
+        <complexType>
+          <sequence>
+            <element name="AccountCustomer" type="ns0:AccountCustomer"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateAccountCustomerResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAccountCustomerRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element default="false" name="getUserDefinedFields" type="boolean"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAccountCustomerResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="customers" type="ns0:AccountCustomer"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLocationRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLocationResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="locations" type="ns0:Location"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTaxCodeMasterRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTaxCodeMasterResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="taxCodeMasters" type="ns0:TaxCodeMaster"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAnalysisCodeMasterRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetAnalysisCodeMasterResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="analysisCodeMasters" type="ns0:AnalysisCodeMaster"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateVendorRequest">
+        <complexType>
+          <sequence>
+            <element name="vendor" type="ns0:Vendor"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateVendorResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateVendorRequest">
+        <complexType>
+          <sequence>
+            <element name="vendor" type="ns0:Vendor"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateVendorResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateUserRequest">
+        <complexType>
+          <sequence>
+            <element name="user" type="ns0:User"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateUserRequest">
+        <complexType>
+          <sequence>
+            <element name="user" type="ns0:User"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetUserRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="userName" type="string"/>
+            <element minOccurs="0" name="emailAddress" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="user" type="ns0:User"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DisableUserRequest">
+        <complexType>
+          <sequence>
+            <element name="userName" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="DisableUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ResetUserRequest">
+        <complexType>
+          <sequence>
+            <element name="userName" type="string"/>
+            <element name="temporaryPassword" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ResetUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RemoveUserRequest">
+        <complexType>
+          <sequence>
+            <element name="userName" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RemoveUserResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateGlJournalEntryRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="processId" type="string"/>
+            <element minOccurs="0" name="finalizeUpload" type="boolean"/>
+            <element minOccurs="0" name="processUpload" type="boolean"/>
+            <element name="journalEntry" type="ns0:GlJournalEntry"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateGlJournalEntryResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="processId" type="string"/>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateApInvoiceBatchRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="processId" type="long"/>
+            <element minOccurs="0" name="finalize" type="boolean"/>
+            <element minOccurs="0" name="process" type="boolean"/>
+            <element minOccurs="0" name="currencyCode" type="string"/>
+            <element minOccurs="0" name="locationCode" type="string"/>
+            <element minOccurs="0" name="batchDate" type="dateTime"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="invoices" type="ns0:ApInvoice"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateApInvoiceBatchResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEquipmentRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="startPosition" type="integer"/>
+            <element minOccurs="0" name="pageSize" type="integer"/>
+            <element minOccurs="0" name="filters" type="ns0:Filters"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetEquipmentResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="hasMore" type="boolean"/>
+            <element minOccurs="0" name="totalRecords" type="long"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="equipment" type="ns0:Equipment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReconcileVendorPaymentRequest">
+        <complexType>
+          <sequence>
+            <element name="bankGlNumber" type="ns0:GlNumber"/>
+            <element minOccurs="0" name="batchId" type="string"/>
+            <element minOccurs="0" name="allowPartialReconcile" type="boolean"/>
+            <element maxOccurs="unbounded" name="payment" type="ns0:ClearedVendorPayment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReconcileVendorPaymentResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateCustomerPaymentBatchRequest">
+        <complexType>
+          <sequence>
+            <element default="true" minOccurs="0" name="closeBatch" type="boolean"/>
+            <element minOccurs="0" name="locationCode" type="string"/>
+            <element name="paymentMethod" type="string"/>
+            <element name="currencyCode" type="string"/>
+            <element minOccurs="0" name="batchDate" type="dateTime"/>
+            <element maxOccurs="unbounded" name="payment" type="ns0:CustomerPayment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateCustomerPaymentBatchResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateSalesOrderRequest">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="invoice" type="boolean"/>
+            <element minOccurs="0" name="proforma" type="boolean"/>
+            <element name="salesOrder" type="ns0:SalesOrder"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateSalesOrderResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateInventoryTransferRequest">
+        <complexType>
+          <sequence>
+            <element name="inventoryTransfer" type="ns0:InventoryTransfer"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateInventoryTransferResponse">
+        <complexType>
+          <sequence>
+            <element minOccurs="0" name="status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+    <schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://wynnesystems.com/rm/schema/type" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wynnesystems.com/rm/schema/type">
+      <complexType name="Currency">
+        <sequence>
+          <element name="companyCode" type="string"/>
+          <element name="currencyCode" type="string"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="printDescription1" type="string"/>
+          <element minOccurs="0" name="printDescription2" type="string"/>
+          <element minOccurs="0" name="refreshRate" type="string"/>
+          <element minOccurs="0" name="forceRefresh" type="boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="CurrencyExchangeRate">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="fromCurrencyCode" type="string"/>
+          <element minOccurs="0" name="toCurrencyCode" type="string"/>
+          <element minOccurs="0" name="effectiveDateTime" type="dateTime"/>
+          <element minOccurs="0" name="exchangeRate" type="string"/>
+          <element minOccurs="0" name="createdBy" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="GlNumber">
+        <sequence>
+          <element name="account" type="integer"/>
+          <element name="location" type="integer"/>
+          <element name="naturalClass" type="integer"/>
+          <element name="department" type="integer"/>
+        </sequence>
+      </complexType>
+      <complexType name="Balance">
+        <sequence>
+          <element minOccurs="0" name="balanceForward" type="tns:GlBalance"/>
+          <element minOccurs="0" name="currentBalance" type="tns:GlBalance"/>
+          <element maxOccurs="13" minOccurs="13" name="periodBalances">
+            <complexType>
+              <sequence>
+                <element name="periodNumber" type="integer"/>
+                <element name="balance" type="tns:GlBalance"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SequenceGroup">
+        <sequence>
+          <element name="id" type="integer"/>
+          <element name="value" type="integer"/>
+        </sequence>
+      </complexType>
+      <complexType name="Filters">
+        <sequence>
+          <element maxOccurs="unbounded" name="filter" type="tns:Filter"/>
+        </sequence>
+      </complexType>
+      <complexType name="Filter">
+        <sequence>
+          <element name="fieldName" type="string"/>
+          <element name="fieldValue" type="string"/>
+          <element name="operator" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="GeneralLedgerAccount">
+        <sequence>
+          <element name="companyCode" type="string"/>
+          <element name="glNumber" type="tns:GlNumber"/>
+          <element name="type" type="string"/>
+          <element minOccurs="0" name="accountCode" type="integer"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="reportDescription" type="string"/>
+          <element minOccurs="0" name="balance">
+            <complexType>
+              <sequence>
+                <element minOccurs="0" name="balanceForward" type="tns:GlBalance"/>
+                <element minOccurs="0" name="currentBalance" type="tns:GlBalance"/>
+                <element maxOccurs="13" minOccurs="13" name="periodBalance">
+                  <complexType>
+                    <sequence>
+                      <element name="periodNumber" type="integer"/>
+                      <element name="balance" type="tns:GlBalance"/>
+                    </sequence>
+                  </complexType>
+                </element>
+              </sequence>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="lastMaintenanceCode" type="string"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedBy" type="string"/>
+          <element maxOccurs="5" minOccurs="0" name="sequenceGroup">
+            <complexType>
+              <sequence>
+                <element name="id" type="integer"/>
+                <element name="value" type="integer"/>
+              </sequence>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="oldAccountNumber" type="string"/>
+          <element minOccurs="0" name="alternateNumber" type="string"/>
+          <element minOccurs="0" name="alphaNumber" type="string"/>
+          <element minOccurs="0" name="useType" type="string"/>
+          <element minOccurs="0" name="nextLettrage" type="string"/>
+          <element maxOccurs="6" minOccurs="0" name="analysisCode" type="tns:GLAnalysisCode"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="statusBeginDate" type="dateTime"/>
+          <element minOccurs="0" name="statusEndDate" type="dateTime"/>
+          <element minOccurs="0" name="auxiliaryAccount" type="string"/>
+          <element minOccurs="0" name="balanceForwardEntryDetail" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="CashCustomerNumber">
+        <sequence>
+          <element minOccurs="0" name="dlState" type="string"/>
+          <element minOccurs="0" name="dlNumber" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Address">
+        <sequence>
+          <element minOccurs="0" name="addr1" type="string"/>
+          <element minOccurs="0" name="addr2" type="string"/>
+          <element minOccurs="0" name="addr3" type="string"/>
+          <element minOccurs="0" name="city" type="string"/>
+          <element minOccurs="0" name="state" type="string"/>
+          <element minOccurs="0" name="zip" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="PurchaseOrder">
+        <sequence>
+          <element name="companyCode" type="string"/>
+          <element name="poNumber" type="integer"/>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="shipToName" type="string"/>
+          <element minOccurs="0" name="shipToAddress" type="tns:Address"/>
+          <element minOccurs="0" name="shipToPhone" type="tns:Phone"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="orderDateTime" type="dateTime"/>
+          <element minOccurs="0" name="promiseDate" type="dateTime"/>
+          <element minOccurs="0" name="requestedDate" type="dateTime"/>
+          <element minOccurs="0" name="closedDate" type="dateTime"/>
+          <element minOccurs="0" name="orderedBy" type="string"/>
+          <element minOccurs="0" name="orderedFrom" type="string"/>
+          <element minOccurs="0" name="orderedFor" type="string"/>
+          <element minOccurs="0" name="totalAmount" type="decimal"/>
+          <element minOccurs="0" name="taxAmount" type="decimal"/>
+          <element minOccurs="0" name="materialCode" type="string"/>
+          <element minOccurs="0" name="userId" type="string"/>
+          <element minOccurs="0" name="taxable" type="string"/>
+          <element minOccurs="0" name="taxPercent" type="decimal"/>
+          <element minOccurs="0" name="shipVia" type="string"/>
+          <element minOccurs="0" name="terms" type="string"/>
+          <element minOccurs="0" name="fobPoint" type="string"/>
+          <element minOccurs="0" name="shipToLocationCode" type="string"/>
+          <element minOccurs="0" name="customerOrContactLink" type="long"/>
+          <element minOccurs="0" name="altVendorAddress" type="integer"/>
+          <element minOccurs="0" name="referenceNumber" type="long"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="exchangeRate" type="string"/>
+          <element minOccurs="0" name="cashCustomerNumber" type="tns:CashCustomerNumber"/>
+          <element minOccurs="0" name="miscGroup3" type="integer"/>
+          <element minOccurs="0" name="thirdPartyReference" type="string"/>
+          <element minOccurs="0" name="lastModifiedBy" type="string"/>
+          <element minOccurs="0" name="lastModifiedDateTime" type="dateTime"/>
+          <element minOccurs="0" name="termDays" type="integer"/>
+          <element minOccurs="0" name="discountRate" type="decimal"/>
+          <element minOccurs="0" name="discountDays" type="integer"/>
+          <element minOccurs="0" name="reasonCode" type="string"/>
+          <element minOccurs="0" name="dueDateCode" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="purchaseOrderLines" type="tns:PurchaseOrderLine"/>
+        </sequence>
+      </complexType>
+      <complexType name="PurchaseOrderLine">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="poNumber" type="integer"/>
+          <element minOccurs="0" name="lineNumber" type="integer"/>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="itemNumber" type="string"/>
+          <element minOccurs="0" name="stockClass" type="string"/>
+          <element minOccurs="0" name="vendorItemNumber" type="string"/>
+          <element minOccurs="0" name="cost" type="decimal"/>
+          <element minOccurs="0" name="openOrderQuantity" type="decimal"/>
+          <element minOccurs="0" name="receivedQuantity" type="decimal"/>
+          <element minOccurs="0" name="originalOrderQuantity" type="decimal"/>
+          <element minOccurs="0" name="unitOfMeasure" type="string"/>
+          <element minOccurs="0" name="extendedAmount" type="decimal"/>
+          <element minOccurs="0" name="totalDiscountPercent" type="decimal"/>
+          <element minOccurs="0" name="discountPercent1" type="decimal"/>
+          <element minOccurs="0" name="discountPercent2" type="decimal"/>
+          <element minOccurs="0" name="discountPercent3" type="decimal"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="orderDate" type="dateTime"/>
+          <element minOccurs="0" name="requestedDate" type="dateTime"/>
+          <element minOccurs="0" name="dueDate" type="dateTime"/>
+          <element minOccurs="0" name="lastReceivedDate" type="dateTime"/>
+          <element minOccurs="0" name="taxable" type="string"/>
+          <element minOccurs="0" name="orderLocationCode" type="string"/>
+          <element minOccurs="0" name="shipToLocationCode" type="string"/>
+          <element minOccurs="0" name="warehouseLocationCode" type="string"/>
+          <element minOccurs="0" name="glNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="pmeCode" type="string"/>
+          <element minOccurs="0" name="dropShip" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="cashCustomerNumber" type="tns:CashCustomerNumber"/>
+          <element minOccurs="0" name="contractNumber" type="integer"/>
+          <element minOccurs="0" name="equipmentNumber" type="string"/>
+          <element minOccurs="0" name="equipmentConfigurationNumber" type="integer"/>
+          <element minOccurs="0" name="systemDateTime" type="dateTime"/>
+          <element minOccurs="0" name="recordAddedBy" type="string"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="customerJobNumber" type="string"/>
+          <element minOccurs="0" name="equipmentType" type="string"/>
+          <element minOccurs="0" name="programmerWorkCode" type="string"/>
+          <element maxOccurs="6" minOccurs="0" name="glAnalysisCodes" type="tns:GLAnalysisCode"/>
+          <element minOccurs="0" name="transactionCost" type="decimal"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="purchaseOrderReceivers" type="tns:PurchaseOrderReceiver"/>
+        </sequence>
+      </complexType>
+      <complexType name="PurchaseOrderReceiver">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="poNumber" type="integer"/>
+          <element minOccurs="0" name="receiverNumber" type="integer"/>
+          <element minOccurs="0" name="lineNumber" type="integer"/>
+          <element minOccurs="0" name="itemNumber" type="string"/>
+          <element minOccurs="0" name="stockClass" type="string"/>
+          <element minOccurs="0" name="equipmentNumber" type="string"/>
+          <element minOccurs="0" name="quantityReceived" type="decimal"/>
+          <element minOccurs="0" name="cost" type="decimal"/>
+          <element minOccurs="0" name="unitOfMeasure" type="string"/>
+          <element minOccurs="0" name="receivedLocationCode" type="string"/>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="pmeCode" type="string"/>
+          <element minOccurs="0" name="overageReceived" type="string"/>
+          <element minOccurs="0" name="receivedDateTime" type="dateTime"/>
+          <element minOccurs="0" name="receivedBy" type="string"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="reasonCode" type="string"/>
+          <element minOccurs="0" name="recordCreatedFrom" type="string"/>
+          <element minOccurs="0" name="systemDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedBy" type="string"/>
+          <element minOccurs="0" name="programFlag" type="string"/>
+          <element minOccurs="0" name="apInvoiceNumber" type="string"/>
+          <element minOccurs="0" name="apInvoiceSequence" type="integer"/>
+          <element minOccurs="0" name="apCheckDate" type="dateTime"/>
+          <element minOccurs="0" name="apCheckNumber" type="integer"/>
+          <element minOccurs="0" name="apCheckAmount" type="decimal"/>
+          <element minOccurs="0" name="quantityOnHandAtReceipt" type="decimal"/>
+          <element minOccurs="0" name="lastCostAtReceipt" type="decimal"/>
+          <element minOccurs="0" name="averageCostAtReceipt" type="decimal"/>
+          <element minOccurs="0" name="averageCostAfterReceipt" type="decimal"/>
+          <element minOccurs="0" name="requisitionNumber" type="integer"/>
+          <element minOccurs="0" name="requisitionSequenceNumber" type="integer"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="exchangeRate" type="string"/>
+          <element minOccurs="0" name="contractNumber" type="integer"/>
+          <element minOccurs="0" name="contractInvoiceSequence" type="integer"/>
+          <element minOccurs="0" name="receiverSequence" type="integer"/>
+          <element minOccurs="0" name="adjustedReceiverSequence" type="integer"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="taxAmount" type="decimal"/>
+          <element minOccurs="0" name="equipmentType" type="string"/>
+          <element minOccurs="0" name="deliveryNote" type="string"/>
+          <element minOccurs="0" name="inventoryLossAmount" type="decimal"/>
+        </sequence>
+      </complexType>
+      <complexType name="GlBalance">
+        <sequence>
+          <element name="debits" type="decimal"/>
+          <element name="credits" type="decimal"/>
+        </sequence>
+      </complexType>
+      <complexType name="Country">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="abbreviatedDescription" type="string"/>
+          <element minOccurs="0" name="europeanUnionMember" type="string"/>
+          <element minOccurs="0" name="internationalCountryCode" type="string"/>
+          <element minOccurs="0" name="internationalPhoneCode" type="integer"/>
+        </sequence>
+      </complexType>
+      <complexType name="State">
+        <sequence>
+          <element minOccurs="0" name="state" type="string"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="abbreviatedDescription" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="GLAnalysisCode">
+        <sequence>
+          <element name="id" type="integer"/>
+          <element name="value" type="integer"/>
+        </sequence>
+      </complexType>
+      <complexType name="vendorAlternate">
+        <sequence>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="seq" type="integer"/>
+          <element minOccurs="0" name="name1" type="string"/>
+          <element minOccurs="0" name="name2" type="string"/>
+          <element minOccurs="0" name="address" type="tns:Address"/>
+          <element maxOccurs="6" minOccurs="0" name="emailAddresses" type="string"/>
+          <element maxOccurs="9" minOccurs="0" name="phones" type="tns:Phone"/>
+          <element minOccurs="0" name="website" type="string"/>
+          <element minOccurs="0" name="maintenanceCode" type="string"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="maintainedBy" type="string"/>
+          <element minOccurs="0" name="nICcode" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Phone">
+        <sequence>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="areaCode" type="string"/>
+          <element minOccurs="0" name="phoneType" type="string"/>
+          <element minOccurs="0" name="phoneNumber" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Vendor">
+        <sequence>
+          <element minOccurs="0" name="id" type="long"/>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="name1" type="string"/>
+          <element minOccurs="0" name="name2" type="string"/>
+          <element minOccurs="0" name="address" type="tns:Address"/>
+          <element maxOccurs="4" minOccurs="0" name="emailAddresses" type="string"/>
+          <element maxOccurs="9" minOccurs="0" name="phones" type="tns:Phone"/>
+          <element minOccurs="0" name="website" type="string"/>
+          <element minOccurs="0" name="accountNumber" type="string"/>
+          <element minOccurs="0" name="fob" type="string"/>
+          <element minOccurs="0" name="paymentTerms" type="string"/>
+          <element minOccurs="0" name="amountPaidToDate" type="decimal"/>
+          <element minOccurs="0" name="amountPaidYrToDate" type="decimal"/>
+          <element minOccurs="0" name="currentDiscountTaken" type="decimal"/>
+          <element minOccurs="0" name="currentDiscountLost" type="decimal"/>
+          <element minOccurs="0" name="amountPaidPreYr" type="decimal"/>
+          <element minOccurs="0" name="discountTakenPreYr" type="decimal"/>
+          <element minOccurs="0" name="discountLostPreYr" type="decimal"/>
+          <element minOccurs="0" name="lastPaymentDate" type="dateTime"/>
+          <element minOccurs="0" name="available" type="integer"/>
+          <element minOccurs="0" name="maintenanceCode" type="string"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="maintainedBy" type="string"/>
+          <element maxOccurs="6" minOccurs="0" name="glNumbers" type="tns:GlNumber"/>
+          <element minOccurs="0" name="altVendorName" type="string"/>
+          <element minOccurs="0" name="taxPercent" type="decimal"/>
+          <element minOccurs="0" name="lastPriceListUpdate" type="integer"/>
+          <element minOccurs="0" name="defaultNumberOfDays" type="integer"/>
+          <element minOccurs="0" name="amountPaidPreYr2" type="decimal"/>
+          <element minOccurs="0" name="termDays" type="integer"/>
+          <element minOccurs="0" name="discountDateSameAsDueDate" type="string"/>
+          <element minOccurs="0" name="mainCashAccount" type="integer"/>
+          <element minOccurs="0" name="dateRecordAdded" type="dateTime"/>
+          <element minOccurs="0" name="contactName" type="string"/>
+          <element minOccurs="0" name="federalIDNumber" type="string"/>
+          <element minOccurs="0" name="requires1099" type="string"/>
+          <element minOccurs="0" name="aveLeadTimeInDays" type="integer"/>
+          <element minOccurs="0" name="safetyStockInDays" type="integer"/>
+          <element minOccurs="0" name="monthsUsageDefault" type="integer"/>
+          <element minOccurs="0" name="alternateVendor" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="regionNumber" type="integer"/>
+          <element minOccurs="0" name="contactName1" type="string"/>
+          <element minOccurs="0" name="contactName2" type="string"/>
+          <element minOccurs="0" name="contactName3" type="string"/>
+          <element minOccurs="0" name="products" type="string"/>
+          <element minOccurs="0" name="minOrder" type="string"/>
+          <element minOccurs="0" name="discounts" type="string"/>
+          <element minOccurs="0" name="freightPolicy" type="string"/>
+          <element minOccurs="0" name="alternateVend1" type="integer"/>
+          <element minOccurs="0" name="alternateVend2" type="integer"/>
+          <element minOccurs="0" name="alternateName1" type="string"/>
+          <element minOccurs="0" name="alternateName2" type="string"/>
+          <element minOccurs="0" name="orderComment" type="string"/>
+          <element minOccurs="0" name="resaleCardSent" type="string"/>
+          <element minOccurs="0" name="dateSent" type="dateTime"/>
+          <element minOccurs="0" name="additionalComment" type="string"/>
+          <element minOccurs="0" name="paymentTerms1" type="string"/>
+          <element minOccurs="0" name="paymentTerms2" type="string"/>
+          <element minOccurs="0" name="paymentTerms3" type="string"/>
+          <element minOccurs="0" name="vndType" type="string"/>
+          <element minOccurs="0" name="limitAmount" type="decimal"/>
+          <element minOccurs="0" name="corporateAccount" type="string"/>
+          <element minOccurs="0" name="poSent" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="languageCode" type="string"/>
+          <element minOccurs="0" name="poRequired" type="string"/>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="apAccount" type="string"/>
+          <element minOccurs="0" name="bankAccountNumber" type="string"/>
+          <element minOccurs="0" name="giroAccount" type="string"/>
+          <element minOccurs="0" name="bankName" type="string"/>
+          <element minOccurs="0" name="bankAddr1" type="string"/>
+          <element minOccurs="0" name="bankAddr2" type="string"/>
+          <element minOccurs="0" name="bankCity" type="string"/>
+          <element minOccurs="0" name="bankSt" type="string"/>
+          <element minOccurs="0" name="bankZip" type="string"/>
+          <element minOccurs="0" name="bankCountry" type="string"/>
+          <element minOccurs="0" name="bankPhoneNumber" type="string"/>
+          <element minOccurs="0" name="bankFax" type="string"/>
+          <element minOccurs="0" name="electronicFundPayment" type="string"/>
+          <element minOccurs="0" name="bankRoutingNbr" type="long"/>
+          <element minOccurs="0" name="bankIdentifierCode" type="string"/>
+          <element minOccurs="0" name="ibanEurope" type="string"/>
+          <element minOccurs="0" name="vndGrp" type="string"/>
+          <element minOccurs="0" name="cashGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="discountRate" type="decimal"/>
+          <element minOccurs="0" name="discountDays" type="integer"/>
+          <element minOccurs="0" name="deliveryCodeRequired" type="string"/>
+          <element minOccurs="0" name="invoiceDueDateCode" type="string"/>
+          <element minOccurs="0" name="vendorPayMethod" type="string"/>
+          <element minOccurs="0" name="vatAccountMethodUsed" type="string"/>
+          <element minOccurs="0" name="nicCode" type="string"/>
+          <element minOccurs="0" name="businessEntityCode" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="vendorAlternates" type="tns:vendorAlternate"/>
+        </sequence>
+      </complexType>
+      <complexType name="AccountCustomer">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="dateRecordAdded" type="dateTime"/>
+          <element minOccurs="0" name="name1" type="string"/>
+          <element minOccurs="0" name="name2" type="string"/>
+          <element minOccurs="0" name="address" type="tns:Address"/>
+          <element maxOccurs="5" minOccurs="0" name="phones" type="tns:Phone"/>
+          <element minOccurs="0" name="damageWaiverChargeCode" type="string"/>
+          <element minOccurs="0" name="damageWaiverExpirationDate" type="dateTime"/>
+          <element minOccurs="0" name="taxableSales" type="string"/>
+          <element minOccurs="0" name="resaleNumber" type="string"/>
+          <element minOccurs="0" name="poNumberRequired" type="string"/>
+          <element minOccurs="0" name="jobNumberRequired" type="string"/>
+          <element minOccurs="0" name="chargeLateFee" type="string"/>
+          <element minOccurs="0" name="regionNumber" type="integer"/>
+          <element minOccurs="0" name="territoryNumber" type="integer"/>
+          <element minOccurs="0" name="salesRepNumber" type="integer"/>
+          <element minOccurs="0" name="printStatement" type="string"/>
+          <element minOccurs="0" name="sicCode" type="string"/>
+          <element minOccurs="0" name="cycleBillCode" type="string"/>
+          <element minOccurs="0" name="creditLimit" type="long"/>
+          <element minOccurs="0" name="lastTransactionDate" type="dateTime"/>
+          <element minOccurs="0" name="lastPaymentDate" type="dateTime"/>
+          <element minOccurs="0" name="lastPaymentAmount" type="decimal"/>
+          <element minOccurs="0" name="numberOfInvoices" type="integer"/>
+          <element minOccurs="0" name="averageDaysToPay" type="integer"/>
+          <element minOccurs="0" name="amountCurrent" type="decimal"/>
+          <element minOccurs="0" name="amountThirtyDays" type="decimal"/>
+          <element minOccurs="0" name="amountSixtyDays" type="decimal"/>
+          <element minOccurs="0" name="amountNintyDays" type="decimal"/>
+          <element minOccurs="0" name="amountOneHundredTwentyDays" type="decimal"/>
+          <element minOccurs="0" name="amountRentalYearToDate" type="decimal"/>
+          <element minOccurs="0" name="amountRentalLastYear" type="decimal"/>
+          <element minOccurs="0" name="amountOtherYearToDate" type="decimal"/>
+          <element minOccurs="0" name="amountOtherLastYear" type="decimal"/>
+          <element minOccurs="0" name="pgmrWorkField" type="string"/>
+          <element minOccurs="0" name="searchWord" type="string"/>
+          <element minOccurs="0" name="customerClassCode" type="integer"/>
+          <element minOccurs="0" name="preLien" type="string"/>
+          <element minOccurs="0" name="corpAccountLink" type="integer"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintenanceBy" type="string"/>
+          <element minOccurs="0" name="sourceCode" type="string"/>
+          <element minOccurs="0" name="contactName" type="string"/>
+          <element minOccurs="0" name="rentalDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="salesDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="taxExemptCode" type="string"/>
+          <element minOccurs="0" name="agencyRatingCode" type="string"/>
+          <element minOccurs="0" name="gstTax" type="string"/>
+          <element minOccurs="0" name="pstTax" type="string"/>
+          <element minOccurs="0" name="salesYearToDate" type="decimal"/>
+          <element minOccurs="0" name="salesLastYear" type="decimal"/>
+          <element minOccurs="0" name="equipSalesYearToDate" type="decimal"/>
+          <element minOccurs="0" name="equipSalesLastYear" type="decimal"/>
+          <element minOccurs="0" name="rentalLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="otherLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="salesLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="equipSalesLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="highestARCredit" type="decimal"/>
+          <element minOccurs="0" name="openAmount" type="decimal"/>
+          <element minOccurs="0" name="taxRentals" type="string"/>
+          <element minOccurs="0" name="rentalTaxExemptionCode" type="string"/>
+          <element minOccurs="0" name="creditCode" type="string"/>
+          <element minOccurs="0" name="freeDelivery" type="string"/>
+          <element minOccurs="0" name="freePickup" type="string"/>
+          <element minOccurs="0" name="creditManagerUserProfile" type="string"/>
+          <element minOccurs="0" name="customerPricingCode" type="string"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="dailyRentalDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="weeklyRentalDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="monthlyRentalDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="prorateRentals" type="string"/>
+          <element minOccurs="0" name="preBillRentals" type="string"/>
+          <element minOccurs="0" name="printRatesOnContract" type="string"/>
+          <element minOccurs="0" name="lastContactDate" type="dateTime"/>
+          <element minOccurs="0" name="lastContactBy" type="string"/>
+          <element minOccurs="0" name="nextReviewDate" type="dateTime"/>
+          <element minOccurs="0" name="damageWaiverScheduledBlanketCoverage" type="string"/>
+          <element minOccurs="0" name="damageWaiverCoverageAmount" type="decimal"/>
+          <element minOccurs="0" name="insurance" type="string"/>
+          <element minOccurs="0" name="insuranceExpirationDate" type="dateTime"/>
+          <element minOccurs="0" name="environmentCharge" type="string"/>
+          <element minOccurs="0" name="subtractSaturdays" type="string"/>
+          <element minOccurs="0" name="subtractSundays" type="string"/>
+          <element minOccurs="0" name="prorateDaysAfterMonth" type="string"/>
+          <element minOccurs="0" name="monthProrateDivisor" type="integer"/>
+          <element minOccurs="0" name="prorateDaysAfterWeek" type="string"/>
+          <element minOccurs="0" name="weekProrateDivisor" type="integer"/>
+          <element minOccurs="0" name="dailyDivisor" type="integer"/>
+          <element minOccurs="0" name="subtractSaturdaysAndSundaysAfterCycle" type="string"/>
+          <element minOccurs="0" name="useWeeklyRateAfter1stCycle" type="string"/>
+          <element minOccurs="0" name="dayOfMonthToBillOn" type="integer"/>
+          <element minOccurs="0" name="nationalAccountCode" type="string"/>
+          <element minOccurs="0" name="nationalAccountExpirationDate" type="dateTime"/>
+          <element minOccurs="0" name="dealer" type="string"/>
+          <element minOccurs="0" name="workOrderDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="laborContractNumber" type="integer"/>
+          <element minOccurs="0" name="languageCode" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element maxOccurs="6" minOccurs="0" name="emailAddresses" type="string"/>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="termDaysRental" type="integer"/>
+          <element minOccurs="0" name="termDaysSales" type="integer"/>
+          <element minOccurs="0" name="creditRatingAgencyIdentificationNumber" type="integer"/>
+          <element minOccurs="0" name="invoiceDueDateCode" type="string"/>
+          <element minOccurs="0" name="paymentCode" type="string"/>
+          <element minOccurs="0" name="billingCode" type="string"/>
+          <element minOccurs="0" name="arGeneralLedgerAccountNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="bankRoutingNumber" type="long"/>
+          <element minOccurs="0" name="giroAccount" type="string"/>
+          <element minOccurs="0" name="autoFaxEmailCode" type="string"/>
+          <element minOccurs="0" name="reservationAmount" type="decimal"/>
+          <element minOccurs="0" name="totalRevenueAmount" type="decimal"/>
+          <element minOccurs="0" name="paymentAndAdjustments" type="decimal"/>
+          <element minOccurs="0" name="salesRepCommissionPercentage" type="decimal"/>
+          <element minOccurs="0" name="longTermDiscount" type="string"/>
+          <element minOccurs="0" name="electronicFundsPayment" type="string"/>
+          <element minOccurs="0" name="customerBankAccountNumber" type="string"/>
+          <element minOccurs="0" name="internationalBankNumber" type="string"/>
+          <element minOccurs="0" name="bankIdentifierCode" type="string"/>
+          <element minOccurs="0" name="includeCommissionReport" type="string"/>
+          <element minOccurs="0" name="inspectionDueTerm" type="integer"/>
+          <element minOccurs="0" name="requireUserAuthorization" type="string"/>
+          <element minOccurs="0" name="alternateCustomerNumber" type="string"/>
+          <element minOccurs="0" name="businessEntityCode" type="string"/>
+          <element minOccurs="0" name="membershipNumber" type="string"/>
+          <element minOccurs="0" name="contractType" type="string"/>
+          <element minOccurs="0" name="memberSinceDate" type="dateTime"/>
+          <element minOccurs="0" name="bankName" type="string"/>
+          <element minOccurs="0" name="bankPhoneNumber" type="string"/>
+          <element minOccurs="0" name="bankFaxNumber" type="string"/>
+          <element minOccurs="0" name="nicCode" type="string"/>
+          <element minOccurs="0" name="customerReference1" type="string"/>
+          <element minOccurs="0" name="customerReference2" type="string"/>
+          <element minOccurs="0" name="customerReference3" type="string"/>
+          <element minOccurs="0" name="customerReference4" type="string"/>
+          <element minOccurs="0" name="billPickup" type="string"/>
+          <element minOccurs="0" name="id" type="long"/>
+          <element minOccurs="0" name="gracePeriodInDays" type="integer"/>
+          <element minOccurs="0" name="interestRate" type="decimal"/>
+          <element minOccurs="0" name="damageWaiverPercent" type="decimal"/>
+          <element minOccurs="0" name="damageWaiverRule" type="string"/>
+          <element minOccurs="0" name="environmentFeeRule" type="string"/>
+          <element minOccurs="0" name="recordCreationDateTime" type="dateTime"/>
+          <element minOccurs="0" name="recordCreationUser" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="userDefinedFields" type="tns:UserDefinedField"/>
+        </sequence>
+      </complexType>
+      <complexType name="UserDefinedField">
+        <sequence>
+          <element name="FieldName" type="string"/>
+          <element name="FieldValue" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="CustomerJob">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="jobNumber" type="string"/>
+          <element minOccurs="0" name="cashCustomerNumber" type="tns:CashCustomerNumber"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="jobOpenedLocationCode" type="string"/>
+          <element minOccurs="0" name="dateOpened" type="dateTime"/>
+          <element minOccurs="0" name="jobLocation" type="string"/>
+          <element minOccurs="0" name="contactName" type="string"/>
+          <element minOccurs="0" name="address" type="tns:Address"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="phones" type="tns:Phone"/>
+          <element minOccurs="0" name="taxDistrict" type="string"/>
+          <element minOccurs="0" name="territoryNumber" type="integer"/>
+          <element minOccurs="0" name="salesRepNumber" type="integer"/>
+          <element minOccurs="0" name="purchaseOrderNumber" type="string"/>
+          <element minOccurs="0" name="deliverToJob" type="string"/>
+          <element minOccurs="0" name="deliveryCode" type="string"/>
+          <element minOccurs="0" name="rentalDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="salesDiscountPercentage" type="decimal"/>
+          <element minOccurs="0" name="taxSales" type="string"/>
+          <element minOccurs="0" name="taxSalesExemptCode" type="string"/>
+          <element minOccurs="0" name="resaleNumber" type="string"/>
+          <element minOccurs="0" name="preLien" type="string"/>
+          <element minOccurs="0" name="preLienDate" type="dateTime"/>
+          <element minOccurs="0" name="originalPreLienFillingDate" type="dateTime"/>
+          <element minOccurs="0" name="lienDate" type="dateTime"/>
+          <element minOccurs="0" name="preLienReleaseDate" type="dateTime"/>
+          <element minOccurs="0" name="taxRentals" type="string"/>
+          <element minOccurs="0" name="rentalTaxExmptionCode" type="string"/>
+          <element minOccurs="0" name="maxJobAmount" type="decimal"/>
+          <element minOccurs="0" name="contractPriceNumber" type="integer"/>
+          <element minOccurs="0" name="cycleBillCode" type="string"/>
+          <element minOccurs="0" name="prebillRentals" type="string"/>
+          <element minOccurs="0" name="printRatesOnContract" type="string"/>
+          <element minOccurs="0" name="prorateRentals" type="string"/>
+          <element minOccurs="0" name="dailyDivisor" type="integer"/>
+          <element minOccurs="0" name="weeklyDivisor" type="integer"/>
+          <element minOccurs="0" name="monthlyDivisor" type="integer"/>
+          <element minOccurs="0" name="prorateRentalsUnderAMonth" type="string"/>
+          <element minOccurs="0" name="taxGST" type="string"/>
+          <element minOccurs="0" name="taxPST" type="string"/>
+          <element minOccurs="0" name="marketSegment" type="string"/>
+          <element minOccurs="0" name="generalLedgerType" type="string"/>
+          <element name="sicCode" type="string"/>
+          <element minOccurs="0" name="suspendCycleBills" type="string"/>
+          <element minOccurs="0" name="netDiscountsAgainstRates" type="string"/>
+          <element minOccurs="0" name="useCode" type="string"/>
+          <element maxOccurs="4" minOccurs="0" name="deliveryInstructions" type="string"/>
+          <element minOccurs="0" name="companyProjectNumber" type="integer"/>
+          <element minOccurs="0" name="countyCode" type="string"/>
+          <element minOccurs="0" name="customerType" type="string"/>
+          <element minOccurs="0" name="dayOfMonthToBillOn" type="integer"/>
+          <element minOccurs="0" name="withinCityLimits" type="string"/>
+          <element minOccurs="0" name="alternateCustomerNumber" type="integer"/>
+          <element minOccurs="0" name="alternateContactId" type="integer"/>
+          <element minOccurs="0" name="laborContractNumber" type="integer"/>
+          <element minOccurs="0" name="cycleBillSalesItem" type="string"/>
+          <element minOccurs="0" name="termDaysRental" type="integer"/>
+          <element minOccurs="0" name="termDaysSales" type="integer"/>
+          <element minOccurs="0" name="subtractSaturday" type="string"/>
+          <element minOccurs="0" name="subtractSunday" type="string"/>
+          <element minOccurs="0" name="subtractSaturdaySundayAfterCycle" type="string"/>
+          <element minOccurs="0" name="prorateDaysAfterAMonth" type="string"/>
+          <element minOccurs="0" name="prorateDaysAfterAWeek" type="string"/>
+          <element minOccurs="0" name="useWeeklyRateAfterFirstCycle" type="string"/>
+          <element minOccurs="0" name="sourceCode" type="string"/>
+          <element minOccurs="0" name="mapPage" type="string"/>
+          <element minOccurs="0" name="mapGrid" type="string"/>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="autoFaxOrEmail" type="string"/>
+          <element minOccurs="0" name="purchaseOrderRequired" type="string"/>
+          <element minOccurs="0" name="preLienReleaseType" type="string"/>
+          <element minOccurs="0" name="requireUserAuthorization" type="string"/>
+          <element minOccurs="0" name="invoiceDueDateCode" type="string"/>
+          <element minOccurs="0" name="paymentCode" type="string"/>
+          <element minOccurs="0" name="billingCode" type="string"/>
+          <element minOccurs="0" name="managedJob" type="string"/>
+          <element maxOccurs="4" minOccurs="0" name="customerReference" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Location">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="branchName" type="string"/>
+          <element minOccurs="0" name="branchAddress" type="tns:Address"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="branchPhones" type="tns:Phone"/>
+          <element maxOccurs="3" minOccurs="0" name="hoursOfOperationList" type="string"/>
+          <element minOccurs="0" name="remitAddress" type="tns:Address"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="remitPhones" type="tns:Phone"/>
+          <element minOccurs="0" name="systemTimeZoneOffset" type="integer"/>
+          <element minOccurs="0" name="locationUsedAsWarehouse" type="string"/>
+          <element minOccurs="0" name="managerName" type="string"/>
+          <element minOccurs="0" name="managerUserProfile" type="string"/>
+          <element minOccurs="0" name="numberOfDaysInWeek" type="integer"/>
+          <element minOccurs="0" name="numberOfDaysInMonth" type="integer"/>
+          <element minOccurs="0" name="taxDistrict" type="string"/>
+          <element minOccurs="0" name="taxDamageWaiver" type="string"/>
+          <element minOccurs="0" name="freightCategoryClass" type="integer"/>
+          <element minOccurs="0" name="fuelCategoryClass" type="integer"/>
+          <element minOccurs="0" name="prorateDaysAfterMonth" type="string"/>
+          <element minOccurs="0" name="prorateHoursAfterMonth" type="string"/>
+          <element minOccurs="0" name="monthGracePeriod" type="integer"/>
+          <element minOccurs="0" name="prorateDaysAfterWeek" type="string"/>
+          <element minOccurs="0" name="prorateHoursAfterWeek" type="string"/>
+          <element minOccurs="0" name="weekGracePeriod" type="integer"/>
+          <element minOccurs="0" name="subtractSaturdays" type="string"/>
+          <element minOccurs="0" name="subtractSundays" type="string"/>
+          <element minOccurs="0" name="dailyDivisor" type="integer"/>
+          <element minOccurs="0" name="weeklyDivisor" type="integer"/>
+          <element minOccurs="0" name="monthlyDivisor" type="integer"/>
+          <element minOccurs="0" name="hoursAllowedDay" type="integer"/>
+          <element minOccurs="0" name="hoursAllowedWeek" type="integer"/>
+          <element minOccurs="0" name="hoursAllowedMonth" type="integer"/>
+          <element minOccurs="0" name="overtimeChargeMinuteIncrement" type="integer"/>
+          <element minOccurs="0" name="takeGracePeriodBack" type="string"/>
+          <element minOccurs="0" name="daysInMonthRental" type="integer"/>
+          <element minOccurs="0" name="dayGracePeriod" type="integer"/>
+          <element minOccurs="0" name="sameDayGracePeriod" type="integer"/>
+          <element minOccurs="0" name="weekendRates" type="string"/>
+          <element minOccurs="0" name="timeOutFriday" type="decimal"/>
+          <element minOccurs="0" name="numberOfDaysForFriday" type="decimal"/>
+          <element minOccurs="0" name="timeOutSaturday" type="decimal"/>
+          <element minOccurs="0" name="numberOfDaysForSaturday" type="decimal"/>
+          <element minOccurs="0" name="timeDueBackOnMonday" type="decimal"/>
+          <element minOccurs="0" name="reportPrintHeading" type="string"/>
+          <element minOccurs="0" name="priceAtCompanyLocationWarehouse" type="string"/>
+          <element minOccurs="0" name="inventoryCostingMethod" type="string"/>
+          <element minOccurs="0" name="chargeDamageWaiverCashCustomers" type="string"/>
+          <element minOccurs="0" name="taxAtLineItemLevel" type="string"/>
+          <element minOccurs="0" name="daysInMonthRentalPurchase" type="integer"/>
+          <element minOccurs="0" name="promptDaysForRentalCharges" type="string"/>
+          <element minOccurs="0" name="inventoryFreight" type="string"/>
+          <element minOccurs="0" name="deliveryPromptDefault" type="string"/>
+          <element minOccurs="0" name="chargeDamageWaiverAccountCustomers" type="string"/>
+          <element minOccurs="0" name="allowDamageWaiverOverrideCashCustomer" type="string"/>
+          <element minOccurs="0" name="allowDamageWaiverOverrideAccountCustomer" type="string"/>
+          <element minOccurs="0" name="promptDaysInRentalPeriod" type="string"/>
+          <element minOccurs="0" name="defaultLaborItemNumber" type="string"/>
+          <element minOccurs="0" name="defaultFuelItemNumber" type="string"/>
+          <element minOccurs="0" name="defaultPickupItemNumber" type="string"/>
+          <element minOccurs="0" name="defaultDeliveryItemNumber" type="string"/>
+          <element minOccurs="0" name="costAtCompanyLocationWarehouse" type="string"/>
+          <element minOccurs="0" name="glLocationNumber" type="integer"/>
+          <element maxOccurs="3" minOccurs="0" name="textList" type="string"/>
+          <element minOccurs="0" name="timeStoreOpens" type="integer"/>
+          <element minOccurs="0" name="timeStoreCloses" type="integer"/>
+          <element minOccurs="0" name="calculateExcessHourMeterUsage" type="string"/>
+          <element minOccurs="0" name="analysisRegionNumber" type="integer"/>
+          <element minOccurs="0" name="inventoryRegionNumber" type="integer"/>
+          <element minOccurs="0" name="serviceChargePercentage" type="decimal"/>
+          <element minOccurs="0" name="shortLocationName" type="string"/>
+          <element minOccurs="0" name="allowShiftDifferential" type="string"/>
+          <element minOccurs="0" name="chargeOneExtraDay" type="string"/>
+          <element minOccurs="0" name="companyName" type="string"/>
+          <element minOccurs="0" name="warehouseLocationCode" type="string"/>
+          <element minOccurs="0" name="districtCode" type="string"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="hideLocation" type="string"/>
+          <element minOccurs="0" name="type" type="string"/>
+          <element minOccurs="0" name="dateAcquired" type="dateTime"/>
+          <element minOccurs="0" name="dateOpened" type="dateTime"/>
+          <element minOccurs="0" name="dateClosed" type="dateTime"/>
+          <element minOccurs="0" name="miscellaneousUserDefined" type="string"/>
+          <element minOccurs="0" name="subtractSaturdaysAndSundaysAfterCycle" type="string"/>
+          <element minOccurs="0" name="useDaylightSavingsTime" type="string"/>
+          <element minOccurs="0" name="glLocationNumberOverride" type="string"/>
+          <element minOccurs="0" name="overtimeCalculationMethod" type="string"/>
+          <element minOccurs="0" name="trueDoubleTripleShift" type="string"/>
+          <element minOccurs="0" name="useWeeklyRateAfterFirstCycle" type="string"/>
+          <element minOccurs="0" name="nationalAccountRemittanceAddress" type="tns:Address"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="nationalAccountRemittancePhones" type="tns:Phone"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedBy" type="string"/>
+          <element minOccurs="0" name="emailAddress" type="string"/>
+          <element minOccurs="0" name="webSite" type="string"/>
+          <element minOccurs="0" name="legalEntityCode" type="string"/>
+          <element minOccurs="0" name="dateFormat" type="string"/>
+          <element minOccurs="0" name="languageCode" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="countryCode" type="string"/>
+          <element minOccurs="0" name="creditOfficeLocationCode" type="string"/>
+          <element minOccurs="0" name="multiLingual" type="string"/>
+          <element minOccurs="0" name="multiCurrency" type="string"/>
+          <element minOccurs="0" name="locationUsedAsPartsWarehouse" type="string"/>
+          <element minOccurs="0" name="partsWarehouseLocationCode" type="string"/>
+          <element minOccurs="0" name="costPartAtCompanyLocationWarehouse" type="string"/>
+          <element minOccurs="0" name="pricePartAtCompanyLocationWarehouse" type="string"/>
+          <element minOccurs="0" name="divisionCode" type="string"/>
+          <element minOccurs="0" name="subdivisionCode" type="string"/>
+          <element minOccurs="0" name="mapPage" type="string"/>
+          <element minOccurs="0" name="mapGrid" type="string"/>
+          <element minOccurs="0" name="distanceMultiplier" type="decimal"/>
+          <element minOccurs="0" name="dispatchCenterLocationCode" type="string"/>
+          <element minOccurs="0" name="displayDispatchDistanceLine" type="string"/>
+          <element minOccurs="0" name="bankRoutingNumberTransitId" type="long"/>
+          <element minOccurs="0" name="bankAccountNumber" type="string"/>
+          <element minOccurs="0" name="iBan" type="string"/>
+          <element minOccurs="0" name="bankIdentifierCode" type="string"/>
+          <element minOccurs="0" name="calculateExcessHourMeterUsageCycles" type="string"/>
+          <element minOccurs="0" name="prorateHoursAfterDay" type="string"/>
+          <element minOccurs="0" name="useHourlyRateWhenProrating" type="string"/>
+          <element minOccurs="0" name="landmarkName" type="string"/>
+          <element minOccurs="0" name="electronicFundsPayment" type="string"/>
+          <element minOccurs="0" name="termRequestEmailAddress" type="string"/>
+          <element minOccurs="0" name="vatRegistrationCode" type="string"/>
+          <element minOccurs="0" name="siret" type="string"/>
+          <element minOccurs="0" name="calculateExcessWearMultiplier" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="TaxCodeMaster">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="taxDistrictCode" type="string"/>
+          <element minOccurs="0" name="taxRatePercentage" type="decimal"/>
+          <element minOccurs="0" name="totalTaxRatePercentage" type="decimal"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="taxRental" type="string"/>
+          <element minOccurs="0" name="taxSales" type="string"/>
+          <element minOccurs="0" name="taxDamageWaiver" type="string"/>
+          <element minOccurs="0" name="taxDelivery" type="string"/>
+          <element minOccurs="0" name="taxPickup" type="string"/>
+          <element minOccurs="0" name="taxLabor" type="string"/>
+          <element minOccurs="0" name="taxFuel" type="string"/>
+          <element minOccurs="0" name="printDescription" type="string"/>
+          <element minOccurs="0" name="generalLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="geoCode" type="string"/>
+          <element minOccurs="0" name="searchDescription" type="string"/>
+          <element minOccurs="0" name="useInsteadOfLocationTaxDistrict" type="string"/>
+          <element minOccurs="0" name="maxTaxableAmountPerInvoice" type="decimal"/>
+          <element minOccurs="0" name="maxTaxableAmountPerLineItem" type="decimal"/>
+          <element minOccurs="0" name="writeBackGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="usageCode" type="string"/>
+          <element minOccurs="0" name="effectiveDate" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintenanceBy" type="string"/>
+          <element minOccurs="0" name="rniFixedAssetGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="rniOtherGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="cashVatAccounting" type="string"/>
+          <element minOccurs="0" name="cashVatGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="vatEarnedNotBilledGeneralLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="identity" type="long"/>
+        </sequence>
+      </complexType>
+      <complexType name="AnalysisCodeMaster">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="analysisCode" type="integer"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="shortDescription" type="string"/>
+          <element minOccurs="0" name="analysisType" type="string"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="createdBy" type="string"/>
+          <element minOccurs="0" name="createdDatetime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintenanceBy" type="string"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="identity" type="long"/>
+        </sequence>
+      </complexType>
+      <complexType name="User">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="userName" type="string"/>
+          <element minOccurs="0" name="password" type="string"/>
+          <element minOccurs="0" name="assignedLocationCode" type="string"/>
+          <element minOccurs="0" name="phone" type="tns:Phone"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="corporateAccessAllowed" type="string"/>
+          <element minOccurs="0" name="dateFormat" type="string"/>
+          <element minOccurs="0" name="languageCode" type="string"/>
+          <element minOccurs="0" name="emailAddress" type="string"/>
+          <element minOccurs="0" name="decimalFormat" type="string"/>
+          <element minOccurs="0" name="programAccessGroup" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="roles" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="workStations">
+            <complexType>
+              <sequence>
+                <element name="locationCode" type="string"/>
+                <element minOccurs="0" name="defaultOutputQueue" type="string"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="GlJournalEntry">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="date" type="dateTime"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="journalCode" type="string"/>
+          <element minOccurs="0" name="batchType" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="entryLines" type="tns:GlJournalEntryLine"/>
+        </sequence>
+      </complexType>
+      <complexType name="GlJournalEntryLine">
+        <sequence>
+          <element minOccurs="0" name="generalLedgerNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="amount" type="decimal"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="equipmentNumber" type="string"/>
+          <element maxOccurs="6" minOccurs="0" name="analysisCodes" type="tns:GLAnalysisCode"/>
+        </sequence>
+      </complexType>
+      <complexType name="ApInvoice">
+        <sequence>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="poLink">
+            <complexType>
+              <sequence>
+                <element minOccurs="0" name="poNumber" type="integer"/>
+                <element minOccurs="0" name="receiverNumber" type="integer"/>
+              </sequence>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="poReference" type="string"/>
+          <element minOccurs="0" name="invoiceNumber" type="string"/>
+          <element minOccurs="0" name="vendorSequence" type="integer"/>
+          <element minOccurs="0" name="description" type="string"/>
+          <element minOccurs="0" name="ocr" type="string"/>
+          <element minOccurs="0" name="invoiceReference" type="string"/>
+          <element minOccurs="0" name="invoiceType" type="string"/>
+          <element minOccurs="0" name="invoiceAmount" type="decimal"/>
+          <element minOccurs="0" name="payMethod" type="string"/>
+          <element minOccurs="0" name="haltCode" type="string"/>
+          <element minOccurs="0" name="invoiceDate" type="dateTime"/>
+          <element minOccurs="0" name="dueDate" type="dateTime"/>
+          <element maxOccurs="unbounded" name="apInvoiceLines" type="tns:ApInvoiceLine"/>
+        </sequence>
+      </complexType>
+      <complexType name="ApInvoiceLine">
+        <sequence>
+          <element minOccurs="0" name="glCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="glNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="creditOrDebit" type="string"/>
+          <element minOccurs="0" name="amount" type="decimal"/>
+          <element minOccurs="0" name="equipmentNumber" type="string"/>
+          <element minOccurs="0" name="orderNumber" type="long"/>
+          <element minOccurs="0" name="taxCode" type="string"/>
+          <element minOccurs="0" name="taxAmount" type="decimal"/>
+          <element maxOccurs="6" minOccurs="0" name="analysisCodes" type="tns:GLAnalysisCode"/>
+          <element minOccurs="0" name="prepayStartDate" type="dateTime"/>
+          <element minOccurs="0" name="prepayEndDate" type="dateTime"/>
+          <element minOccurs="0" name="detailDescription" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="Equipment">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="equipmentNumber" type="string"/>
+          <element minOccurs="0" name="recordStatus" type="string"/>
+          <element minOccurs="0" name="equipmentType" type="string"/>
+          <element minOccurs="0" name="equipmentCategory" type="integer"/>
+          <element minOccurs="0" name="equipmentClass" type="integer"/>
+          <element minOccurs="0" name="maintenanceSubClass" type="integer"/>
+          <element minOccurs="0" name="assignedLocationCode" type="string"/>
+          <element minOccurs="0" name="currentLocationCode" type="string"/>
+          <element minOccurs="0" name="lastLocationCodeRented" type="string"/>
+          <element minOccurs="0" name="vendorNumber" type="integer"/>
+          <element minOccurs="0" name="dateAcquired" type="dateTime"/>
+          <element minOccurs="0" name="warrantyExpirationDate" type="dateTime"/>
+          <element minOccurs="0" name="datePutInRental" type="dateTime"/>
+          <element minOccurs="0" name="make" type="string"/>
+          <element minOccurs="0" name="model" type="string"/>
+          <element minOccurs="0" name="serialNumber" type="string"/>
+          <element minOccurs="0" name="modelYear" type="integer"/>
+          <element minOccurs="0" name="meterCode" type="string"/>
+          <element minOccurs="0" name="currentMeterReading1" type="decimal"/>
+          <element minOccurs="0" name="oldMeterReading1" type="decimal"/>
+          <element minOccurs="0" name="acquisitionCost" type="decimal"/>
+          <element minOccurs="0" name="bookValue" type="decimal"/>
+          <element minOccurs="0" name="status" type="string"/>
+          <element minOccurs="0" name="sellPrice" type="decimal"/>
+          <element minOccurs="0" name="soldAmount" type="decimal"/>
+          <element minOccurs="0" name="lastTransactionDate" type="dateTime"/>
+          <element minOccurs="0" name="lastTransactionReferenceNumber" type="long"/>
+          <element minOccurs="0" name="lastTransactionCustomerNumber" type="integer"/>
+          <element minOccurs="0" name="lastTransactionCashCustomerNumber" type="tns:CashCustomerNumber"/>
+          <element minOccurs="0" name="splitRentCode" type="string"/>
+          <element minOccurs="0" name="dueOffRentDate" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedDate" type="dateTime"/>
+          <element minOccurs="0" name="searchWord" type="string"/>
+          <element minOccurs="0" name="promptCharge" type="string"/>
+          <element minOccurs="0" name="notesPaybleInvoiceNumber" type="string"/>
+          <element minOccurs="0" name="replacementValue" type="decimal"/>
+          <element minOccurs="0" name="yearToDateRevenue" type="decimal"/>
+          <element minOccurs="0" name="lifeToDateRevenue" type="decimal"/>
+          <element minOccurs="0" name="lastYearRevenue" type="decimal"/>
+          <element minOccurs="0" name="amtSpentOnPartsYearToDate" type="decimal"/>
+          <element minOccurs="0" name="amtSpentOnPartsLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="amtSpentOnPartsLastYear" type="decimal"/>
+          <element minOccurs="0" name="numberOfDaysRentedYearToDate" type="integer"/>
+          <element minOccurs="0" name="numberOfHoursRentedYearToDate" type="integer"/>
+          <element minOccurs="0" name="numberOfDaysRentedLifeToDate" type="integer"/>
+          <element minOccurs="0" name="numberOfHoursRentedLifeToDate" type="integer"/>
+          <element minOccurs="0" name="numberOfDaysRentedLastYear" type="integer"/>
+          <element minOccurs="0" name="numberOfHoursRentedLastYear" type="integer"/>
+          <element minOccurs="0" name="collectSalesTaxOnRental" type="string"/>
+          <element minOccurs="0" name="salesTaxPaidWhenAcquired" type="string"/>
+          <element minOccurs="0" name="investmentTaxCredit" type="string"/>
+          <element minOccurs="0" name="salvageValue" type="decimal"/>
+          <element minOccurs="0" name="depreciationAmountMonthToDate" type="decimal"/>
+          <element minOccurs="0" name="depreciationAmountYearToDate" type="decimal"/>
+          <element minOccurs="0" name="depreciationAmountLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="depreciationMethod" type="string"/>
+          <element minOccurs="0" name="depreciationLifeInMonths" type="integer"/>
+          <element minOccurs="0" name="assetGeneralLedgerAccountNumber" type="tns:GlNumber"/>
+          <element minOccurs="0" name="depreciationAmountLastYear" type="decimal"/>
+          <element minOccurs="0" name="offRoad" type="string"/>
+          <element minOccurs="0" name="miscellaneousGroup1" type="integer"/>
+          <element minOccurs="0" name="miscellaneousGroup2" type="integer"/>
+          <element minOccurs="0" name="keyTagNumber" type="string"/>
+          <element minOccurs="0" name="salesTaxPaidAtTimeOfPurchase" type="decimal"/>
+          <element minOccurs="0" name="laborYearToDate" type="decimal"/>
+          <element minOccurs="0" name="laborLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="laborLastYear" type="decimal"/>
+          <element minOccurs="0" name="oldEquipmentNumber" type="integer"/>
+          <element minOccurs="0" name="salesTaxCollectFromRental" type="decimal"/>
+          <element minOccurs="0" name="glType" type="string"/>
+          <element minOccurs="0" name="freightAmount" type="decimal"/>
+          <element minOccurs="0" name="actualCashValue" type="decimal"/>
+          <element minOccurs="0" name="poNumberBoughtOn" type="integer"/>
+          <element minOccurs="0" name="forSale" type="string"/>
+          <element minOccurs="0" name="lastMaintenanceDateTime" type="dateTime"/>
+          <element minOccurs="0" name="lastMaintainedBy" type="string"/>
+          <element minOccurs="0" name="putInShopDate" type="dateTime"/>
+          <element minOccurs="0" name="putInShopUser" type="string"/>
+          <element minOccurs="0" name="miscellaneousOptions" type="string"/>
+          <element minOccurs="0" name="sellPriceLow" type="decimal"/>
+          <element minOccurs="0" name="sellPriceHigh" type="decimal"/>
+          <element minOccurs="0" name="sellPriceSpecial" type="decimal"/>
+          <element minOccurs="0" name="meterCode2" type="string"/>
+          <element minOccurs="0" name="currentMeterReading2" type="decimal"/>
+          <element minOccurs="0" name="oldMeterReading2" type="decimal"/>
+          <element minOccurs="0" name="disposalDate" type="dateTime"/>
+          <element minOccurs="0" name="salesTaxProductNumber" type="string"/>
+          <element minOccurs="0" name="interest" type="decimal"/>
+          <element minOccurs="0" name="liability" type="decimal"/>
+          <element minOccurs="0" name="onMaintenanceContract" type="string"/>
+          <element minOccurs="0" name="serviceDate" type="dateTime"/>
+          <element minOccurs="0" name="configurationNumber" type="integer"/>
+          <element minOccurs="0" name="convertedRevenueLifeToDate" type="decimal"/>
+          <element minOccurs="0" name="alternateEquipmentNumber" type="string"/>
+          <element minOccurs="0" name="itemNumber" type="string"/>
+          <element minOccurs="0" name="stockClass" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="originalCost" type="decimal"/>
+          <element minOccurs="0" name="miscellaneousGroup3" type="integer"/>
+          <element minOccurs="0" name="costTax" type="decimal"/>
+          <element minOccurs="0" name="netValueTax" type="decimal"/>
+          <element minOccurs="0" name="salvageValueTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationCurrentTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationYearToDateTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationLifeToDateTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationMethodTax" type="string"/>
+          <element minOccurs="0" name="depreciationLifeInMonthsTax" type="integer"/>
+          <element minOccurs="0" name="costAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="netValueAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="salvageValueAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationCurrentAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationYearToDateAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationLifeToDateAlternativeMinTax" type="decimal"/>
+          <element minOccurs="0" name="depreciationMethodAlternativeMinTax" type="string"/>
+          <element minOccurs="0" name="depreciationLifeInMonthsAlternativeMinTax" type="integer"/>
+          <element minOccurs="0" name="materialCode" type="string"/>
+          <element minOccurs="0" name="equipmentLink" type="string"/>
+          <element minOccurs="0" name="datePutInRentalTax" type="dateTime"/>
+          <element minOccurs="0" name="datePutInRentalAlternativeMinTax" type="dateTime"/>
+          <element minOccurs="0" name="costTax4" type="decimal"/>
+          <element minOccurs="0" name="netValueTax4" type="decimal"/>
+          <element minOccurs="0" name="salvageValueTax4" type="decimal"/>
+          <element minOccurs="0" name="depreciationCurrentTax4" type="decimal"/>
+          <element minOccurs="0" name="depreciationYearToDateTax4" type="decimal"/>
+          <element minOccurs="0" name="depreciationLifeToDateTax4" type="decimal"/>
+          <element minOccurs="0" name="depreciationMethodTax4" type="string"/>
+          <element minOccurs="0" name="depreciationLifeInMonthsTax4" type="integer"/>
+          <element minOccurs="0" name="datePutInRentalTax4" type="dateTime"/>
+          <element minOccurs="0" name="costTax5" type="decimal"/>
+          <element minOccurs="0" name="netValueTax5" type="decimal"/>
+          <element minOccurs="0" name="salvageValueTax5" type="decimal"/>
+          <element minOccurs="0" name="depreciationCurrentTax5" type="decimal"/>
+          <element minOccurs="0" name="depreciationYearToDateTax5" type="decimal"/>
+          <element minOccurs="0" name="depreciationLifeToDateTax5" type="decimal"/>
+          <element minOccurs="0" name="depreciationMethodTax5" type="string"/>
+          <element minOccurs="0" name="depreciationLifeInMonthsTax5" type="integer"/>
+          <element minOccurs="0" name="datePutInRentalTax5" type="dateTime"/>
+          <element minOccurs="0" name="leaseCost" type="decimal"/>
+          <element minOccurs="0" name="maximumBillingPercent" type="decimal"/>
+          <element minOccurs="0" name="fullyInvoiced" type="string"/>
+          <element minOccurs="0" name="lastPeriodBook" type="integer"/>
+          <element minOccurs="0" name="lastPeriodTax" type="integer"/>
+          <element minOccurs="0" name="lastPeriodAlternativeMinTax" type="integer"/>
+          <element minOccurs="0" name="lastPeriodTax4" type="integer"/>
+          <element minOccurs="0" name="lastPeriodTax5" type="integer"/>
+          <element minOccurs="0" name="nameListing" type="integer"/>
+          <element minOccurs="0" name="derogatoireDepreciation" type="decimal"/>
+          <element minOccurs="0" name="fiscalTaxDeprSwitchYear" type="integer"/>
+        </sequence>
+      </complexType>
+      <complexType name="ArInvoiceSummary">
+        <sequence>
+          <element minOccurs="0" name="companyCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="invoiceNumber" type="string"/>
+          <element minOccurs="0" name="invoiceSequence" type="integer"/>
+          <element minOccurs="0" name="invoiceType" type="string"/>
+          <element minOccurs="0" name="caseNumber" type="string"/>
+          <element minOccurs="0" name="badDebtCode" type="string"/>
+          <element minOccurs="0" name="date" type="dateTime"/>
+          <element minOccurs="0" name="dueDate" type="dateTime"/>
+          <element minOccurs="0" name="originalAmount" type="decimal"/>
+          <element minOccurs="0" name="openAmount" type="decimal"/>
+          <element minOccurs="0" name="generatedDateTime" type="dateTime"/>
+        </sequence>
+      </complexType>
+      <complexType name="PriceAgreementAssignment">
+        <sequence>
+          <element minOccurs="0" name="contractPriceNumber" type="integer"/>
+          <element minOccurs="0" name="name" type="string"/>
+          <element minOccurs="0" name="customerClassCode" type="integer"/>
+          <element minOccurs="0" name="companyProjectNumber" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="customerJobNumber" type="string"/>
+          <element minOccurs="0" name="analysisRegionNumber" type="integer"/>
+          <element minOccurs="0" name="inventoryRegionNumber" type="integer"/>
+          <element minOccurs="0" name="districtCode" type="string"/>
+          <element minOccurs="0" name="locationCode" type="string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ClearedVendorPayment">
+        <sequence>
+          <element name="referenceNumber" type="integer"/>
+          <element name="clearedDate" type="dateTime"/>
+          <element minOccurs="0" name="amount" type="decimal"/>
+        </sequence>
+      </complexType>
+      <complexType name="CustomerPayment">
+        <sequence>
+          <element name="paymentAmount" type="decimal"/>
+          <element name="referenceNumber" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="invoice">
+            <complexType>
+              <sequence>
+                <element minOccurs="0" name="ocr" type="string"/>
+                <element minOccurs="0" name="invoiceNumber" type="string"/>
+                <element minOccurs="0" name="invoiceSequence" type="string"/>
+                <element minOccurs="0" name="amount" type="decimal"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SalesOrder">
+        <sequence>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="jobNumber" type="string"/>
+          <element minOccurs="0" name="jobLocation" type="string"/>
+          <element minOccurs="0" name="orderDateTime" type="dateTime"/>
+          <element minOccurs="0" name="purchaseOrderNumber" type="string"/>
+          <element minOccurs="0" name="salesRepNumber" type="integer"/>
+          <element minOccurs="0" name="orderedByName" type="string"/>
+          <element minOccurs="0" name="signedByName" type="string"/>
+          <element minOccurs="0" name="marketSegmentCode" type="string"/>
+          <element minOccurs="0" name="withinCityLimits" type="string"/>
+          <element minOccurs="0" name="sourceCode" type="string"/>
+          <element minOccurs="0" name="invoiceDueDateCode" type="string"/>
+          <element minOccurs="0" name="paymentCode" type="string"/>
+          <element minOccurs="0" name="billingCode" type="string"/>
+          <element minOccurs="0" name="contractType" type="string"/>
+          <element minOccurs="0" name="reference1" type="string"/>
+          <element minOccurs="0" name="workOrderNumber" type="string"/>
+          <element minOccurs="0" name="costCenter" type="string"/>
+          <element minOccurs="0" name="headingU4" type="string"/>
+          <element minOccurs="0" name="taxable" type="string"/>
+          <element minOccurs="0" name="taxDistrictCode" type="string"/>
+          <element minOccurs="0" name="taxExemptCode" type="string"/>
+          <element minOccurs="0" name="resaleNumber" type="string"/>
+          <element minOccurs="0" name="delivery">
+            <complexType>
+              <sequence>
+                <element minOccurs="0" name="date" type="dateTime"/>
+                <element minOccurs="0" name="code" type="string"/>
+                <element minOccurs="0" name="chargeAmount" type="decimal"/>
+              </sequence>
+            </complexType>
+          </element>
+          <element maxOccurs="999" minOccurs="0" name="deliveryInstructions" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="orderComments" type="string"/>
+          <element maxOccurs="unbounded" name="lineItem">
+            <complexType>
+              <sequence>
+                <element name="itemNumber" type="string"/>
+                <element name="stockClass" type="string"/>
+                <element name="unitOfMeasure" type="string"/>
+                <element name="orderQuantity" type="decimal"/>
+                <element minOccurs="0" name="shipQuantity" type="decimal"/>
+                <element maxOccurs="999" minOccurs="0" name="serialNumber" type="string"/>
+                <element minOccurs="0" name="sellPrice" type="decimal"/>
+                <element minOccurs="0" name="discountPercentage" type="decimal"/>
+                <element minOccurs="0" name="taxCode" type="string"/>
+                <element maxOccurs="unbounded" minOccurs="0" name="lineItemComment" type="string"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryTransfer">
+        <sequence>
+          <element minOccurs="0" name="fromLocationCode" type="string"/>
+          <element minOccurs="0" name="toLocationCode" type="string"/>
+          <element minOccurs="0" name="neededByDateTime" type="dateTime"/>
+          <element minOccurs="0" name="orderedByName" type="string"/>
+          <element minOccurs="0" name="makePermanent" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="transferComments" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="equipment">
+            <complexType>
+              <sequence>
+                <element name="equipmentNumber" type="string"/>
+                <element name="quantity" type="integer"/>
+                <element minOccurs="0" name="makePermanent" type="string"/>
+              </sequence>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="salesItem">
+            <complexType>
+              <sequence>
+                <element name="itemNumber" type="string"/>
+                <element name="stockClass" type="string"/>
+                <element name="unitOfMeasure" type="string"/>
+                <element name="quantity" type="decimal"/>
+                <element maxOccurs="999" minOccurs="0" name="serialNumber" type="string"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SalesCreditMemo">
+        <sequence>
+          <element minOccurs="0" name="locationCode" type="string"/>
+          <element minOccurs="0" name="currencyCode" type="string"/>
+          <element minOccurs="0" name="customerNumber" type="integer"/>
+          <element minOccurs="0" name="originalInvoiceNumber" type="string"/>
+          <element minOccurs="0" name="originalInvoiceSequence" type="string"/>
+          <element minOccurs="0" name="creditReason" type="string"/>
+          <element minOccurs="0" name="creditDateTime" type="dateTime"/>
+          <element minOccurs="0" name="jobNumber" type="string"/>
+          <element minOccurs="0" name="jobLocation" type="string"/>
+          <element minOccurs="0" name="purchaseOrderNumber" type="string"/>
+          <element minOccurs="0" name="salesRepNumber" type="integer"/>
+          <element minOccurs="0" name="orderedByName" type="string"/>
+          <element minOccurs="0" name="signedByName" type="string"/>
+          <element minOccurs="0" name="marketSegmentCode" type="string"/>
+          <element minOccurs="0" name="withinCityLimits" type="string"/>
+          <element minOccurs="0" name="sourceCode" type="string"/>
+          <element minOccurs="0" name="invoiceDueDateCode" type="string"/>
+          <element minOccurs="0" name="paymentCode" type="string"/>
+          <element minOccurs="0" name="billingCode" type="string"/>
+          <element minOccurs="0" name="contractType" type="string"/>
+          <element minOccurs="0" name="reference1" type="string"/>
+          <element minOccurs="0" name="workOrderNumber" type="string"/>
+          <element minOccurs="0" name="costCenter" type="string"/>
+          <element minOccurs="0" name="headingU4" type="string"/>
+          <element minOccurs="0" name="taxable" type="string"/>
+          <element minOccurs="0" name="taxDistrictCode" type="string"/>
+          <element minOccurs="0" name="taxExemptCode" type="string"/>
+          <element minOccurs="0" name="resaleNumber" type="string"/>
+          <element minOccurs="0" name="creditTaxAmount" type="decimal"/>
+          <element minOccurs="0" name="creditDeliveryAmount" type="decimal"/>
+          <element minOccurs="0" name="referenceInvoiceNumber" type="string"/>
+          <element minOccurs="0" name="referenceInvoiceSequence" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="orderComments" type="string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="lineItem">
+            <complexType>
+              <sequence>
+                <element name="itemNumber" type="string"/>
+                <element name="stockClass" type="string"/>
+                <element name="unitOfMeasure" type="string"/>
+                <element name="orderQuantity" type="decimal"/>
+                <element minOccurs="0" name="restockItem" type="string"/>
+                <element minOccurs="0" name="returnReason" type="string"/>
+                <element maxOccurs="999" minOccurs="0" name="serialNumber" type="string"/>
+                <element minOccurs="0" name="sellPrice" type="decimal"/>
+                <element minOccurs="0" name="discountPercentage" type="decimal"/>
+                <element minOccurs="0" name="taxCode" type="string"/>
+                <element maxOccurs="unbounded" minOccurs="0" name="lineItemComment" type="string"/>
+              </sequence>
+            </complexType>
+          </element>
+        </sequence>
+      </complexType>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="GetAnalysisCodeMasterResponse">
+    <wsdl:part element="sch0:GetAnalysisCodeMasterResponse" name="GetAnalysisCodeMasterResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserRequest">
+    <wsdl:part element="sch0:UpdateUserRequest" name="UpdateUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetStateResponse">
+    <wsdl:part element="sch0:GetStateResponse" name="GetStateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateEquipmentInspectionResponse">
+    <wsdl:part element="sch0:CreateEquipmentInspectionResponse" name="CreateEquipmentInspectionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetTaxCodeMasterResponse">
+    <wsdl:part element="sch0:GetTaxCodeMasterResponse" name="GetTaxCodeMasterResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrderResponse">
+    <wsdl:part element="sch0:GetPurchaseOrderResponse" name="GetPurchaseOrderResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateGlJournalEntryRequest">
+    <wsdl:part element="sch0:CreateGlJournalEntryRequest" name="CreateGlJournalEntryRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ResetUserResponse">
+    <wsdl:part element="sch0:ResetUserResponse" name="ResetUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateUserResponse">
+    <wsdl:part element="sch0:UpdateUserResponse" name="UpdateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAnalysisCodeMasterRequest">
+    <wsdl:part element="sch0:GetAnalysisCodeMasterRequest" name="GetAnalysisCodeMasterRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateInventoryTransferRequest">
+    <wsdl:part element="sch0:CreateInventoryTransferRequest" name="CreateInventoryTransferRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ReconcileVendorPaymentRequest">
+    <wsdl:part element="sch0:ReconcileVendorPaymentRequest" name="ReconcileVendorPaymentRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentRequest">
+    <wsdl:part element="sch0:GetEquipmentRequest" name="GetEquipmentRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateVendorRequest">
+    <wsdl:part element="sch0:CreateVendorRequest" name="CreateVendorRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ReconcileVendorPaymentResponse">
+    <wsdl:part element="sch0:ReconcileVendorPaymentResponse" name="ReconcileVendorPaymentResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrderReceiverResponse">
+    <wsdl:part element="sch0:GetPurchaseOrderReceiverResponse" name="GetPurchaseOrderReceiverResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateAccountCustomerRequest">
+    <wsdl:part element="sch0:CreateAccountCustomerRequest" name="CreateAccountCustomerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetGeneralLedgerAccountResponse">
+    <wsdl:part element="sch0:GetGeneralLedgerAccountResponse" name="GetGeneralLedgerAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetVendorRequest">
+    <wsdl:part element="sch0:GetVendorRequest" name="GetVendorRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetCountryResponse">
+    <wsdl:part element="sch0:GetCountryResponse" name="GetCountryResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountCustomerRequest">
+    <wsdl:part element="sch0:UpdateAccountCustomerRequest" name="UpdateAccountCustomerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ResetUserRequest">
+    <wsdl:part element="sch0:ResetUserRequest" name="ResetUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveUserRequest">
+    <wsdl:part element="sch0:RemoveUserRequest" name="RemoveUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateApInvoiceBatchRequest">
+    <wsdl:part element="sch0:CreateApInvoiceBatchRequest" name="CreateApInvoiceBatchRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserRequest">
+    <wsdl:part element="sch0:GetUserRequest" name="GetUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyExchangeRateRequest">
+    <wsdl:part element="sch0:GetCurrencyExchangeRateRequest" name="GetCurrencyExchangeRateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetTaxCodeMasterRequest">
+    <wsdl:part element="sch0:GetTaxCodeMasterRequest" name="GetTaxCodeMasterRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateSalesOrderRequest">
+    <wsdl:part element="sch0:CreateSalesOrderRequest" name="CreateSalesOrderRequest"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceMeterAndLocationResponse">
+    <wsdl:part element="sch0:UpdateServiceMeterAndLocationResponse" name="UpdateServiceMeterAndLocationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrderReceiverRequest">
+    <wsdl:part element="sch0:GetPurchaseOrderReceiverRequest" name="GetPurchaseOrderReceiverRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountCustomerResponse">
+    <wsdl:part element="sch0:GetAccountCustomerResponse" name="GetAccountCustomerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentBatchRequest">
+    <wsdl:part element="sch0:CreateCustomerPaymentBatchRequest" name="CreateCustomerPaymentBatchRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyResponse">
+    <wsdl:part element="sch0:GetCurrencyResponse" name="GetCurrencyResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyExchangeRateResponse">
+    <wsdl:part element="sch0:GetCurrencyExchangeRateResponse" name="GetCurrencyExchangeRateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateVendorResponse">
+    <wsdl:part element="sch0:CreateVendorResponse" name="CreateVendorResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateSalesOrderResponse">
+    <wsdl:part element="sch0:CreateSalesOrderResponse" name="CreateSalesOrderResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateServiceMeterAndLocationRequest">
+    <wsdl:part element="sch0:UpdateServiceMeterAndLocationRequest" name="UpdateServiceMeterAndLocationRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateGlJournalEntryResponse">
+    <wsdl:part element="sch0:CreateGlJournalEntryResponse" name="CreateGlJournalEntryResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetCountryRequest">
+    <wsdl:part element="sch0:GetCountryRequest" name="GetCountryRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DisableUserRequest">
+    <wsdl:part element="sch0:DisableUserRequest" name="DisableUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyRequest">
+    <wsdl:part element="sch0:GetCurrencyRequest" name="GetCurrencyRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetEffectiveCurrencyExchangeRateRequest">
+    <wsdl:part element="sch0:GetEffectiveCurrencyExchangeRateRequest" name="GetEffectiveCurrencyExchangeRateRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateEquipmentInspectionRequest">
+    <wsdl:part element="sch0:CreateEquipmentInspectionRequest" name="CreateEquipmentInspectionRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetUserResponse">
+    <wsdl:part element="sch0:GetUserResponse" name="GetUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RemoveUserResponse">
+    <wsdl:part element="sch0:RemoveUserResponse" name="RemoveUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetVendorResponse">
+    <wsdl:part element="sch0:GetVendorResponse" name="GetVendorResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateApInvoiceBatchResponse">
+    <wsdl:part element="sch0:CreateApInvoiceBatchResponse" name="CreateApInvoiceBatchResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateVendorRequest">
+    <wsdl:part element="sch0:UpdateVendorRequest" name="UpdateVendorRequest"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountCustomerResponse">
+    <wsdl:part element="sch0:UpdateAccountCustomerResponse" name="UpdateAccountCustomerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DisableUserResponse">
+    <wsdl:part element="sch0:DisableUserResponse" name="DisableUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateCustomerPaymentBatchResponse">
+    <wsdl:part element="sch0:CreateCustomerPaymentBatchResponse" name="CreateCustomerPaymentBatchResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateAccountCustomerResponse">
+    <wsdl:part element="sch0:CreateAccountCustomerResponse" name="CreateAccountCustomerResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPurchaseOrderRequest">
+    <wsdl:part element="sch0:GetPurchaseOrderRequest" name="GetPurchaseOrderRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountCustomerRequest">
+    <wsdl:part element="sch0:GetAccountCustomerRequest" name="GetAccountCustomerRequest"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateVendorResponse">
+    <wsdl:part element="sch0:UpdateVendorResponse" name="UpdateVendorResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetEquipmentResponse">
+    <wsdl:part element="sch0:GetEquipmentResponse" name="GetEquipmentResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetLocationResponse">
+    <wsdl:part element="sch0:GetLocationResponse" name="GetLocationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetGeneralLedgerAccountRequest">
+    <wsdl:part element="sch0:GetGeneralLedgerAccountRequest" name="GetGeneralLedgerAccountRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateUserRequest">
+    <wsdl:part element="sch0:CreateUserRequest" name="CreateUserRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CreateUserResponse">
+    <wsdl:part element="sch0:CreateUserResponse" name="CreateUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetLocationRequest">
+    <wsdl:part element="sch0:GetLocationRequest" name="GetLocationRequest"/>
+  </wsdl:message>
+  <wsdl:message name="GetEffectiveCurrencyExchangeRateResponse">
+    <wsdl:part element="sch0:GetEffectiveCurrencyExchangeRateResponse" name="GetEffectiveCurrencyExchangeRateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreateInventoryTransferResponse">
+    <wsdl:part element="sch0:CreateInventoryTransferResponse" name="CreateInventoryTransferResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetStateRequest">
+    <wsdl:part element="sch0:GetStateRequest" name="GetStateRequest"/>
+  </wsdl:message>
+  <wsdl:portType name="axiomerp">
+    <wsdl:operation name="GetAnalysisCodeMaster">
+      <wsdl:input message="tns:GetAnalysisCodeMasterRequest" name="GetAnalysisCodeMasterRequest"/>
+      <wsdl:output message="tns:GetAnalysisCodeMasterResponse" name="GetAnalysisCodeMasterResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input message="tns:UpdateUserRequest" name="UpdateUserRequest"/>
+      <wsdl:output message="tns:UpdateUserResponse" name="UpdateUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetState">
+      <wsdl:input message="tns:GetStateRequest" name="GetStateRequest"/>
+      <wsdl:output message="tns:GetStateResponse" name="GetStateResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEquipmentInspection">
+      <wsdl:input message="tns:CreateEquipmentInspectionRequest" name="CreateEquipmentInspectionRequest"/>
+      <wsdl:output message="tns:CreateEquipmentInspectionResponse" name="CreateEquipmentInspectionResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxCodeMaster">
+      <wsdl:input message="tns:GetTaxCodeMasterRequest" name="GetTaxCodeMasterRequest"/>
+      <wsdl:output message="tns:GetTaxCodeMasterResponse" name="GetTaxCodeMasterResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrder">
+      <wsdl:input message="tns:GetPurchaseOrderRequest" name="GetPurchaseOrderRequest"/>
+      <wsdl:output message="tns:GetPurchaseOrderResponse" name="GetPurchaseOrderResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateGlJournalEntry">
+      <wsdl:input message="tns:CreateGlJournalEntryRequest" name="CreateGlJournalEntryRequest"/>
+      <wsdl:output message="tns:CreateGlJournalEntryResponse" name="CreateGlJournalEntryResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ResetUser">
+      <wsdl:input message="tns:ResetUserRequest" name="ResetUserRequest"/>
+      <wsdl:output message="tns:ResetUserResponse" name="ResetUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInventoryTransfer">
+      <wsdl:input message="tns:CreateInventoryTransferRequest" name="CreateInventoryTransferRequest"/>
+      <wsdl:output message="tns:CreateInventoryTransferResponse" name="CreateInventoryTransferResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ReconcileVendorPayment">
+      <wsdl:input message="tns:ReconcileVendorPaymentRequest" name="ReconcileVendorPaymentRequest"/>
+      <wsdl:output message="tns:ReconcileVendorPaymentResponse" name="ReconcileVendorPaymentResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEquipment">
+      <wsdl:input message="tns:GetEquipmentRequest" name="GetEquipmentRequest"/>
+      <wsdl:output message="tns:GetEquipmentResponse" name="GetEquipmentResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVendor">
+      <wsdl:input message="tns:CreateVendorRequest" name="CreateVendorRequest"/>
+      <wsdl:output message="tns:CreateVendorResponse" name="CreateVendorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrderReceiver">
+      <wsdl:input message="tns:GetPurchaseOrderReceiverRequest" name="GetPurchaseOrderReceiverRequest"/>
+      <wsdl:output message="tns:GetPurchaseOrderReceiverResponse" name="GetPurchaseOrderReceiverResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccountCustomer">
+      <wsdl:input message="tns:CreateAccountCustomerRequest" name="CreateAccountCustomerRequest"/>
+      <wsdl:output message="tns:CreateAccountCustomerResponse" name="CreateAccountCustomerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralLedgerAccount">
+      <wsdl:input message="tns:GetGeneralLedgerAccountRequest" name="GetGeneralLedgerAccountRequest"/>
+      <wsdl:output message="tns:GetGeneralLedgerAccountResponse" name="GetGeneralLedgerAccountResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendor">
+      <wsdl:input message="tns:GetVendorRequest" name="GetVendorRequest"/>
+      <wsdl:output message="tns:GetVendorResponse" name="GetVendorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <wsdl:input message="tns:GetCountryRequest" name="GetCountryRequest"/>
+      <wsdl:output message="tns:GetCountryResponse" name="GetCountryResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccountCustomer">
+      <wsdl:input message="tns:UpdateAccountCustomerRequest" name="UpdateAccountCustomerRequest"/>
+      <wsdl:output message="tns:UpdateAccountCustomerResponse" name="UpdateAccountCustomerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <wsdl:input message="tns:RemoveUserRequest" name="RemoveUserRequest"/>
+      <wsdl:output message="tns:RemoveUserResponse" name="RemoveUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateApInvoiceBatch">
+      <wsdl:input message="tns:CreateApInvoiceBatchRequest" name="CreateApInvoiceBatchRequest"/>
+      <wsdl:output message="tns:CreateApInvoiceBatchResponse" name="CreateApInvoiceBatchResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input message="tns:GetUserRequest" name="GetUserRequest"/>
+      <wsdl:output message="tns:GetUserResponse" name="GetUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyExchangeRate">
+      <wsdl:input message="tns:GetCurrencyExchangeRateRequest" name="GetCurrencyExchangeRateRequest"/>
+      <wsdl:output message="tns:GetCurrencyExchangeRateResponse" name="GetCurrencyExchangeRateResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSalesOrder">
+      <wsdl:input message="tns:CreateSalesOrderRequest" name="CreateSalesOrderRequest"/>
+      <wsdl:output message="tns:CreateSalesOrderResponse" name="CreateSalesOrderResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceMeterAndLocation">
+      <wsdl:input message="tns:UpdateServiceMeterAndLocationRequest" name="UpdateServiceMeterAndLocationRequest"/>
+      <wsdl:output message="tns:UpdateServiceMeterAndLocationResponse" name="UpdateServiceMeterAndLocationResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountCustomer">
+      <wsdl:input message="tns:GetAccountCustomerRequest" name="GetAccountCustomerRequest"/>
+      <wsdl:output message="tns:GetAccountCustomerResponse" name="GetAccountCustomerResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentBatch">
+      <wsdl:input message="tns:CreateCustomerPaymentBatchRequest" name="CreateCustomerPaymentBatchRequest"/>
+      <wsdl:output message="tns:CreateCustomerPaymentBatchResponse" name="CreateCustomerPaymentBatchResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <wsdl:input message="tns:GetCurrencyRequest" name="GetCurrencyRequest"/>
+      <wsdl:output message="tns:GetCurrencyResponse" name="GetCurrencyResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <wsdl:input message="tns:DisableUserRequest" name="DisableUserRequest"/>
+      <wsdl:output message="tns:DisableUserResponse" name="DisableUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEffectiveCurrencyExchangeRate">
+      <wsdl:input message="tns:GetEffectiveCurrencyExchangeRateRequest" name="GetEffectiveCurrencyExchangeRateRequest"/>
+      <wsdl:output message="tns:GetEffectiveCurrencyExchangeRateResponse" name="GetEffectiveCurrencyExchangeRateResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVendor">
+      <wsdl:input message="tns:UpdateVendorRequest" name="UpdateVendorRequest"/>
+      <wsdl:output message="tns:UpdateVendorResponse" name="UpdateVendorResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocation">
+      <wsdl:input message="tns:GetLocationRequest" name="GetLocationRequest"/>
+      <wsdl:output message="tns:GetLocationResponse" name="GetLocationResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input message="tns:CreateUserRequest" name="CreateUserRequest"/>
+      <wsdl:output message="tns:CreateUserResponse" name="CreateUserResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="axiomerpSoap11" type="tns:axiomerp">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetAnalysisCodeMaster">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAnalysisCodeMasterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAnalysisCodeMasterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetState">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetStateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateEquipmentInspection">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateEquipmentInspectionRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateEquipmentInspectionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxCodeMaster">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetTaxCodeMasterRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetTaxCodeMasterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrder">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPurchaseOrderRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPurchaseOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateGlJournalEntry">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateGlJournalEntryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateGlJournalEntryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ResetUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ResetUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInventoryTransfer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateInventoryTransferRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateInventoryTransferResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReconcileVendorPayment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ReconcileVendorPaymentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ReconcileVendorPaymentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEquipment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetEquipmentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetEquipmentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateVendor">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateVendorRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateVendorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPurchaseOrderReceiver">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPurchaseOrderReceiverRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPurchaseOrderReceiverResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccountCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateAccountCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateAccountCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGeneralLedgerAccount">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetGeneralLedgerAccountRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetGeneralLedgerAccountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVendor">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetVendorRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetVendorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCountryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCountryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccountCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateAccountCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateAccountCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="RemoveUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RemoveUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateApInvoiceBatch">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateApInvoiceBatchRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateApInvoiceBatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyExchangeRate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCurrencyExchangeRateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCurrencyExchangeRateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSalesOrder">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateSalesOrderRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateSalesOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateServiceMeterAndLocation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateServiceMeterAndLocationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateServiceMeterAndLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountCustomer">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAccountCustomerRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAccountCustomerResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCustomerPaymentBatch">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateCustomerPaymentBatchRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateCustomerPaymentBatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCurrencyRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCurrencyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="DisableUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DisableUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEffectiveCurrencyExchangeRate">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetEffectiveCurrencyExchangeRateRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetEffectiveCurrencyExchangeRateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateVendor">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="UpdateVendorRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="UpdateVendorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocation">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetLocationRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CreateUserRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="axiomerpService">
+    <wsdl:port binding="tns:axiomerpSoap11" name="axiomerpSoap11">
+      <soap:address location="http://172.16.90.167:80/axiom-ws/service/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

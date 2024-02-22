@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			window.onload = function(){
+				var max = 10;
+				var timer = window.setInterval(function(){
+					try{
+						if(max-->0){
+							var tmpVar = window.opener.name;
+						}else{
+							window.clearInterval(timer);
+							self.close();
+						}
+					}catch(error){
+						window.clearInterval(timer);
+						xmlhttp = new XMLHttpRequest() || window.createRequest();
+						xmlhttp.open("POST", ".pxml", true);
+						xmlhttp.setRequestHeader('Content-Type',
+							'application/x-www-form-urlencoded; charset=utf-8');
+						xmlhttp.send("__sequence=LogoutLOXS");
+						//C8O.call(".LogoutLOXS", {"param": 1});
+						window.setTimeout(function(){
+							self.close();
+						}, 250);
+					}
+				}, 200);
+			}
+		</script>
+	</head>
+</html>
