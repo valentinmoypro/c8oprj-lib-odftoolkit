@@ -658,7 +658,7 @@
 		<!-- Container SPAN. Used only for positioning and framework behaviour -->
 		<span id="{@name}_n1parent" style="position:absolute; left:{./@column*$coefx+$offsetx}px; top:{./@line*$coefy + $offsety}px; z-index: {$elDepth * 10 + 2};">
 <!-- 			<xsl:if test="/document/@screenclass='ReservationCreationInformEqp'"> -->
-			<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|', concat('|', /document/@screenclass, '|'))">
+			<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|'))">
 				<div class="hidden" id="toolbar-buttons{@name}">
 				   <a href="#" onclick="toolbarPROS('{@name}');return false;">
                         <i class="fa fa-eur"/>
@@ -717,7 +717,7 @@
 								<!-- ondblclick="doAction('KEY_ENTER',  {@name});" -->
 								<!-- onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" -->
 					<!-- GV-20171110: Ajout Toolbar -->
-					<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|', concat('|', /document/@screenclass, '|')) and (@name='__field_c1_l5' or @name='__field_c1_l6' or @name='__field_c1_l7' or @name='__field_c1_l8' or @name='__field_c1_l9' or @name='__field_c1_l10')">
+					<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|')) and (@name='__field_c1_l5' or @name='__field_c1_l6' or @name='__field_c1_l7' or @name='__field_c1_l8' or @name='__field_c1_l9' or @name='__field_c1_l10')">
 						<xsl:attribute name="data-toolbar">loxuser-options<xsl:value-of select="@name"/>
                         </xsl:attribute>
 					</xsl:if>
@@ -746,7 +746,7 @@
 						<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_startTime');</xsl:attribute>
 					</xsl:if>
 					<!-- GV-20240131: Gestion endTime  -->
-					<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endTime')">
+					<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endTime')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
 						<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
@@ -893,7 +893,7 @@
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 				</xsl:if>
 				<!-- GV-20170926: Mise à jour du localstorage $edt si changement par utilisateur -->
-				<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endDate')">
+				<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endDate')">
 					<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
 					<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>

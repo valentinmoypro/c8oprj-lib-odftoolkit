@@ -34,6 +34,7 @@ var $final_price = 0;
 var $start_date = 0;
 var $cat_class = null;
 var bForcePros = false;
+var eqt_col = "6";
 
 function updatePROSData(el, store) {
 	localStorage.setItem(store, el.value);
@@ -227,15 +228,27 @@ function getStep(min, max) {
 function toolbarPROS(fromEl) {
 	$('div.tool-container').hide();
 	ligne_catclass = fromEl.split("_l")[1];
-	var nextCatClass = fromEl.replace("c1", "c6");
+	var isContrat = false;
+	if(sc=="OffreCreationInformEqp_Contrat"){
+		isContrat = true;
+		eqt_col = "9";
+	}else{
+		isContrat = false;
+		eqt_col = "6";
+	}
+	var nextCatClass = fromEl.replace("c1", "c"+eqt_col);
 	var nextCatClassVal = $("input[name='" + nextCatClass + "']").val();
 	cx2 = document.location.search.substring(document.location.search.indexOf("Lox"));
 	if (nextCatClassVal != "") {
-		execPROS(nextCatClassVal.slice(0, 3) + "-" + nextCatClassVal.slice(3));
+		if(isContrat){
+			execPROS("", nextCatClassVal);
+		}else{
+			execPROS(nextCatClassVal.slice(0, 3) + "-" + nextCatClassVal.slice(3), "");
+		}
 	}
 }
 
-function execPROS(ctclss) {
+function execPROS(ctclss, eqpt) {
 	$ste = localStorage.getItem(cx + "_ste");
 	$agc = localStorage.getItem(cx + "_agc");
 	$cpt = localStorage.getItem(cx + "_cpt");
@@ -247,7 +260,7 @@ function execPROS(ctclss) {
 	$noSat = localStorage.getItem(cx + "_noSat");
 	$noSun = localStorage.getItem(cx + "_noSun");
 	$devise = localStorage.getItem(cx + "_devise"); // Ajout 28-08-23 GV-EN
-	console.log("ste:" + $ste + " agc:" + $agc + " cpt:" + $cpt + " ccl:" + ctclss + " sdt:" + $sdt + " edt:" + $edt + " startTime:" + $startTime + " endTime:" + $endTime); // Modif EN-2023-08-30 Ajout de startTime et endTime
+	console.log("ste:" + $ste + " agc:" + $agc + " cpt:" + $cpt + " ccl:" + ctclss + " eqpt:" + eqpt + " sdt:" + $sdt + " edt:" + $edt + " startTime:" + $startTime + " endTime:" + $endTime); // Modif EN-2023-08-30 Ajout de startTime et endTime
 	
 	if (
 			$ste && $ste != "" && 
@@ -272,6 +285,7 @@ function execPROS(ctclss) {
 			"agence": $agc,
 			"client": $cpt,
 			"catClass": ctclss,
+			"equipement": eqpt,
 			"startDate": $sdt,
 			"endDate": $edt,
 			"startTime": $startTime, // Ajout EN-2023-08-30
@@ -410,6 +424,7 @@ C8O.addHook("xml_response", function (xml) {
 			localStorage.removeItem(cx + "_ccl");
 			localStorage.removeItem(cx + "_oldccl");
 			localStorage.removeItem(cx + "_nb_cat_class");
+			localStorage.removeItem(cx + "_nb_eqpt");
 			localStorage.removeItem(cx + "_devise");
 			localStorage.removeItem(cx + "_prevLin");
 			localStorage.removeItem("_actionName");
@@ -473,6 +488,30 @@ C8O.addHook("xml_response", function (xml) {
 		localStorage.setItem(cx + "_endTime", $endTime); // Ajout EN-2023-08-30
 	}
 	
+	// GV: 20240326 - Contrat Creation
+	if (tr == "XMLize" && sc.indexOf("Contrat_Creation") != -1) {
+		$sdt = $.trim($doc.find('startDate').text());
+		localStorage.setItem(cx + "_sdt", $sdt);
+		$startTime = $.trim($doc.find('startTime').text());
+		localStorage.setItem(cx + "_startTime", $startTime);
+		$edt = $.trim($doc.find('endDate').text());
+		localStorage.setItem(cx + "_edt", $edt);
+		$endTime = $.trim($doc.find('endTime').text());
+		localStorage.setItem(cx + "_endTime", $endTime);
+	}
+	
+	// GV: 20240326 - Contrat Location
+	if (tr == "XMLize" && sc.indexOf("ContratLocation_FR") != -1) {
+		$cpt = $.trim($doc.find('compte').text());
+		localStorage.setItem(cx + "_cpt", $cpt);
+		$edt = $.trim($doc.find('endDate').text());
+		localStorage.setItem(cx + "_edt", $edt);
+		$endTime = $.trim($doc.find('endTime').text());
+		localStorage.setItem(cx + "_endTime", $endTime);
+		$devise = $doc.find("devise").text();
+		localStorage.setItem(cx + "_devise", $devise);
+	}
+	
 	if (tr == "XMLize" && sc.indexOf("RechercheEquipement_") != -1) {
 		bForcePros = true;
 	}
@@ -493,6 +532,26 @@ C8O.addHook("xml_response", function (xml) {
 					ligne_catclass = $(ccl_vals[ccl_vals.length-1]).attr('line');
 					localStorage.setItem(cx + "_nb_cat_class", ccl_vals.length);
 					execPROS(last_ccl.slice(0, 3) + "-" + last_ccl.slice(3));
+					isWaiting = false;
+				}
+			}
+		}
+	}
+	
+	if ((sc == "current_catclass_contrat")
+			&& tr == "XMLize" && bForcePros) {
+		bForcePros = false;
+		var eqpt_list = $doc.find('equipement');
+		var nb_eqpt = localStorage.getItem(cx + "_nb_eqpt") ? localStorage.getItem(cx + "_eqpt") : 0 ;
+		if(eqpt_list.length){
+			var eqpt_vals = eqpt_list.filter(i => $(eqpt_list[i]).text() != "");
+			if(eqpt_vals.length > nb_eqpt || eqpt_vals.length == 6){
+				var last_eqpt = $(eqpt_vals[eqpt_vals.length-1]).text();
+				if(last_eqpt && last_eqpt != "" && /^[0-9]+$/.test(last_eqpt)){
+					// GV - 2023-03-27 : Laisser ligne_catclass pour contrat
+					ligne_catclass = $(eqpt_vals[eqpt_vals.length-1]).attr('line');
+					localStorage.setItem(cx + "_nb_eqpt", eqpt_vals.length);
+					execPROS("", last_eqpt);
 					isWaiting = false;
 				}
 			}
@@ -530,6 +589,7 @@ C8O.addHook("xml_response", function (xml) {
 		$cpt = "";
 		localStorage.setItem(cx + "_cpt", $cpt);
 		localStorage.setItem(cx + "_nb_cat_class", 0);
+		localStorage.setItem(cx + "_nb_eqpt", 0);
 		bForcePros = false;
 	}
 		
@@ -794,7 +854,8 @@ C8O.addHook("xml_response", function (xml) {
 			if($doc.find("tier").length){
 				histoPROSmult.push({
 					"sq_type": "tier",
-					"SPG_PRODUCT_SEGMENT": $cat_class, 
+					"SPG_PRODUCT_SEGMENT": $cat_class,
+					"GEOGRAPHY": $ste + "-" + $agc,
 					"q_LORValue": $duration, 
 					"RentalStartDate": $start_date, 
 					"q_Floor_Guidance": $threshold_price,
@@ -806,7 +867,7 @@ C8O.addHook("xml_response", function (xml) {
 				histoPROSmult.push({
 					"sq_type": "col",
 					"SPG_PRODUCT_SEGMENT": $cat_class, 
-					/*"GEOGRAPHY": $ste + "-" + $agc,*/
+					"GEOGRAPHY": $ste + "-" + $agc,
 					/*"CB_CUSTOMER": $ste + "-" + $cpt,*/
 					/*"BILLINGTYPE": $flt,*/
 					"CB_LORVALUE": $duration, 

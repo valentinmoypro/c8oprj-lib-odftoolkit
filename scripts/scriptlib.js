@@ -1482,7 +1482,12 @@ function ajaxReadyStateListener() {
 				/**/
 				//				$(".ui-widget-overlay.ui-front").remove()
 				$('div.tool-container').hide();
-				if ($("input[name='__field_c6_l5']").val() != "") {
+				if(sc=="OffreCreationInformEqp_Contrat"){
+					eqt_col = "9";
+				}else{
+					eqt_col = "6";
+				}
+				if ($("input[name='__field_c"+eqt_col+"_l5']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l5"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l5",
 						style: "loxam",
@@ -1491,7 +1496,7 @@ function ajaxReadyStateListener() {
 						adjustment: "25"
 					});
 				}
-				if ($("input[name='__field_c6_l6']").val() != "") {
+				if ($("input[name='__field_c"+eqt_col+"_l6']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l6"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l6",
 						style: "loxam",
@@ -1500,7 +1505,7 @@ function ajaxReadyStateListener() {
 						adjustment: "25"
 					});
 				}
-				if ($("input[name='__field_c6_l7']").val() != "") {
+				if ($("input[name='__field_c"+eqt_col+"_l7']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l7"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l7",
 						style: "loxam",
@@ -1509,7 +1514,7 @@ function ajaxReadyStateListener() {
 						adjustment: "25"
 					});
 				}
-				if ($("input[name='__field_c6_l8']").val() != "") {
+				if ($("input[name='__field_c"+eqt_col+"_l8']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l8"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l8",
 						style: "loxam",
@@ -1518,7 +1523,7 @@ function ajaxReadyStateListener() {
 						adjustment: "25"
 					});
 				}
-				if ($("input[name='__field_c6_l9']").val() != "") {
+				if ($("input[name='__field_c"+eqt_col+"_l9']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l9"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l9",
 						style: "loxam",
@@ -1527,7 +1532,7 @@ function ajaxReadyStateListener() {
 						adjustment: "25"
 					});
 				}
-				if ($("input[name='__field_c6_l10']").val() != "") {
+				if ($("input[name='__field_c"+eqt_col+"_l10']").val() != "") {
 					$('input[data-toolbar="loxuser-options__field_c1_l10"]').toolbar({
 						content: "#toolbar-buttons__field_c1_l10",
 						style: "loxam",
