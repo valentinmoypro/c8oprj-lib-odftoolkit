@@ -531,7 +531,7 @@ C8O.addHook("xml_response", function (xml) {
 				if(last_ccl && last_ccl != "" && /^[0-9]+$/.test(last_ccl)){
 					ligne_catclass = $(ccl_vals[ccl_vals.length-1]).attr('line');
 					localStorage.setItem(cx + "_nb_cat_class", ccl_vals.length);
-					execPROS(last_ccl.slice(0, 3) + "-" + last_ccl.slice(3));
+					execPROS(last_ccl.slice(0, 3) + "-" + last_ccl.slice(3), "");
 					isWaiting = false;
 				}
 			}
@@ -883,7 +883,7 @@ C8O.addHook("xml_response", function (xml) {
 		return false;
 	}
 	// ajout JG-2017-12-01 pour histoPROS
-	if (tr == "XMLize" && sc == "CreationRevision") {
+	if (tr == "XMLize" && (sc == "CreationRevision" || sc == "Contrat_Revision")) {
 		//console.log("Classe d'écran CreationRevision !!!");
 		waitdiv_hide();
 		var refOffre = $.trim($doc.find('Reference').text());
