@@ -229,7 +229,7 @@ function toolbarPROS(fromEl) {
 	$('div.tool-container').hide();
 	ligne_catclass = fromEl.split("_l")[1];
 	var isContrat = false;
-	if(sc=="OffreCreationInformEqp_Contrat"){
+	if(sc=="OffreCreationInformEqp_Contrat" || sc=="current_catclass_contrat"){
 		isContrat = true;
 		eqt_col = "9";
 	}else{
@@ -813,6 +813,7 @@ C8O.addHook("xml_response", function (xml) {
 								"new_price": $final_price,
 								"duration": $duration,
 								"catclass": $cat_class,
+								"flt": localStorage.getItem(cx + "_flt"),
 								"__context": "LOX_SET_PRICING",
 								"myContext": C8O._init.params.__context
 							});
@@ -856,6 +857,7 @@ C8O.addHook("xml_response", function (xml) {
 					"sq_type": "tier",
 					"SPG_PRODUCT_SEGMENT": $cat_class,
 					"GEOGRAPHY": $ste + "-" + $agc,
+					"CUSTOMER_SEGMENT": $ste + "-" + $cpt,
 					"q_LORValue": $duration, 
 					"RentalStartDate": $start_date, 
 					"q_Floor_Guidance": $threshold_price,
@@ -868,7 +870,7 @@ C8O.addHook("xml_response", function (xml) {
 					"sq_type": "col",
 					"SPG_PRODUCT_SEGMENT": $cat_class, 
 					"GEOGRAPHY": $ste + "-" + $agc,
-					/*"CB_CUSTOMER": $ste + "-" + $cpt,*/
+					"CB_CUSTOMER": $ste + "-" + $cpt,
 					/*"BILLINGTYPE": $flt,*/
 					"CB_LORVALUE": $duration, 
 					"RENTALSTARTDATE": $start_date, 

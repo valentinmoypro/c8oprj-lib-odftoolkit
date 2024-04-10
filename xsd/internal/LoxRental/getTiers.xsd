@@ -16,288 +16,35 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="LoxRental__getTiersRequestData">
-        <xsd:sequence/>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_commands_blockType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="action" type="xsd:string"/>
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="data" type="xsd:string"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_commandsType">
         <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="block" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_commands_blockType"/>
+            <xsd:element name="ligne" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo>new variable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="flt" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:appinfo>new variable</xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
         </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="height" type="xsd:byte"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-        <xsd:attribute name="width" type="xsd:byte"/>
     </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_commands_blockType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="action" type="xsd:string"/>
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="data" type="xsd:string"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_commandsType">
+    <xsd:complexType name="LoxRental_getTiers_document_table_rowType">
         <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="block" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_commands_blockType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Tier" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="de" type="xsd:byte"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="a" type="xsd:short"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Tarif" type="xsd:double"/>
         </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="height" type="xsd:byte"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-        <xsd:attribute name="width" type="xsd:byte"/>
     </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_blockType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-                <xsd:attribute name="underline" type="xsd:boolean"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_Title_blockType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_TitleType">
+    <xsd:complexType name="LoxRental_getTiers_document_tableType">
         <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="block" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_Title_blockType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="row" type="LoxRental_mary_ns:LoxRental_getTiers_document_table_rowType"/>
         </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="size" type="xsd:byte"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_TierType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_DeType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_aType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_TarifType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="hasFocus" type="xsd:boolean"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="numeric" type="xsd:boolean"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="size" type="xsd:byte"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-                <xsd:attribute name="underline" type="xsd:boolean"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_TauxMinType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_TyType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_row_EscType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_table_rowType">
-        <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Title" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_TitleType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Tier" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_TierType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="De" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_DeType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="a" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_aType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Tarif" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_TarifType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="TauxMin" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_TauxMinType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Ty" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_TyType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="Esc" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_row_EscType"/>
-        </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="index" type="xsd:byte"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="page" type="xsd:byte"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_block_tableType">
-        <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="row" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_table_rowType"/>
-        </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="height" type="xsd:byte"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="offset" type="xsd:byte"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="rows" type="xsd:byte"/>
-        <xsd:attribute name="size" type="xsd:byte"/>
-        <xsd:attribute name="titleheight" type="xsd:byte"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-        <xsd:attribute name="width" type="xsd:byte"/>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_blockType">
-        <xsd:sequence>
-            <xsd:element minOccurs="0" name="commands" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_commandsType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="block" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_blockType"/>
-            <xsd:element minOccurs="0" name="table" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_block_tableType"/>
-        </xsd:sequence>
-        <xsd:attribute name="background" type="xsd:string"/>
-        <xsd:attribute name="column" type="xsd:byte"/>
-        <xsd:attribute name="foreground" type="xsd:string"/>
-        <xsd:attribute name="line" type="xsd:byte"/>
-        <xsd:attribute name="name" type="xsd:string"/>
-        <xsd:attribute name="reverse" type="xsd:boolean"/>
-        <xsd:attribute name="type" type="xsd:string"/>
-        <xsd:attribute name="underline" type="xsd:boolean"/>
-        <xsd:attribute name="bottomTitle" type="xsd:string"/>
-        <xsd:attribute name="bottomTitleColumn" type="xsd:string"/>
-        <xsd:attribute name="height" type="xsd:byte"/>
-        <xsd:attribute name="shadow" type="xsd:boolean"/>
-        <xsd:attribute name="topTitle" type="xsd:string"/>
-        <xsd:attribute name="topTitleColumn" type="xsd:string"/>
-        <xsd:attribute name="width" type="xsd:byte"/>
-        <xsd:attribute name="zOrder" type="xsd:byte"/>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocks_catclassType">
-        <xsd:simpleContent>
-            <xsd:extension base="xsd:string">
-                <xsd:attribute name="background" type="xsd:string"/>
-                <xsd:attribute name="column" type="xsd:byte"/>
-                <xsd:attribute name="foreground" type="xsd:string"/>
-                <xsd:attribute name="history" type="xsd:boolean"/>
-                <xsd:attribute name="line" type="xsd:byte"/>
-                <xsd:attribute name="name" type="xsd:string"/>
-                <xsd:attribute name="reverse" type="xsd:boolean"/>
-                <xsd:attribute name="type" type="xsd:string"/>
-            </xsd:extension>
-        </xsd:simpleContent>
-    </xsd:complexType>
-    <xsd:complexType name="LoxRental_getTiers_document_blocksType">
-        <xsd:sequence>
-            <xsd:element minOccurs="0" name="commands" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_commandsType"/>
-            <xsd:element maxOccurs="unbounded" minOccurs="0" name="block" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_blockType"/>
-            <xsd:element minOccurs="0" name="catclass" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocks_catclassType"/>
-        </xsd:sequence>
-        <xsd:attribute name="page-number" type="xsd:byte"/>
     </xsd:complexType>
     <xsd:complexType name="LoxRental__getTiersResponseData">
         <xsd:sequence>
-            <xsd:element minOccurs="0" name="blocks" type="LoxRental_mary_ns:LoxRental_getTiers_document_blocksType"/>
+            <xsd:element minOccurs="0" name="table" type="LoxRental_mary_ns:LoxRental_getTiers_document_tableType"/>
             <xsd:element minOccurs="0" name="error" type="LoxRental_mary_ns:ConvertigoError"/>
         </xsd:sequence>
         <xsd:attribute name="connector" type="xsd:string"/>

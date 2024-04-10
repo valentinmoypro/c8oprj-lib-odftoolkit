@@ -1470,7 +1470,7 @@ span.fieldfocused input.fixed {
 
 #resultDiv {
 	position: absolute;
-	top: 120px;
+/* 	top: 120px; */
 	width: 100%;
 }
 

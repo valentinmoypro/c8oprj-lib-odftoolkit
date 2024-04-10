@@ -1482,7 +1482,7 @@ function ajaxReadyStateListener() {
 				/**/
 				//				$(".ui-widget-overlay.ui-front").remove()
 				$('div.tool-container').hide();
-				if(sc=="OffreCreationInformEqp_Contrat"){
+				if(sc=="OffreCreationInformEqp_Contrat" || sc=="current_catclass_contrat"){
 					eqt_col = "9";
 				}else{
 					eqt_col = "6";
