@@ -179,12 +179,12 @@
 	<xsl:variable name="resize">true</xsl:variable>
 
 	<!-- Espacement horizontal des caractères : largeur du texte -->
-	<xsl:variable name="coefx">7</xsl:variable>
+	<xsl:variable name="coefx">8</xsl:variable>
 	<!-- 9.7 pour "Lucida console" en 16px-->
 	<!-- 8.8 pour "Consolas" en 16px-->
 	<!-- 9.9 pour "Consolas" en 20px-->
 	<!-- Espacement vertical des caractères : hauteur du texte -->
-	<xsl:variable name="coefy">15</xsl:variable>
+	<xsl:variable name="coefy">29</xsl:variable>
 	<!-- 22 pour "Lucida console" en 16px-->
 	<!-- 25 pour "Consolas" en 20px-->
 
@@ -201,7 +201,7 @@
 	<!-- Viewport right margin -->
 	<xsl:param name="offsetr">22</xsl:param>
 	<!-- Viewport top margin -->
-	<xsl:param name="offsety">120</xsl:param>
+	<xsl:param name="offsety">110</xsl:param>
 
 	<!-- Width of a scroll bar -->
 	<xsl:param name="scrollwidth">17</xsl:param>
@@ -656,9 +656,9 @@
 		</xsl:if>
 
 		<!-- Container SPAN. Used only for positioning and framework behaviour -->
-		<span id="{@name}_n1parent" style="position:absolute; left:{./@column*$coefx+$offsetx}px; top:{./@line*$coefy + $offsety}px; z-index: {$elDepth * 10 + 2};">
+		<span id="{@name}_n1parent">
 <!-- 			<xsl:if test="/document/@screenclass='ReservationCreationInformEqp'"> -->
-			<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|current_catclass_contrat|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|'))">
+			<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|OffreCreationInformEqp_MAJ|current_catclass|current_catclass_contrat|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|'))">
 				<div class="hidden" id="toolbar-buttons{@name}">
 				   <a href="#" onclick="toolbarPROS('{@name}');return false;">
                         <i class="fa fa-eur"/>
@@ -668,7 +668,7 @@
 			<!-- >>>>> TEXTAREA -->
 						
 			<xsl:if test="$fTextarea = 1">
-
+				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="./@column*$coefx+$offsetx"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety - 8"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;</xsl:attribute>
 				<textarea cols="{$fCols}" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" rows="{$fRows}" style="width: {$fieldSize*$coefx}px;">
 							<!-- ondblclick="doAction('KEY_ENTER',  {@name});" -->
 							<!-- overflow="hidden" -->
@@ -713,11 +713,12 @@
 			<!-- >>>>> INPUT -->
 			
 			<xsl:if test="$fTextarea = 0">
-				<input id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInput(event, {$isFieldNumeric}, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;" value="{.}">
+				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="./@column*$coefx+$offsetx + 2"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety + 4"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;</xsl:attribute>
+				<input data-toto="{/document/@screenclass}" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInput(event, {$isFieldNumeric}, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;font-size: 14pt; height: 14px;" value="{.}">
 								<!-- ondblclick="doAction('KEY_ENTER',  {@name});" -->
 								<!-- onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" -->
 					<!-- GV-20171110: Ajout Toolbar -->
-					<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|current_catclass|current_catclass_contrat|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|')) and (@name='__field_c1_l5' or @name='__field_c1_l6' or @name='__field_c1_l7' or @name='__field_c1_l8' or @name='__field_c1_l9' or @name='__field_c1_l10')">
+					<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|OffreCreationInformEqp_MAJ|current_catclass|current_catclass_contrat|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|')) and (@name='__field_c1_l5' or @name='__field_c1_l6' or @name='__field_c1_l7' or @name='__field_c1_l8' or @name='__field_c1_l9' or @name='__field_c1_l10')">
 						<xsl:attribute name="data-toolbar">loxuser-options<xsl:value-of select="@name"/>
                         </xsl:attribute>
 					</xsl:if>
@@ -740,19 +741,19 @@
     	               	<xsl:attribute name="disabled"></xsl:attribute>
 					</xsl:if>
 					<!-- GV-20240131: Gestion startTime  -->
-					<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startTime')">
+					<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startTime')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_startTime');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_startTime');</xsl:attribute>
 						<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_startTime');</xsl:attribute>
 					</xsl:if>
 					<!-- GV-20240131: Gestion endTime  -->
-					<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endTime')">
+					<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endTime')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
 						<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_endTime');</xsl:attribute>
 					</xsl:if>
 					<!-- GV-20240131: Gestion devise  -->
-					<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='devise')">
+					<xsl:if test="(contains('|ReservationCreationInformClient|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='devise')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_devise');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_devise');</xsl:attribute>
 						<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_devise');</xsl:attribute>
@@ -885,15 +886,15 @@
 		</span>
 		
 		<span id="{@name}_n1parent" style="position:absolute;       left:{./@column*$coefx+$offsetx}px;       top:{./@line*$coefy + $offsety}px;       z-index: {$elDepth * 10 + 1};">
-		<input class="fixed" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id;onInputClick(this)" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name})" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;height: auto;font-size:15px;" type="text" value="{.}">
+		<input class="fixed" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id;onInputClick(this)" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name})" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;height: 14px;font-size:14pt;" type="text" value="{.}">
 				<!-- GV-20170926: Mise à jour du localstorage $sdt si changement par utilisateur -->
-				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startDate')">
+				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startDate')">
 					<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 					<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 				</xsl:if>
 				<!-- GV-20170926: Mise à jour du localstorage $edt si changement par utilisateur -->
-				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endDate')">
+				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endDate')">
 					<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
 					<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
@@ -1140,7 +1141,7 @@
 						<xsl:if test="@id&gt;9">
 							left: <xsl:value-of select="./@column*$coefx+$offsetx - 6"/>px;
 						</xsl:if>
-						top: <xsl:value-of select="./@line*$coefy + $offsety "/>px;
+						top: <xsl:value-of select="./@line*$coefy + $offsety + 4"/>px;
 						z-index: <xsl:value-of select="$elDepth * 10 + 1"/>;
 						border: none;
 					</xsl:attribute>
@@ -1242,7 +1243,7 @@
 
 
 	<!-- TEMPLATE TABLE -->
-	<xsl:template match="*[@type='table']">
+	<xsl:template match="*[@type='tableX']">
 		<xsl:param name="offsety"/>
 		<xsl:variable name="tableTop">
 			<xsl:choose>
@@ -1345,7 +1346,7 @@
 	</xsl:template>
 
 	<!-- TEMPLATE ROW -->
-	<xsl:template match="row" priority="1">
+	<xsl:template match="rowX" priority="1">
 		<tr>
 			<xsl:call-template name="mashupEventOnClick">
 				<xsl:with-param name="ref" select=".."/> 
@@ -1474,7 +1475,7 @@
 	</xsl:template>
 
 	<!-- TEMPLATE TITLE -->
-	<xsl:template match="Title" priority="1">
+	<xsl:template match="TitleX" priority="1">
 		<td class="datatitle" style="width:{round(@size * $coefx)}px;height:{../../@titleheight * $coefy}px;" valign="bottom">
 			<xsl:if test="string-length(.) = 0"> </xsl:if>
 			<xsl:if test="string-length(.) != 0">
@@ -1734,12 +1735,12 @@
    				</div> 
 
 				<!-- <div class = "MenuTable">MENU</div> -->
-					<table cellpadding="0" cellspacing="0" style="width: 100%;">
+					<table cellpadding="0" cellspacing="0">
 						
 						<xsl:for-each select="*[@type='keyword']">
 							<tr>
 								<td>
-									<table border="0" cellpadding="0" cellspacing="0" class="buttontab" style="width: 204px;" title="{.}">
+									<table border="0" cellpadding="0" cellspacing="0" class="buttontab" style="width: 245px;" title="{.}">
 										<xsl:attribute name="onclick">doAction('<xsl:value-of select="@action"/>');<xsl:call-template name="mashupEvent"/>
 										</xsl:attribute>
 										<tr>
@@ -1786,7 +1787,7 @@
                         </tr>
 							<tr>
                             <td>
-                                <table border="0" cellpadding="0" cellspacing="0" class="buttontab" onclick="document.getElementById('__transaction').value='gotoOffre'; doAction('');" style="width: 204px;" title="Recherche contrat client">
+                                <table border="0" cellpadding="0" cellspacing="0" class="buttontab" onclick="document.getElementById('__transaction').value='gotoOffre'; doAction('');" style="width: 245px;" title="Recherche contrat client">
                                     <tbody>
                                         <tr>
                                             <td class="buttonc">
@@ -1829,6 +1830,7 @@
                             </tr>
 						</xsl:if>
 					</table>
+					<div id="menu-version">V.25.06.002</div>
 				</div>
 			</xsl:when>
 			<xsl:otherwise>

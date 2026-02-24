@@ -34,7 +34,27 @@ var $final_price = 0;
 var $start_date = 0;
 var $cat_class = null;
 var bForcePros = false;
+var bForcePros_exec = [true, true, true, true, true, true];
 var eqt_col = "6";
+var contrat_eqpt = false;
+var outer_height = null;
+
+function formatPROSDate(dt){
+	computed_date = dt;
+	pattern = /^(0?[1-9]|[12][0-9]|3[01])[/]*(0?[1-9]|1[012])[/]*([2-9]{1}[4-9]|20\d{2})$/
+	if(pattern.test(dt)){
+		m = dt.match(pattern);
+		if(m.length == 4){
+			computed_date = m[1].toString().padStart(2, "0") + "/" + m[2].toString().padStart(2, "0") + "/" + m[3].substr(-2);
+			console.log("date is " + computed_date);
+		}else{
+			console.log("match error on " + dt);
+		}
+	}else{
+		console.log("test error on " + dt);
+	}
+	return computed_date;
+}
 
 function updatePROSData(el, store) {
 	localStorage.setItem(store, el.value);
@@ -241,7 +261,8 @@ function toolbarPROS(fromEl) {
 	cx2 = document.location.search.substring(document.location.search.indexOf("Lox"));
 	if (nextCatClassVal != "") {
 		if(isContrat){
-			execPROS("", nextCatClassVal);
+			if(bForcePros_exec[ligne_catclass-5])
+				execPROS("", nextCatClassVal);
 		}else{
 			execPROS(nextCatClassVal.slice(0, 3) + "-" + nextCatClassVal.slice(3), "");
 		}
@@ -398,6 +419,8 @@ C8O.addHook("xml_response", function (xml) {
 	if(!sq || sq == ""){
 		sc = $doc.attr("screenclass");
 		cx = $doc.attr("context");
+		// GV 2025-05-12 Set context in localstorage
+		localStorage.setItem("_context", cx);
 	}
 	cx2 = document.location.search.substring(document.location.search.indexOf("Lox"));
 	
@@ -489,7 +512,7 @@ C8O.addHook("xml_response", function (xml) {
 	}
 	
 	// GV: 20240326 - Contrat Creation
-	if (tr == "XMLize" && sc.indexOf("Contrat_Creation") != -1) {
+	if (tr == "XMLize" && ((sc.indexOf("Contrat_Creation") != -1) || (sc.indexOf("ReservationOffreCreation") != -1))) {
 		$sdt = $.trim($doc.find('startDate').text());
 		localStorage.setItem(cx + "_sdt", $sdt);
 		$startTime = $.trim($doc.find('startTime').text());
@@ -498,6 +521,7 @@ C8O.addHook("xml_response", function (xml) {
 		localStorage.setItem(cx + "_edt", $edt);
 		$endTime = $.trim($doc.find('endTime').text());
 		localStorage.setItem(cx + "_endTime", $endTime);
+		bForcePros_exec = [true, true, true, true, true, true];
 	}
 	
 	// GV: 20240326 - Contrat Location
@@ -514,6 +538,12 @@ C8O.addHook("xml_response", function (xml) {
 	
 	if (tr == "XMLize" && sc.indexOf("RechercheEquipement_") != -1) {
 		bForcePros = true;
+		contrat_eqpt = false;
+	}
+	
+	if (tr == "XMLize" && sc == "Reprise_Reservation_Contrat") {
+		bForcePros = false;
+		contrat_eqpt = false;
 	}
 	
 	if ((sc == "OffreCreationInformEqp" || 
@@ -547,7 +577,27 @@ C8O.addHook("xml_response", function (xml) {
 			var eqpt_vals = eqpt_list.filter(i => $(eqpt_list[i]).text() != "");
 			if(eqpt_vals.length > nb_eqpt || eqpt_vals.length == 6){
 				var last_eqpt = $(eqpt_vals[eqpt_vals.length-1]).text();
-				if(last_eqpt && last_eqpt != "" && /^[0-9]+$/.test(last_eqpt)){
+				if(last_eqpt && last_eqpt != ""){
+					// GV - 2023-03-27 : Laisser ligne_catclass pour contrat
+					ligne_catclass = $(eqpt_vals[eqpt_vals.length-1]).attr('line');
+					localStorage.setItem(cx + "_nb_eqpt", eqpt_vals.length);
+					execPROS("", last_eqpt);
+					isWaiting = false;
+				}
+			}
+		}
+	}
+	
+	if (sc == "OffreCreationInformEqp_Contrat" && tr == "XMLize" && bForcePros && contrat_eqpt){
+		bForcePros = false;
+		contrat_eqpt = false;
+		var eqpt_list = $doc.find('equipement');
+		var nb_eqpt = localStorage.getItem(cx + "_nb_eqpt") ? localStorage.getItem(cx + "_eqpt") : 0 ;
+		if(eqpt_list.length){
+			var eqpt_vals = eqpt_list.filter(i => $(eqpt_list[i]).text() != "");
+			if(eqpt_vals.length > nb_eqpt || eqpt_vals.length == 6){
+				var last_eqpt = $(eqpt_vals[eqpt_vals.length-1]).text();
+				if(last_eqpt && last_eqpt != ""){
 					// GV - 2023-03-27 : Laisser ligne_catclass pour contrat
 					ligne_catclass = $(eqpt_vals[eqpt_vals.length-1]).attr('line');
 					localStorage.setItem(cx + "_nb_eqpt", eqpt_vals.length);
@@ -671,7 +721,7 @@ C8O.addHook("xml_response", function (xml) {
 				.append($('<span />').text($duration + ' jour(s)'))
 				.append($('<span />').html('&nbsp;&nbsp;&nbsp;'))
 				.append($('<span />').addClass('ui-icon ui-icon-calendar'))
-				.append($('<span />').html('Du&nbsp;' + $sdt + '&nbsp;à&nbsp;' + $startTime + '&nbsp;au&nbsp;' + $edt + '&nbsp;à&nbsp;' + $endTime)); // Modif EN-2023-08-30 Ajout de startTime et endTime
+				.append($('<span />').html('Du&nbsp;' + formatPROSDate($sdt) + '&nbsp;à&nbsp;' + $startTime + '&nbsp;au&nbsp;' + formatPROSDate($edt) + '&nbsp;à&nbsp;' + $endTime)); // Modif EN-2023-08-30 Ajout de startTime et endTime
 
 			/*$timeSectionInterval =
 				$('<p />')
@@ -831,8 +881,33 @@ C8O.addHook("xml_response", function (xml) {
 					}
 				});
 			} else {
-				$("#pricingW div#contentW").append(getHightlightWidget('alert', "PAS DE RECOMMANDATIONS TARIFAIRES."));
-				$(".ui-button").hide();
+				window.setTimeout(function () {
+					pricingDlg = $("#pricingW").dialog({ //modif JG-2017-19-12 fermeture par F3 ou F12 et non Enter
+						closeOnEscape: false,
+						open: function (event, ui) {
+							bStopKeys = true;
+						},
+						height: "auto",
+						width: 600,
+						modal: true,
+						buttons: { // TEST JG-2017-12-21 fermer msg PasDeReco avec entrée 
+							OK: function () {
+								$(this).dialog("close"); //pbclose
+								bStopKeys = true;
+								pricingDlg = null;
+							}
+						},
+						close: function (event, ui) {
+							bStopKeys = false;
+							if (pricingDlg != null){
+								pricingDlg.dialog("destroy");
+							}
+							pricingDlg = null;
+						}
+					});
+					$("#pricingW div#contentW").append(getHightlightWidget('alert', "PAS DE RECOMMANDATIONS TARIFAIRES."));
+					$(".ui-button").hide();
+				}, 50);
 			}
 		}
 		return false;
@@ -851,13 +926,18 @@ C8O.addHook("xml_response", function (xml) {
 			}
 			pricingDlg = null;
 			bStopKeys = false;
+			// GV 2025-05-12 : Get Geography and customer from localStorage
+			_ctx = localStorage.getItem("_context");
+			$geography = localStorage.getItem(_ctx + "_ste") + "-" + localStorage.getItem(_ctx + "_agc");
+			// GV 20240424 : complément à 10 pour CUSTOMER
+			$customer = localStorage.getItem(_ctx + "_ste") + "-" + ("0".repeat(10 - localStorage.getItem(_ctx + "_cpt").length) + localStorage.getItem(_ctx + "_cpt"));
 			// GV 20230926 : Récupération des data en prévision de l'historisation
 			if($doc.find("tier").length){
 				histoPROSmult.push({
 					"sq_type": "tier",
 					"SPG_PRODUCT_SEGMENT": $cat_class,
-					"GEOGRAPHY": $ste + "-" + $agc,
-					"CUSTOMER_SEGMENT": $ste + "-" + $cpt,
+					"GEOGRAPHY": $geography,
+					"CUSTOMER_SEGMENT": $customer,
 					"q_LORValue": $duration, 
 					"RentalStartDate": $start_date, 
 					"q_Floor_Guidance": $threshold_price,
@@ -869,8 +949,8 @@ C8O.addHook("xml_response", function (xml) {
 				histoPROSmult.push({
 					"sq_type": "col",
 					"SPG_PRODUCT_SEGMENT": $cat_class, 
-					"GEOGRAPHY": $ste + "-" + $agc,
-					"CB_CUSTOMER": $ste + "-" + $cpt,
+					"GEOGRAPHY": $geography,
+					"CB_CUSTOMER": $customer,
 					/*"BILLINGTYPE": $flt,*/
 					"CB_LORVALUE": $duration, 
 					"RENTALSTARTDATE": $start_date, 

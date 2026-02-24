@@ -7,6 +7,10 @@
 }
 */
 
+html {
+	zoom: 0.85;
+}
+
 body {
 	/* background:url("../images/bg_repeaty.jpg") repeat-y scroll 100% 100% #FFFFFF !important; */
 	/*background: #F8F8F8 ;*/
@@ -68,7 +72,7 @@ span.colorblue span.title2 {
 
 .bgcolorblack .title2 {
 	/* 	font-size: 20px;  */
-	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	font-family: Arial, "Lucida console", "Courier New", monospace;
 	font-weight: bold;
 	color: #e40115;
 }
@@ -81,14 +85,14 @@ span.title2 {
 
 span.title {
 	font-size: 20px;
-	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	font-family: Arial, "Lucida console", "Courier New", monospace;
 	font-weight: bold;
 	color: #e40115;
 }
 
 span.subTitle {
 	font-size: 14px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-weight: bold;
 	/*color: #e40115;*/
 	color: black;
@@ -96,14 +100,14 @@ span.subTitle {
 
 span.staticText {
 	font-size: 12px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	/*font-weight: normal;
 	color: #000;*/
 }
 
 span.consigne {
 	font-size: 14px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-weight: bold;
 	/*color: #e40115;*/
 	color: #666;
@@ -113,7 +117,7 @@ span.consigne {
 
 span.tableText {
 	font-size: 12px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-weight: normal;
 	/* font-family: 'Ubuntu', sans-serif; */
 	margin-left: 4px;
@@ -123,7 +127,7 @@ span.tableText {
 
 span.radioText {
 	font-size: 14px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 }
 
 span hr {
@@ -311,15 +315,15 @@ span.unfocusedStatic {
 /*  Used for text in input fields */
 
 .fieldText {
-	font-size: 10px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-size: 14pt;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-weight: bold;
 }
 
 /* Used on buttons, like keyword buttons when they are selectable*/
 
 input.keywordButton {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: #000000;
 	background-color: #F1FAF9;
@@ -328,7 +332,7 @@ input.keywordButton {
 /* Used on disabled buttons, like keyword buttons when they are not selectable*/
 
 input.disabledKeywordButton {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: #000000;
 	background-color: #F1FAF9;
@@ -342,7 +346,7 @@ input:invalid:focus {
 	font-size: 18px;
 	line-height: 12px;
 	color: #666666;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	text-decoration: none;
 	font-weight: normal;
 }
@@ -351,16 +355,21 @@ input:invalid:focus {
 	font-size: 18px;
 	line-height: 12px;
 	color: #666666;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+#menu-version {
+	text-align: right;
+    font-size: 7pt;
 }
 
 .menu_title,
 .menu_title_closed {
 	color: #e40115;
 	font-size: 12px;
-	font-family: Arial, "Lucida console", "Courrier New", monospace;
+	font-family: Arial, "Lucida console", "Courier New", monospace;
 	text-decoration: none;
 	height: 18px;
 	margin-left: 22px;
@@ -371,7 +380,7 @@ input:invalid:focus {
 	top: -4px;
 	left: -1px;
 	z-index: 999;
-	background-color: #fff;
+	background-color: transparent;
 	height: 114px;
 	width: 206px;
 }
@@ -410,7 +419,7 @@ input:invalid:focus {
 
 a.menuItem {
 	font-weight: normal;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	border: none;
 	color: #000;
 	line-height: 32px;
@@ -442,7 +451,7 @@ a.menuItem:visited {
 /* Style for tables title cells */
 
 .datatitle {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 14px;
 	font-weight: bold;
 	color: white;
@@ -479,7 +488,7 @@ span.panel {
 	-webkit-box-shadow: 2px 2px 5px 1px #999999;
 	-moz-box-shadow: 2px 2px 5px 1px #999999;
 	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='#999999', Positive='true');
-	zoom: 1;
+	/*zoom: 1;*/
 	box-shadow: 2px 2px 5px 1px #999999;
 	/*[if gte IE 9]*/
 	@media only screen {
@@ -516,7 +525,7 @@ span.disabledPanelOmbre {
 /* Panel top title style  for active (enabled) panels */
 
 span.panelTopTitle {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: black;
 	/*#FF0000;*/
@@ -526,7 +535,7 @@ span.panelTopTitle {
 /* Panel bottom title style  for active (enabled) panels */
 
 span.panelBottomTitle {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: black;
 	/* #FF0000; */
@@ -536,7 +545,7 @@ span.panelBottomTitle {
 /* Panel top title style  for inactive (disabled) panels */
 
 span.disabledPanelTopTitle {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: #4C4C4C;
 	/* 	background-color: #FFFFFF; */
@@ -545,7 +554,7 @@ span.disabledPanelTopTitle {
 /* Panel bottom title style  for inactive (disabled) panels */
 
 span.disabledPanelBottomTitle {
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	color: #4C4C4C;
 	/* 	background-color: #FFFFFF; */
@@ -623,7 +632,7 @@ span.disabledPanelBottomTitle {
 	border: 2px solid #ff9900;
 	background-color: #fff;
 	visibility: hidden !important;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	/*z-index:200px;*/
 }
 
@@ -665,9 +674,11 @@ td.cell input.fieldText {
 }
 
 #waitDiv img {
+	transform: none;
+	transform-origin: center;
 	left: 45%;
 	position: absolute;
-	top: 40%;
+	top: 45vh;
 	width: 100px;
 	z-index: 99990;
 	/*border:2px solid #ccc;*/
@@ -693,7 +704,7 @@ td.selectedTab {
 	border-right: 1px solid #000;
 	white-space: nowrap;
 	font-size: 18px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	;
 	background-color: #DFDFDF;
 	color: #000;
@@ -707,7 +718,7 @@ td.unselectedTab {
 	cursor: pointer;
 	background-color: #9C9C9C;
 	font-size: 18px;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	;
 	color: #000;
 }
@@ -733,7 +744,7 @@ div.commandsButtons {
 	background-color: #fff;
 	top: 10px;
 	left: 0;
-	width: 204px;
+	width: 245px;
 	min-height: 300px !important;
 }
 
@@ -813,11 +824,11 @@ td.buttonc {
 
 input.insidebutton {
 	cursor: pointer;
-	/*font-family: Myriad pro, "Lucida console", "Courrier New", monospace;*/
+	/*font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;*/
 	font-size: 12px;
 	font-weight: 300;
 	margin: 0;
-	padding: 0 20px;
+	padding: 10px 20px;
 	width: 100% !important;
 	min-height: 40px;
 	text-align: left;
@@ -857,7 +868,7 @@ input.insidebuttonBlue {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -877,7 +888,7 @@ input.insidebuttonGreen {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -903,7 +914,7 @@ input.insidebuttonCyan {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -924,7 +935,7 @@ input.insidebuttonMagenta {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -945,7 +956,7 @@ input.insidebuttonRed {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -966,7 +977,7 @@ input.insidebuttonYellow {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -987,7 +998,7 @@ input.insidebuttonWhite {
 	border: 1px solid grey;
 	border-radius: 2px;
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	margin: 0;
 	outline-style: none;
@@ -1037,7 +1048,7 @@ input.disabledinsidebutton {
 	background: none;
 	/* 	border : 0; */
 	/*font-family : Verdana, Arial, Helvetica, Sans-Serif;*/
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	font-size-adjust: none;
 	font-stretch: normal;
@@ -1080,7 +1091,7 @@ input.extmenu {
 	border: 0 none;
 	/*border: solid 1px red;*/
 	cursor: pointer;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	font-size-adjust: none;
 	font-stretch: normal;
@@ -1103,13 +1114,13 @@ input.extmenu {
 @media screen and (max-width: 1370px) {
 	input.extField {
 		-x-system-font: none;
-		font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
-		font-size: 11px;
+		font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
+		font-size: 14pt;
 		vertical-align: middle;
-		margin: 0;
+		margin: -8px;
 		background-color: #fff;
 		border: 1px solid #ccc;
-		padding: 0px 2px;
+		padding: 4px;
 		height: 14px;
 	}
 }
@@ -1117,14 +1128,14 @@ input.extmenu {
 @media screen and (min-width: 1370px) {
 	input.extField {
 		-x-system-font: none;
-		font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
-		font-size: 11px;
+		font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
+		font-size: 14pt;
 		vertical-align: middle;
-		margin: 0;
+		margin: -8px;
 		background-color: #fff;
 		border: 1px solid #ccc;
-		padding: 0px 2px;
-		height: 20px;
+		padding: 4px;
+		height: 18px;
 	}
 }
 
@@ -1138,7 +1149,7 @@ input.extField[type="password"] {
 
 input.extFieldBlue {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	vertical-align: middle;
 	margin: 0;
@@ -1151,7 +1162,7 @@ input.extFieldBlue {
 
 input.extFieldGreen {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	vertical-align: middle;
 	margin: 0;
@@ -1164,7 +1175,7 @@ input.extFieldGreen {
 
 input.extFieldMagenta {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	vertical-align: middle;
 	margin: 0;
@@ -1177,7 +1188,7 @@ input.extFieldMagenta {
 
 input.extFieldRed {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #ff9999;
 	/* red 80% */
@@ -1188,7 +1199,7 @@ input.extFieldRed {
 
 input.extFieldCyan {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #99ffff;
 	/* cyan 80% */
@@ -1199,7 +1210,7 @@ input.extFieldCyan {
 
 input.extFieldWhite {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: black;
 	border: 1px solid #B5B8C8;
@@ -1211,7 +1222,7 @@ input.extFieldWhite {
 
 input.extFieldYellow {
 	-x-system-font: none;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #ffff99;
 	/* Yellow 80 %*/
@@ -1230,14 +1241,14 @@ input.extFieldYellow {
 
 textarea.extField {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
-	font-size: 16px;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
+	font-size: 12px;
 	background-color: #fff;
 	/* Grey 80 % */
 	resize: none;
 	border: 1px solid #ccc;
 	padding: 0px 2px;
-	height: 20px;
+	height: 22px;
 }
 
 textarea:focus {
@@ -1246,7 +1257,7 @@ textarea:focus {
 
 textarea.extFieldBlue {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #9999ff;
 	/* Blue 80 % */
@@ -1258,7 +1269,7 @@ textarea.extFieldBlue {
 
 textarea.extFieldGreen {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #99ff99;
 	/* Green 80 % */
@@ -1270,7 +1281,7 @@ textarea.extFieldGreen {
 
 textarea.extFieldMagenta {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #ff99ff;
 	/* magenta 80% */
@@ -1282,7 +1293,7 @@ textarea.extFieldMagenta {
 
 textarea.extFieldRed {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #ff9999;
 	/* red 80% */
@@ -1294,7 +1305,7 @@ textarea.extFieldRed {
 
 textarea.extFieldCyan {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #99ffff;
 	/* cyan 80% */
@@ -1306,7 +1317,7 @@ textarea.extFieldCyan {
 
 textarea.extFieldWhite {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: black;
 	color: white;
@@ -1318,7 +1329,7 @@ textarea.extFieldWhite {
 
 textarea.extFieldYellow {
 	-x-system-font: none;
-	font-family: "Myriad pro", "Lucida console", "Courrier New", monospace;
+	font-family: ""Myriad Pro"", "Lucida console", "Courier New", monospace;
 	font-size: 18px;
 	background-color: #ffff99;
 	/* Yellow 80 %*/
@@ -1342,7 +1353,7 @@ body {
 	scrollbar-arrow-color: #999;
 	scrollbar-shadow-color: #ccc;
 	scrollbar-dark-shadow-color: #ccc;
-	zoom: 1;
+	/*zoom: 1;*/
 }
 
 /* pour chrome */
@@ -1392,16 +1403,14 @@ body {
 /*###################################################################################################*/
 
 input.fieldText,
-input.fixed {
+input.fixed, select.fixed {
 	vertical-align: middle;
 	background-color: #fff;
-	font-family: Myriad pro, "Lucida console", "Courrier New", monospace;
-	font-size: 14px;
+	font-family: "Myriad Pro", "Lucida console", "Courier New", monospace;
 	text-align: center;
-	margin: 0;
+	margin: -8px;
 	border: 1px solid #ccc;
-	padding: 0px 5px;
-	height: 30px;
+	padding: 4px;
 }
 
 span.fieldfocused,
@@ -1409,6 +1418,7 @@ span.fieldfocused input.fieldText {
 	/*border: 1px solid Red;*/
 	background-color: #fff;
 	color: black;
+	z-index: 120 !important;
 }
 
 span.fieldfocused input.extField,
@@ -1464,7 +1474,7 @@ span.fieldfocused input.fixed {
 
 .imgCalendar {
 	position: absolute;
-	top: -8px;
+	top: -4px;
 	left: -18px;
 }
 

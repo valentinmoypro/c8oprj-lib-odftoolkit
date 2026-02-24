@@ -694,6 +694,19 @@ function waitdiv_hide() {
 }
 
 function onPressed(e) {
+	// GV-20240606: Option 1 Selection #Eqpt
+	if((sc=="RechercheEquipement_num_Contrat") && e.key == "1"){
+		contrat_eqpt = true;
+	}
+	// GV-20240531: Option 8 Remise des Tx Dg
+	if((sc=="OffreCreationInformEqp_Contrat" || sc=="current_catclass_contrat") && e.key == "8"){
+		var curline = e.srcElement.name.split("_l")[1];
+		bForcePros_exec[curline-5] = true;
+	}
+	// GV-20240529: Ne pas appeler PROS si suppression Tarifs Degressifs confirmé
+	if(sc == "TG_suppr_contrat" && e.key == "F10"){
+		bForcePros_exec[ligne_catclass-5] = false;
+	}
 	// GV : Appel PROS Mary sans attendre reponse écran RTM:
 	if ((sc == "OffreCreationInformEqp" || 
 			sc == "OffreCreationInformEqpNotTxDeg" || 
@@ -717,7 +730,7 @@ function onPressed(e) {
 			{
 					ligne_catclass = ccl_vals[ccl_vals.length-1].name.split("_l")[1];
 					localStorage.setItem(cx + "_nb_cat_class", ccl_vals.length);
-					execPROS(last_ccl.slice(0, 3) + "-" + last_ccl.slice(3));
+					execPROS(last_ccl.slice(0, 3) + "-" + last_ccl.slice(3), "");
 					isWaiting = false;
 				}
 			}

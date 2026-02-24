@@ -123,7 +123,13 @@ function resize() {
     else winW = window.innerWidth;
     winH = window.innerHeight;
 
-
+    // get outer Height
+    /**
+    $_html = document.querySelector('html');
+    new_scale = (winH/953).toFixed(2);
+    console.log("winH: "+winH + ", new scale: "+ new_scale);
+    $_html.style.transform = 'scale(1, '+new_scale+')';
+    /**/
 
     /************************************************************************/
     /* fonction resize : changement de taille selon taille écran */

@@ -208,8 +208,8 @@ if (typeof Object.create !== 'function') {
             switch (self.options.position) {
                 case 'top':
                     return {
-                        left: self.coordinates.left - (self.toolbar.width() / 2) + (self.$elem.outerWidth() / 2),
-                        top: self.coordinates.top - self.$elem.outerHeight() - adjustment,
+                        left: 4 + self.coordinates.left - (self.toolbar.width() / 2) + (self.$elem.outerWidth() / 2),
+                        top: (self.coordinates.top - self.$elem.outerHeight() - adjustment)*1.15,
                         right: 'auto'
                     };
                 case 'left':
