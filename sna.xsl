@@ -379,7 +379,8 @@
 									top: <xsl:value-of select="./@line*$coefy + $offsety"/>px;
 								</xsl:otherwise>
 							</xsl:choose>
-							white-space: nowrap;
+							<!-- GV-20260225: Fix declage affichage nombres avec espaces -->
+							white-space: pre;
 							z-index: <xsl:value-of select="$elDepth * 10 + 1"/>;
 						</xsl:attribute>
 						<xsl:attribute name="onclick">spanClick(this, <xsl:value-of select="@column"/>, <xsl:value-of select="@line"/>);</xsl:attribute>
@@ -885,7 +886,8 @@
 			<img class="imgCalendar" id="{@name}_imgCalendar" src="images/icn_calendar.png" style="cursor: pointer;"/>
 		</span>
 		
-		<span id="{@name}_n1parent" style="position:absolute;       left:{./@column*$coefx+$offsetx}px;       top:{./@line*$coefy + $offsety}px;       z-index: {$elDepth * 10 + 1};">
+		<!-- GV-20260225: Fix decalage champ date -->
+		<span id="{@name}_n1parent" style="position: absolute;left: {./@column*$coefx+$offsetx + 2}px;top: {./@line*$coefy + $offsety + 3}px;z-index: {$elDepth * 10 + 1};">
 		<input class="fixed" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id;onInputClick(this)" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name})" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;height: 14px;font-size:14pt;" type="text" value="{.}">
 				<!-- GV-20170926: Mise à jour du localstorage $sdt si changement par utilisateur -->
 				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startDate')">
@@ -1558,7 +1560,9 @@
 			</xsl:if>
 		</xsl:if>
 		<xsl:if test="@radio = 'false'">
-			<select class="fixed" id="{@name}" name="{@name}" onfocus="currentFieldOnFocus=this.id" style="position:absolute; left:{@column*$coefx+$offsetx}px; top:{./@line*$coefy + $offsety}px; z-index: {$elDepth * 10 + 1};">
+			<select class="fixed" id="{@name}" name="{@name}" onfocus="currentFieldOnFocus=this.id">
+				<!-- GV-20260225: Correction decalage select -->
+				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="@column*$coefx+$offsetx + 3"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety + 2"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 1"/>;</xsl:attribute>
 				<!-- GV-20170926: Mise à jour du localstorage $noSat si changement par utilisateur -->
 				<xsl:if test="(/document/@screenclass='DerogCalculTx') and (@name='__field_c64_l3')">
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_noSat');</xsl:attribute>
