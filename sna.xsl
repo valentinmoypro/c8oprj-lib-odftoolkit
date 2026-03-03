@@ -24,7 +24,7 @@
 		<input id="offsety" type="hidden" value="{$offsety}"/>
 		<input id="scrollwidth" type="hidden" value="{$scrollwidth}"/>
 		
-		<!-- Cas particulier : anoamlie rencontrée sur le retour à l'EXPMNA -->
+		<!-- Cas particulier : anoamlie rencontree sur le retour a l'EXPMNA -->
 		<xsl:if test="(@AnomalieRetourExpmna)">
 			<input id="AnomalieRetourExpmna" type="hidden" value="{@AnomalieRetourExpmna}"/>
 		</xsl:if>
@@ -105,7 +105,7 @@
 				<input id="__transaction" name="__transaction" type="hidden"/>
 				<input name="__sesskey" type="hidden"/>
 
-				<!-- >>>>> ### AT - Transmission du contexte de la séquence appelante vers la séquence appelée (targetTransaction : TR) -->
+				<!-- >>>>> ### AT - Transmission du contexte de la sequence appelante vers la sequence appelee (targetTransaction : TR) -->
 				<xsl:if test="not(/document/@contextTR)">
 					<input id="__context" name="__context" type="hidden" value="{/document/@context}"/>
 				</xsl:if>
@@ -113,7 +113,7 @@
 				<xsl:if test="/document/@contextTR">
 					<input id="__context" name="__context" type="hidden" value="{/document/@contextTR}"/>
 				</xsl:if>
-				<!-- <<<<< ### AT - Transmission du contexte de la séquence appelante vers la séquence appelée (targetTransaction : TR) -->
+				<!-- <<<<< ### AT - Transmission du contexte de la sequence appelante vers la sequence appelee (targetTransaction : TR) -->
 
 				<!-- <input id="__signature" name="__signature" type="hidden" value="{/document/@signature}"/> -->
 				<xsl:if test="not(/document/@signatureLast)">
@@ -162,7 +162,7 @@
 	<xsl:template match="job">
 		<p>
 			<b>La transaction (job #<xsl:value-of select="@id"/>) est en cours 
-				d'éxécution ; veuillez patienter...</b>
+				d'execution ; veuillez patienter...</b>
 		</p>
 		<p>
 			<xsl:apply-templates/>
@@ -178,12 +178,12 @@
 	<!-- Set this to false if you want to disable dynamic screen content resizing -->
 	<xsl:variable name="resize">true</xsl:variable>
 
-	<!-- Espacement horizontal des caractères : largeur du texte -->
+	<!-- Espacement horizontal des caracteres : largeur du texte -->
 	<xsl:variable name="coefx">8</xsl:variable>
 	<!-- 9.7 pour "Lucida console" en 16px-->
 	<!-- 8.8 pour "Consolas" en 16px-->
 	<!-- 9.9 pour "Consolas" en 20px-->
-	<!-- Espacement vertical des caractères : hauteur du texte -->
+	<!-- Espacement vertical des caracteres : hauteur du texte -->
 	<xsl:variable name="coefy">29</xsl:variable>
 	<!-- 22 pour "Lucida console" en 16px-->
 	<!-- 25 pour "Consolas" en 20px-->
@@ -191,12 +191,8 @@
 	<!-- Viewport left margin -->
 	<!--  <xsl:param name="offsetx">10</xsl:param> -->
 	<xsl:param name="offsetx">
-		<xsl:if test="/document/@screenWidth='80'">
-			50
-		</xsl:if>
-		<xsl:if test="/document/@screenWidth='132'">
-			20
-		</xsl:if>
+		<xsl:if test="/document/@screenWidth='80'">50</xsl:if>
+		<xsl:if test="/document/@screenWidth='132'">20</xsl:if>
 	</xsl:param>
 	<!-- Viewport right margin -->
 	<xsl:param name="offsetr">22</xsl:param>
@@ -372,7 +368,7 @@
 							left: <xsl:value-of select="./@column*$coefx+$offsetx"/>px;
 							<xsl:choose>
 								<xsl:when test="(/document/@screenWidth='132') and (./@line=26)">
-									top: <xsl:value-of select="./@line*$coefy + $offsety - 1*$coefy"/>px; 
+									top: <xsl:value-of select="./@line*$coefy + $offsety - 1*$coefy"/>px;
 									<!--   bottom: 0px; -->
 								</xsl:when>
 								<xsl:otherwise>
@@ -487,14 +483,14 @@
 	<!-- <xsl:template match="*[@type='field' and not(@hidden)]"> -->
 	<xsl:template match="*[@type='field']">
 	
-		<!-- Taille en dessous de laquelle un champ débordant sur la ligne suivante n'est pas transformé en textarea -->
-		<!-- C'est pour gérer le cas particulier des courrier avec saisie libre (champs de 90)  -->
+		<!-- Taille en dessous de laquelle un champ debordant sur la ligne suivante n'est pas transforme en textarea -->
+		<!-- C'est pour gerer le cas particulier des courrier avec saisie libre (champs de 90)  -->
 		<xsl:param name="fTextareaLimit">
 			<xsl:value-of select="150"/>
 		</xsl:param>
 			
 		<!-- Le champ doit-il etre un textarea ? -->
-		<!-- Oui si ce n'est pas un champ caché (type MDP) ou s'il fait plus de 100 caractères -->
+		<!-- Oui si ce n'est pas un champ cache (type MDP) ou s'il fait plus de 100 caracteres -->
 		<xsl:param name="fTextarea">
 			<xsl:choose>
 				<xsl:when test="@hidden = 'true'">
@@ -510,7 +506,7 @@
 		</xsl:param>					
 				
 		<!-- Hauteur de la textarea : --> 
-		<!-- on divise la taille du champ par le nombre de colonnes qui seront affichées à l'écran --> 
+		<!-- on divise la taille du champ par le nombre de colonnes qui seront affichees a l'ecran --> 
 		<!-- s'il y a un reste, on ajoute 1 ligne -->		
 		<xsl:param name="fRows">
 		
@@ -518,12 +514,12 @@
 			
 				<xsl:choose>
 				
-					<!-- Le champ est moins large que l'écran (il n'est donc pas cadré à gauche), il fait donc 2 lignes -->
+					<!-- Le champ est moins large que l'ecran (il n'est donc pas cadre a gauche), il fait donc 2 lignes -->
 					<xsl:when test="@size &lt;= /document/@screenWidth">	
 						<xsl:value-of select="2"/>
 					</xsl:when>
 					
-					<!-- Le champ est affiché sur le nombre maximum sans chevaucher les champs suivants -->
+					<!-- Le champ est affiche sur le nombre maximum sans chevaucher les champs suivants -->
 					<xsl:when test="@size mod /document/@screenWidth &gt; 0">	
 						<xsl:value-of select="floor(@size div /document/@screenWidth)"/>
 					</xsl:when>
@@ -544,7 +540,7 @@
 		</xsl:param>
 				
 		<!-- Taille de la zone d'affichage :  -->
-		<!-- on multiplie le nombre de colonnes affichées sur la première ligne par le nombre de lignes -->
+		<!-- on multiplie le nombre de colonnes affichees sur la premiere ligne par le nombre de lignes -->
 		<xsl:param name="tZoneLen">
 		
 			<xsl:if test="$fTextarea = 1">		
@@ -559,7 +555,7 @@
 		</xsl:param>
 				
 		<!-- Colonne de la zone d'affichage -->
-		<!-- Si la taille de la zone d'affichage est supérieure à la longueur du champ, il faut calculer un nombre de colonne par rapport au champ -->
+		<!-- Si la taille de la zone d'affichage est superieure a la longueur du champ, il faut calculer un nombre de colonne par rapport au champ -->
 		<xsl:param name="fCols">
 		
 			<!-- textarea -->
@@ -567,7 +563,7 @@
 			
 				<xsl:choose>
 					
-					<!-- taille de la zone d'affichage supérieure à taille du champ -->
+					<!-- taille de la zone d'affichage superieure a taille du champ -->
 					<xsl:when test="$tZoneLen &gt; @size">
 						
 						<xsl:choose>
@@ -584,12 +580,12 @@
 					
 					</xsl:when>
 					
-					<!-- taille de la zone d'affichage inférieure à taille du champ -->
+					<!-- taille de la zone d'affichage inferieure a taille du champ -->
 					<xsl:when test="$tZoneLen &lt; @size">
 						<xsl:value-of select="/document/@screenWidth - @column"/>
 					</xsl:when>
 					
-					<!-- taille de la zone d'affichage égale à taille du champ -->
+					<!-- taille de la zone d'affichage egale a taille du champ -->
 					<xsl:otherwise>
 						<xsl:value-of select="/document/@screenWidth - @column"/>
 					</xsl:otherwise>
@@ -605,7 +601,7 @@
 			
 		</xsl:param>			
 		
-		<!-- La taille d'un textarea doit correpondre au maximum à un multiple de sa taille sur le nombre de ligne -->
+		<!-- La taille d'un textarea doit correpondre au maximum a un multiple de sa taille sur le nombre de ligne -->
 		<xsl:param name="fieldSize">
 					
 			<!-- textarea -->
@@ -637,7 +633,7 @@
 			<xsl:if test="(not(@autoenter))">false</xsl:if>
 		</xsl:param>
 	
-		<!-- Le champ est-il numérique -->
+		<!-- Le champ est-il numerique -->
 		<xsl:param name="isFieldNumeric">
 			<xsl:if test="(@numeric)">true</xsl:if>
 			<xsl:if test="(not(@numeric))">false</xsl:if>
@@ -658,6 +654,30 @@
 
 		<!-- Container SPAN. Used only for positioning and framework behaviour -->
 		<span id="{@name}_n1parent">
+			<xsl:if test="$fTextarea = 0">
+				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="./@column*$coefx+$offsetx + 2"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety + 4"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="$fTextarea = 1">
+				<xsl:attribute name="style">
+					position:absolute; 
+					<xsl:choose>
+						<xsl:when test="contains('|RENTALMAN|', concat('|', /document/@screenclass, '|'))">
+							left: <xsl:value-of select="./@column*$coefx+$offsetx + 50"/>px;
+							top: <xsl:value-of select="./@line*$coefy + $offsety + 45"/>px; 
+						</xsl:when>
+						<xsl:when test="contains('|OPERATIONS|', concat('|', /document/@screenclass, '|'))">
+							left: <xsl:value-of select="./@column*$coefx+$offsetx"/>px;
+							top: <xsl:value-of select="./@line*$coefy + $offsety + 45"/>px; 
+						</xsl:when>
+						<xsl:otherwise>
+							left: <xsl:value-of select="./@column*$coefx+$offsetx"/>px;
+							top: <xsl:value-of select="./@line*$coefy + $offsety"/>px; 
+						</xsl:otherwise>
+					</xsl:choose>
+					
+					z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;
+				</xsl:attribute>
+			</xsl:if>
 <!-- 			<xsl:if test="/document/@screenclass='ReservationCreationInformEqp'"> -->
 			<xsl:if test="contains('|OffreCreationInformEqp|ReservationCreationInformEqp|OffreCreationInformEqpNotTxDeg|OffreCreationInformEqp_MAJ|current_catclass|current_catclass_contrat|OffreCreationInformEqp_Contrat|', concat('|', /document/@screenclass, '|'))">
 				<div class="hidden" id="toolbar-buttons{@name}">
@@ -669,14 +689,13 @@
 			<!-- >>>>> TEXTAREA -->
 						
 			<xsl:if test="$fTextarea = 1">
-				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="./@column*$coefx+$offsetx"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety - 8"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;</xsl:attribute>
 				<textarea cols="{$fCols}" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" rows="{$fRows}" style="width: {$fieldSize*$coefx}px;">
 							<!-- ondblclick="doAction('KEY_ENTER',  {@name});" -->
 							<!-- overflow="hidden" -->
 							<!-- wrap="off" -->
 							<!-- rows="(@size mod 80)+1">  -->
 
-					<!-- Evaluation de la couleur de l'inversion vidéo -->
+					<!-- Evaluation de la couleur de l'inversion video -->
 					<xsl:choose>
 						<xsl:when test="./@background ='blue'">
 							<xsl:attribute name="class">extFieldBlue</xsl:attribute>
@@ -714,8 +733,7 @@
 			<!-- >>>>> INPUT -->
 			
 			<xsl:if test="$fTextarea = 0">
-				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="./@column*$coefx+$offsetx + 2"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety + 4"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 2"/>;</xsl:attribute>
-				<input data-toto="{/document/@screenclass}" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInput(event, {$isFieldNumeric}, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;font-size: 14pt; height: 14px;" value="{.}">
+				<input data-screen="{/document/@screenclass}" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id; onInputClick(this);" onkeyup="checkInput(event, {$isFieldNumeric}, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;font-size: 14pt; height: 14px;" value="{.}">
 								<!-- ondblclick="doAction('KEY_ENTER',  {@name});" -->
 								<!-- onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name});" -->
 					<!-- GV-20171110: Ajout Toolbar -->
@@ -723,21 +741,21 @@
 						<xsl:attribute name="data-toolbar">loxuser-options<xsl:value-of select="@name"/>
                         </xsl:attribute>
 					</xsl:if>
-					<!-- GV-20170927: Mise à jour du localstorage $ste si changement par utilisateur -->
+					<!-- GV-20170927: Mise a jour du localstorage $ste si changement par utilisateur -->
 					<xsl:if test="((/document/@screenclass='OPERATIONS') or (/document/@screenclass='RENTALMAN')) and (name()='site')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_ste');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_ste');</xsl:attribute>
 					</xsl:if>
-					<!-- GV-20170927: Mise à jour du localstorage $agc si changement par utilisateur -->
+					<!-- GV-20170927: Mise a jour du localstorage $agc si changement par utilisateur -->
 					<xsl:if test="((/document/@screenclass='OPERATIONS') or (/document/@screenclass='RENTALMAN')) and (name()='agence')">
 						<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_agc');</xsl:attribute>
 						<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_agc');</xsl:attribute>
 					</xsl:if>
-						<!-- à remettre -->
+						<!-- a remettre -->
 					<xsl:if test="((/document/@screenclass='RepartitionCamionEntreeCodeD') or (/document/@screenclass='RepartitionCamionEntreeCodeP')) and (@name='__field_c11_l12')">
     	               	<xsl:attribute name="disabled"></xsl:attribute>
 					</xsl:if>
-						<!-- à remettre -->
+						<!-- a remettre -->
 					<xsl:if test="(/document/@screenclass='ChantierClientMaj') and (@name='__field_c17_l12')">
     	               	<xsl:attribute name="disabled"></xsl:attribute>
 					</xsl:if>
@@ -771,7 +789,7 @@
 							<xsl:attribute name="class">mashupableFieldText</xsl:attribute>
 						</xsl:when>
 
-						<!-- Evaluation de la couleur de l'inversion vidéo -->
+						<!-- Evaluation de la couleur de l'inversion video -->
 						<xsl:when test="./@background ='blue'">
 							<xsl:attribute name="class">extFieldBlue</xsl:attribute>
 						</xsl:when>
@@ -825,10 +843,10 @@
 						<xsl:otherwise>
 							<xsl:attribute name="type">text</xsl:attribute>
 														
-							<!-- Champ numérique -->
+							<!-- Champ numerique -->
 							<xsl:if test="$isFieldNumeric = 'true'">									
 								<!-- <xsl:attribute name="required"></xsl:attribute> -->		
-								<xsl:attribute name="title">Champ numérique uniquement</xsl:attribute>
+								<xsl:attribute name="title">Champ numerique uniquement</xsl:attribute>
 								<xsl:attribute name="type2">number</xsl:attribute>
 							</xsl:if>
 							
@@ -889,13 +907,13 @@
 		<!-- GV-20260225: Fix decalage champ date -->
 		<span id="{@name}_n1parent" style="position: absolute;left: {./@column*$coefx+$offsetx + 2}px;top: {./@line*$coefy + $offsety + 3}px;z-index: {$elDepth * 10 + 1};">
 		<input class="fixed" id="{@name}_n1" maxlength="{@size}" name="{@name}" onfocus="currentFieldOnFocus=this.id;onInputClick(this)" onkeyup="checkInputChars(event, {@size}, {$checkAutoEnter}, document.javelin_form.{@name})" size="{$fieldSize}" style="width: {$fieldSize*$coefx}px;height: 14px;font-size:14pt;" type="text" value="{.}">
-				<!-- GV-20170926: Mise à jour du localstorage $sdt si changement par utilisateur -->
+				<!-- GV-20170926: Mise a jour du localstorage $sdt si changement par utilisateur -->
 				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|', concat('|', /document/@screenclass, '|'))) and (name()='startDate')">
 					<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 					<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_sdt');</xsl:attribute>
 				</xsl:if>
-				<!-- GV-20170926: Mise à jour du localstorage $edt si changement par utilisateur -->
+				<!-- GV-20170926: Mise a jour du localstorage $edt si changement par utilisateur -->
 				<xsl:if test="(contains('|ReservationCreationInformClient|ReservationOffreCreation|OffreCreationInformClient|OffreCreationInformClient_MAJ|ReservationCreationInformClient_MAJ|Contrat_Creation|ContratLocation_FR|', concat('|', /document/@screenclass, '|'))) and (name()='endDate')">
 					<xsl:attribute name="onkeydown">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
 					<xsl:attribute name="onblur">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_edt');</xsl:attribute>
@@ -1152,7 +1170,7 @@
                 <xsl:if test="@id&lt;10">
 						<span style="position:absolute;        left:{./@column*$coefx+$offsetx}px;        top:{./@line*$coefy + $offsety}px;       z-index: {$elDepth * 10 + 1};">
 				<a class="menuItem" href="javascript:doMenu('KEY_ENTER','{@id}')" style="line-height: {$coefy - 1}px">
-					<xsl:value-of select="@id"/>. <xsl:value-of select="@literal"/>
+					<xsl:value-of select="@id"/>. <xsl:value-of select="@literal"/>
 <!-- 					<xsl:if test="not(@command = '')">-<xsl:value-of select="@command"/> -->
 <!-- 					</xsl:if> -->
 				</a>
@@ -1161,7 +1179,7 @@
                   <xsl:if test="@id&gt;9">
 						<span style="position:absolute;        left:{./@column*$coefx+$offsetx+7}px;        top:{./@line*$coefy + $offsety}px;       z-index: {$elDepth * 10 + 1};">
 				<a class="menuItem" href="javascript:doMenu('KEY_ENTER','{@id}')" style="line-height: {$coefy - 1}px">
-					<xsl:value-of select="@id"/>. <xsl:value-of select="@literal"/>
+					<xsl:value-of select="@id"/>. <xsl:value-of select="@literal"/>
 <!-- 					<xsl:if test="not(@command = '')">-<xsl:value-of select="@command"/> -->
 <!-- 					</xsl:if> -->
 				</a>
@@ -1451,7 +1469,7 @@
 						<!-- Default Cell content (static...) -->
 						<xsl:otherwise>
 							<!-- Use this to force right-align numbers in cells -->
-							<xsl:if test="string-length(.) = 0"> </xsl:if>
+							<xsl:if test="string-length(.) = 0"> </xsl:if>
 							<xsl:if test="string-length(.) != 0 and not(@foreground = @background)">
 								<!-- Container SPAN. Used only for positioning and framework behaviour -->
 								<span onclick="spanClick(this, {@column}, {@line})" style="white-space: nowrap;">
@@ -1463,7 +1481,7 @@
 												<xsl:if test="starts-with(/document/@screenclass,'RepartitionCamions')">
 													<xsl:attribute name="class">tableText trueColors</xsl:attribute>
 												</xsl:if>
-												<xsl:value-of select="."/> 
+												<xsl:value-of select="."/>
 											</span>
 										</span>
 									</span>
@@ -1479,7 +1497,7 @@
 	<!-- TEMPLATE TITLE -->
 	<xsl:template match="TitleX" priority="1">
 		<td class="datatitle" style="width:{round(@size * $coefx)}px;height:{../../@titleheight * $coefy}px;" valign="bottom">
-			<xsl:if test="string-length(.) = 0"> </xsl:if>
+			<xsl:if test="string-length(.) = 0"> </xsl:if>
 			<xsl:if test="string-length(.) != 0">
 				<xsl:for-each select="block">
 					<span class="datatitle">
@@ -1513,7 +1531,7 @@
 							<xsl:value-of select="@label"/>
 						</td>
 						<td class="menuitems">
-							(<xsl:value-of select="@char"/>)    
+							(<xsl:value-of select="@char"/>)
 						</td>
 					</tr>
 				</xsl:for-each>
@@ -1543,12 +1561,10 @@
 					<xsl:if test="@selected = 'true'">
 						<input checked="true" id="{../@name}_r" name="{../@name}_r" onclick="document.javelin_form.{../@name}.value = '{@value}'" type="radio" value="{@value}"/>
 						<xsl:value-of select="@value"/>
-						 
 					</xsl:if>
 					<xsl:if test="string-length(@selected) = 0">
 						<input id="{../@name}_r" name="{../@name}_r" onclick="document.javelin_form.{../@name}.value = '{@value}'" type="radio" value="{@value}"/>
 						<xsl:value-of select="@value"/>
-						 
 					</xsl:if>
 				</xsl:for-each>
 			</span>
@@ -1563,11 +1579,11 @@
 			<select class="fixed" id="{@name}" name="{@name}" onfocus="currentFieldOnFocus=this.id">
 				<!-- GV-20260225: Correction decalage select -->
 				<xsl:attribute name="style">position:absolute; left: <xsl:value-of select="@column*$coefx+$offsetx + 3"/>px; top: <xsl:value-of select="./@line*$coefy + $offsety + 2"/>px; z-index: <xsl:value-of select="$elDepth * 10 + 1"/>;</xsl:attribute>
-				<!-- GV-20170926: Mise à jour du localstorage $noSat si changement par utilisateur -->
+				<!-- GV-20170926: Mise a jour du localstorage $noSat si changement par utilisateur -->
 				<xsl:if test="(/document/@screenclass='DerogCalculTx') and (@name='__field_c64_l3')">
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_noSat');</xsl:attribute>
 				</xsl:if>
-				<!-- GV-20170926: Mise à jour du localstorage $noSun si changement par utilisateur -->
+				<!-- GV-20170926: Mise a jour du localstorage $noSun si changement par utilisateur -->
 				<xsl:if test="(/document/@screenclass='DerogCalculTx') and (@name='__field_c64_l4')">
 					<xsl:attribute name="onchange">updatePROSData(this, '<xsl:value-of select="/document/@context"/>_noSun');</xsl:attribute>
 				</xsl:if>
@@ -1639,20 +1655,20 @@
 				<tbody>
 					<tr>
 						<xsl:for-each select="tabBox/*[@type='tabBoxItem']">
-							<td class="tabSpacer"> </td>
+							<td class="tabSpacer"> </td>
 							<xsl:choose>
 								<xsl:when test="./@selected = 'true'">
-									<td class="selectedTab"> <xsl:value-of select="."/> </td>
+									<td class="selectedTab"> <xsl:value-of select="."/> </td>
 								</xsl:when>
 								<xsl:otherwise>
 									<td class="unselectedTab" onclick="currentFieldOnFocus='__field_c{./@column}_l{./@line}'; doAction('KEY_NPTUI');"> <xsl:value-of select="."/> </td>
 								</xsl:otherwise>
 							</xsl:choose>
 						</xsl:for-each>
-						<td class="tabSpacer" width="100%"> </td>
+						<td class="tabSpacer" width="100%"> </td>
 					</tr>
 					<tr style="height: 100%">
-						<td class="openedTab" colspan="{count(tabBox/block)*2 + 1}"> </td>
+						<td class="openedTab" colspan="{count(tabBox/block)*2 + 1}"> </td>
 					</tr>
 				</tbody>
 			</table>
@@ -1757,7 +1773,7 @@
 														<!-- Display the action key (PF1=, PF14=, PA2=...) on the button -->
 														<xsl:when test="$DisplayActionKey='true'">
 															<xsl:attribute name="value">
-																<xsl:value-of select="substring-after(@action, 'KEY_P')"/> <xsl:value-of select="."/>
+																<xsl:value-of select="substring-after(@action, 'KEY_P')"/> <xsl:value-of select="."/>
 															</xsl:attribute>
 														</xsl:when>
 														<!-- Or not -->
@@ -1834,7 +1850,7 @@
                             </tr>
 						</xsl:if>
 					</table>
-					<div id="menu-version">V.25.06.002</div>
+					<div id="menu-version">V.26.02.005</div>
 				</div>
 			</xsl:when>
 			<xsl:otherwise>
