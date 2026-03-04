@@ -1850,7 +1850,7 @@
                             </tr>
 						</xsl:if>
 					</table>
-					<div id="menu-version">V.26.02.005</div>
+					<div id="menu-version">V.26.02.006</div>
 				</div>
 			</xsl:when>
 			<xsl:otherwise>

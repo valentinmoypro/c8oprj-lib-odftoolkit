@@ -222,7 +222,7 @@
 					if (elcurrent.classList.contains('containerInvisible'))
 						elcurrent.classList.remove('containerInvisible');
 					if (elcurrent.src == "") {
-						elcurrent.src = "index.html?__transaction=XMLize&v=26.02.005&__context=Lox" + parseInt(i + 1); // correction JG_2018_02_27 sessions fantômes quandd ouvertures simultanées des 3 sessions
+						elcurrent.src = "index.html?__transaction=XMLize&v=26.02.006&__context=Lox" + parseInt(i + 1); // correction JG_2018_02_27 sessions fantômes quandd ouvertures simultanées des 3 sessions
 					}
 					elcurrent.contentWindow.focus(); // correction JG_2018_02_23 focus quand changement de sessions
 
@@ -289,7 +289,7 @@
 
 	<!-- environnement prod barre -->
 	<div class="prodBar"></div>
-	<iframe class="container containerVisible" id="container1" src="index.html?__transaction=XMLize&__context=Lox1&v=26.02.005"></iframe>
+	<iframe class="container containerVisible" id="container1" src="index.html?__transaction=XMLize&__context=Lox1&v=26.02.006"></iframe>
 	<iframe class="container containerInvisible" id="container2"></iframe>
 	<iframe class="container containerInvisible" id="container3"></iframe>
 </body>
