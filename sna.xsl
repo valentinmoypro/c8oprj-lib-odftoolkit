@@ -661,7 +661,7 @@
 				<xsl:attribute name="style">
 					position:absolute; 
 					<xsl:choose>
-						<xsl:when test="contains('|RENTALMAN|', concat('|', /document/@screenclass, '|'))">
+						<xsl:when test="contains('|RENTALMAN|Operations_Additionnelles|Rapports_Operations|', concat('|', /document/@screenclass, '|'))">
 							left: <xsl:value-of select="./@column*$coefx+$offsetx + 50"/>px;
 							top: <xsl:value-of select="./@line*$coefy + $offsety + 45"/>px; 
 						</xsl:when>
@@ -1773,7 +1773,7 @@
 														<!-- Display the action key (PF1=, PF14=, PA2=...) on the button -->
 														<xsl:when test="$DisplayActionKey='true'">
 															<xsl:attribute name="value">
-																<xsl:value-of select="substring-after(@action, 'KEY_P')"/> <xsl:value-of select="."/>
+																<xsl:value-of select="substring-after(@action, 'KEY_P')"/><xsl:text> </xsl:text><xsl:value-of select="."/>
 															</xsl:attribute>
 														</xsl:when>
 														<!-- Or not -->
@@ -1850,7 +1850,7 @@
                             </tr>
 						</xsl:if>
 					</table>
-					<div id="menu-version">V.26.02.006</div>
+					<div id="menu-version">V.26.02.009</div>
 				</div>
 			</xsl:when>
 			<xsl:otherwise>
