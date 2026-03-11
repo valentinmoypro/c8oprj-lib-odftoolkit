@@ -904,6 +904,54 @@ Structured array as follow :
 </tr>
 <tr>
 <td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;meta_creation_date
+</td>
+<td>
+Defines the Creation Date metadata in the ODT Document. ISO 8601 date format: yyy-MM-dd'T'HH:mm:ss. If null or empty, does not change it.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;meta_description
+</td>
+<td>
+Defines the Description metadata in the ODT Document. If null, does not change it. If empty, removes it.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;meta_initial_creator
+</td>
+<td>
+Defines the Creator metadata in the ODT Document. If null, does not change it. If empty, removes it.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/multivaluedvariable_color_16x16.png?raw=true "  alt="RequestableMultiValuedVariable" >&nbsp;meta_keywords
+</td>
+<td>
+Defines the Keywords metadata in the ODT Document. Multi-valued variable. Each entry is a keyword. If null, does not change it. If empty, removes it.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;meta_subject
+</td>
+<td>
+Defines the Subject metadata in the ODT Document. If null, does not change it. If empty, removes it.
+</td>
+</tr>
+<tr>
+<td>
+<img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;meta_title
+</td>
+<td>
+Defines the Title metadata in the ODT Document. If null, does not change it. If empty, removes it.
+</td>
+</tr>
+<tr>
+<td>
 <img src="https://github.com/convertigo/convertigo/blob/develop/engine/src/com/twinsoft/convertigo/beans/variables/images/variable_color_16x16.png?raw=true "  alt="RequestableVariable" >&nbsp;output_filename
 </td>
 <td>

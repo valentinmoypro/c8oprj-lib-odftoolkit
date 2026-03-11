@@ -29,7 +29,7 @@ responseTimeout: 600
     executionDirectory: .
     output: true
   ↓Process_execute9 [steps.ProcessExecStep-1773139630993]: 
-    commandLine: '["sudo", "chmod", "a+Xr", "-R", "/usr/share/fonts/truetype/custom/"]'
+    commandLine: '["sudo", "chmod", "-R", "a+rX", "/usr/share/fonts/truetype/custom/"]'
     output: true
   ↓Process_execute8 [steps.ProcessExecStep-1768384001000]: 
     commandLine: '["sudo", "fc-cache", "-f", "-v"]'

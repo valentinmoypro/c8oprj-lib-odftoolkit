@@ -61,12 +61,14 @@ responseTimeout: 120
   expression: |
     'var odf_api = JavaImporter(
     	Packages.org.odftoolkit.simple.TextDocument,
+    	Packages.org.odftoolkit.simple.meta.Meta,
+    	Packages.java.util.Arrays,
     	Packages.org.odftoolkit.simple.common.navigation.TextNavigation,
     	org.odftoolkit.odfdom.dom.style.props,
     	org.odftoolkit.simple.text.Span,
-    	Packages.org.odftoolkit.simple.draw.Image,	
+    	Packages.org.odftoolkit.simple.draw.Image,
     	Packages.org.odftoolkit.simple.table.Table,
-    	Packages.org.odftoolkit.simple.table.Cell,	
+    	Packages.org.odftoolkit.simple.table.Cell,
     	Packages.org.odftoolkit.simple.style.Font,
     	Packages.org.odftoolkit.simple.style.StyleTypeDefinitions,
     	Packages.org.odftoolkit.odfdom.type.Color,
@@ -74,20 +76,20 @@ responseTimeout: 120
     	Packages.java.io.FileInputStream
     );
     
-    function get_file_name(file_path){
-    	if(file_path != ""){
+    function get_file_name(file_path) {
+    	if (file_path != "") {
     		return org.apache.commons.io.FilenameUtils.getName(get_full_path(file_path));
     	}
     }
     
-    function get_full_path(file_path){
-    	if(file_path != ""){
+    function get_full_path(file_path) {
+    	if (file_path != "") {
     		project_directory_path = context.getProjectDirectory().replace("\\", "/") + "/";
-     		if(file_path.indexOf(".//") != -1){
-      			file_path = project_directory_path + file_path.substring(3);
+    		if (file_path.indexOf(".//") != -1) {
+    			file_path = project_directory_path + file_path.substring(3);
     		}
-     		else if(file_path.indexOf("./") != -1){
-      			file_path = project_directory_path + "../" + file_path.substring(2);
+    		else if (file_path.indexOf("./") != -1) {
+    			file_path = project_directory_path + "../" + file_path.substring(2);
     		}
     	}
     	return file_path;
@@ -97,94 +99,94 @@ responseTimeout: 120
     var output_path = get_full_path(output_filename);
     var file_name = get_file_name(output_filename);
     
-    with(odf_api){
-    	
+    with (odf_api) {
+    
     	function objectify(s) {
-    	    if (typeof s == "string") {
-    	        try {
-    	            log.debug(''Try to parse the string as JSON...'');
-    	            const obj = JSON.parse(s); // Convertir la chaîne en objet JSON
-    	            // Vérifier toutes les propriétés de l''objet
-    	            Object.keys(obj).forEach(key => {
-    	                if (typeof obj[key] == "string") {
-    	                    try {
-    	                        log.debug("Parsing nested JSON for key: " + key);
-    	                        obj[key] = JSON.parse(obj[key]); // Désérialiser la chaîne imbriquée
-    	                    } catch (e) {
-    	                        log.warn("Failed to parse nested JSON for key: "+key+". Keeping it as a string.");
-    	                    }
-    	                }
-    	            });
-    	            return obj;
-    	        } catch (e) {
-    	            log.warn("Failed to parse JSON. Returning the string as is: " + e);
-    	        }
-    	    }
-    	    return s; // Retourner tel quel si ce n''est pas une chaîne JSON valide
+    		if (typeof s == "string") {
+    			try {
+    				log.debug(''Try to parse the string as JSON...'');
+    				const obj = JSON.parse(s); // Convertir la chaîne en objet JSON
+    				// Vérifier toutes les propriétés de l''objet
+    				Object.keys(obj).forEach(key => {
+    					if (typeof obj[key] == "string") {
+    						try {
+    							log.debug("Parsing nested JSON for key: " + key);
+    							obj[key] = JSON.parse(obj[key]); // Désérialiser la chaîne imbriquée
+    						} catch (e) {
+    							log.warn("Failed to parse nested JSON for key: " + key + ". Keeping it as a string.");
+    						}
+    					}
+    				});
+    				return obj;
+    			} catch (e) {
+    				log.warn("Failed to parse JSON. Returning the string as is: " + e);
+    			}
+    		}
+    		return s; // Retourner tel quel si ce n''est pas une chaîne JSON valide
     	}
-    	
-    	function setTextFont(style){
+    
+    	function setTextFont(style) {
     		try {
     			style = objectify(style);
     			return new Font(style && style.fontName ? style.fontName : "Arial", style && style.fontStyle ? StyleTypeDefinitions.FontStyle[style.fontStyle] : StyleTypeDefinitions.FontStyle.REGULAR, style && style.fontSize ? style.fontSize : 10, style && style.fontColor ? getColor(style.fontColor) : Color.BLACK);
-    		} catch(e){
+    		} catch (e) {
     			log.warn("Setting Default Font values because: " + e);
     			return new Font("Arial", StyleTypeDefinitions.FontStyle.REGULAR, 10, Color.BLACK);
     		}
     	}
-    	
+    
     	function getCellFont(style, row, column, isHeader) {
     		style = objectify(style);
-    	    if (isHeader) {
-    			var title = {fontName: style && style.header && style.header.fontName ? style.header.fontName : "Arial", fontStyle: style && style.header && style.header.fontStyle ? style.header.fontStyle : "BOLD", fontSize: style && style.header && style.header.fontSize ? style.header.fontSize : 10, fontColor: style && style.header && style.header.fontColor ? style.header.fontColor : "BLACK"};
-    	        return setTextFont(title);
-    	    }
-    	    const key = row + "-" + column;
-    	    return setTextFont(style && style.cells && style.cells[key] ? style.cells[key] : style && style.defaults ? style.defaults : {});
+    		if (isHeader) {
+    			var title = { fontName: style && style.header && style.header.fontName ? style.header.fontName : "Arial", fontStyle: style && style.header && style.header.fontStyle ? style.header.fontStyle : "BOLD", fontSize: style && style.header && style.header.fontSize ? style.header.fontSize : 10, fontColor: style && style.header && style.header.fontColor ? style.header.fontColor : "BLACK" };
+    			return setTextFont(title);
+    		}
+    		const key = row + "-" + column;
+    		return setTextFont(style && style.cells && style.cells[key] ? style.cells[key] : style && style.defaults ? style.defaults : {});
     	}
-    	
-    	function getColor(color){
+    
+    	function getColor(color) {
     		const validColors = ["AQUA", "BLACK", "BLUE", "FUCHSIA", "GRAY", "GREEN", "LIME", "MAROON", "NAVY", "OLIVE", "ORANGE", "PURPLE", "RED", "SILVER", "TEAL", "WHITE", "YELLOW"];
     		return color.startsWith("#") ? Color.valueOf(color) : validColors.includes(color) ? Color[color] : Color.WHITE;
     	}
-    	
+    
     	function setCellBGColor(cell, color) {
-    	    cell.setCellBackgroundColor(getColor(color));
+    		cell.setCellBackgroundColor(getColor(color));
     	}
-    	
+    
     	function setCellAttributes(cell, row, column, isHeader, HAlign, VAlign, style) {
-    	    // Afficher les logs pour chaque variable
-    	    log.debug("cell => " + cell);
-    	    log.debug("row => " + row);
-    	    log.debug("column => " + column);
-    	    log.debug("isHeader => " + isHeader);
-    	
-    	    // Si ''style'' est un objet, afficher ses propriétés
-    	    if (style != null && typeof style === "object") {
-    	        log.debug("style (détails) => " + JSON.stringify(style));
-    	    } else {
-    	        log.debug("style n''est pas un objet ou est null.");
-    	    }
-    	    
-    	    if(isHeader){
-    			if(style && style.header && HAlign.includes(style.header.cellHAlign)){
-    				log.debug("[header] cellHAlign: "+ style.header.cellHAlign);
+    		// Afficher les logs pour chaque variable
+    		log.debug("cell => " + cell);
+    		log.debug("row => " + row);
+    		log.debug("column => " + column);
+    		log.debug("isHeader => " + isHeader);
+    
+    		// Si ''style'' est un objet, afficher ses propriétés
+    		if (style != null && typeof style === "object") {
+    			log.debug("style (détails) => " + JSON.stringify(style));
+    		} else {
+    			log.debug("style n''est pas un objet ou est null.");
+    		}
+    
+    		if (isHeader) {
+    			if (style && style.header && HAlign.includes(style.header.cellHAlign)) {
+    				log.debug("[header] cellHAlign: " + style.header.cellHAlign);
     				cell.setHorizontalAlignment(StyleTypeDefinitions.HorizontalAlignmentType[style.header.cellHAlign]);
-    			}else{
+    			} else {
     				log.debug("Setting Header to default HAlign: CENTER");
     				cell.setHorizontalAlignment(StyleTypeDefinitions.HorizontalAlignmentType["CENTER"]);
     			}
-    			if(style && style.header && VAlign.includes(style.header.cellVAlign)){
-    				log.debug("[header] cellVAlign: "+ style.header.cellVAlign);
+    			if (style && style.header && VAlign.includes(style.header.cellVAlign)) {
+    				log.debug("[header] cellVAlign: " + style.header.cellVAlign);
     				cell.setVerticalAlignment(StyleTypeDefinitions.VerticalAlignmentType[style.header.cellVAlign]);
-    			}else{
+    			} else {
     				log.debug("Setting Header to default VAlign: MIDDLE");
     				cell.setVerticalAlignment(StyleTypeDefinitions.VerticalAlignmentType["MIDDLE"]);
     			}
-    			if(style && style.header && style.header.cellBGColor){
-    				log.debug("[header] cellBGColor: "+ style.header.cellBGColor);
+    			if (style && style.header && style.header.cellBGColor) {
+    				log.debug("[header] cellBGColor: " + style.header.cellBGColor);
     				setCellBGColor(cell, style.header.cellBGColor);
-    			}else{
+    			} else {
     				log.warn("Setting Header to default BGColor: #e5e5e5");
     				setCellBGColor(cell, "#e5e5e5");
     			}
@@ -192,70 +194,70 @@ responseTimeout: 120
     		}
     		const key = row + "-" + column;
     		log.debug("Searching Atributes for cell " + key);
-    		if(style && style.cells && style.cells[key] && HAlign.includes(style.cells[key].cellHAlign)){
-    			log.debug("[cell] cellHAlign: "+ style.cells[key].cellHAlign);
+    		if (style && style.cells && style.cells[key] && HAlign.includes(style.cells[key].cellHAlign)) {
+    			log.debug("[cell] cellHAlign: " + style.cells[key].cellHAlign);
     			cell.setHorizontalAlignment(StyleTypeDefinitions.HorizontalAlignmentType[style.cells[key].cellHAlign]);
-    		} else if(style && style.defaults && HAlign.includes(style.defaults.cellHAlign)){
-    			log.debug("[defaults] cellHAlign: "+ style.defaults.cellHAlign);
+    		} else if (style && style.defaults && HAlign.includes(style.defaults.cellHAlign)) {
+    			log.debug("[defaults] cellHAlign: " + style.defaults.cellHAlign);
     			cell.setHorizontalAlignment(StyleTypeDefinitions.HorizontalAlignmentType[style.defaults.cellHAlign]);
-    		}else{
+    		} else {
     			log.debug("No valid attribute found for cellHAlign. Do nothing");
     		}
-    		
-    		if(style && style.cells && style.cells[key] && VAlign.includes(style.cells[key].cellVAlign)){
-    			log.debug("[cell] cellVAlign: "+ style.cells[key].cellVAlign);
+    
+    		if (style && style.cells && style.cells[key] && VAlign.includes(style.cells[key].cellVAlign)) {
+    			log.debug("[cell] cellVAlign: " + style.cells[key].cellVAlign);
     			cell.setVerticalAlignment(StyleTypeDefinitions.VerticalAlignmentType[style.cells[key].cellVAlign]);
-    		} else if(style && style.defaults && VAlign.includes(style.defaults.cellVAlign)){
-    			log.debug("[defaults] cellVAlign: "+ style.defaults.cellVAlign);
+    		} else if (style && style.defaults && VAlign.includes(style.defaults.cellVAlign)) {
+    			log.debug("[defaults] cellVAlign: " + style.defaults.cellVAlign);
     			cell.setVerticalAlignment(StyleTypeDefinitions.VerticalAlignmentType[style.defaults.cellVAlign]);
-    		}else{
+    		} else {
     			log.debug("No valid attribute found for cellVAlign. Do nothing");
     		}
-    		
-    		if(style && style.cells && style.cells[key] && style.cells[key].cellBGColor){
-    			log.debug("[cell] cellBGColor: "+ style.cells[key].cellBGColor);
+    
+    		if (style && style.cells && style.cells[key] && style.cells[key].cellBGColor) {
+    			log.debug("[cell] cellBGColor: " + style.cells[key].cellBGColor);
     			setCellBGColor(cell, style.cells[key].cellBGColor);
-    		} else if(style && style.defaults && style.defaults.cellBGColor){
-    			log.debug("[defaults] cellBGColor: "+ style.defaults.cellBGColor);
+    		} else if (style && style.defaults && style.defaults.cellBGColor) {
+    			log.debug("[defaults] cellBGColor: " + style.defaults.cellBGColor);
     			setCellBGColor(cell, style.defaults.cellBGColor);
-    		}else{
+    		} else {
     			log.debug("No valid attribute found for BGColor. Do nothing");
     		}
     	}
-    	
+    
     	function getCellBorder(cell, borderType) {
     		try {
     			border = cell.getBorder(StyleTypeDefinitions.CellBordersType[borderType]);
     			if (border != null && border.toString().trim() != "") {
-    	            return border;
-    	        }
+    				return border;
+    			}
     		} catch (e) {
     			log.error("Error occured getting cell border ''" + borderType + "'' because " + e);
     		}
     		return StyleTypeDefinitions.CellBordersType.NONE
     	}
-    	
+    
     	function extractTableStyles(cell) {
-    	    var tb_styles = {
+    		var tb_styles = {
     			cellBGColor: cell.getCellBackgroundColor(),
-    	        isTextWrapped: cell.isTextWrapped(),
-    	        horizontal: cell.getParagraphByIndex(0, false).getHorizontalAlignment(),
-    	        //vertical: cell.getVerticalAlignmentType(),
-    	        top: getCellBorder(cell, "TOP"),
-    	        bottom: getCellBorder(cell, "BOTTOM"),
-    	        left: getCellBorder(cell, "LEFT"),
-    	        right: getCellBorder(cell, "RIGHT"),
-    	        font: cell.getParagraphByIndex(0, false).getFont()
-    	    };
-    	
-    	    // Affiche les styles récupérés
-    	    log.debug("TABLE Styles: " + JSON.stringify(tb_styles, null, 2));
-    	    
-    	    return tb_styles;
+    			isTextWrapped: cell.isTextWrapped(),
+    			horizontal: cell.getParagraphByIndex(0, false).getHorizontalAlignment(),
+    			//vertical: cell.getVerticalAlignmentType(),
+    			top: getCellBorder(cell, "TOP"),
+    			bottom: getCellBorder(cell, "BOTTOM"),
+    			left: getCellBorder(cell, "LEFT"),
+    			right: getCellBorder(cell, "RIGHT"),
+    			font: cell.getParagraphByIndex(0, false).getFont()
+    		};
+    
+    		// Affiche les styles récupérés
+    		log.debug("TABLE Styles: " + JSON.stringify(tb_styles, null, 2));
+    
+    		return tb_styles;
     	}
-    	
-    	function replace_text(fdoc, tags){
-    		for (var i=0; i<tags.length; i++){
+    
+    	function replace_text(fdoc, tags) {
+    		for (var i = 0; i < tags.length; i++) {
     			log.debug("tag: " + tags[i].tag);
     			log.debug("tag type: " + tags[i].type);
     			log.debug("tag value: " + tags[i].value);
@@ -265,19 +267,19 @@ responseTimeout: 120
     				item = txt_nav.nextSelection();
     				log.debug("item Text: " + item.getText());
     				log.debug("item Index: " + item.getIndex());
-    				switch (tags[i].type){
+    				switch (tags[i].type) {
     					case "image":
     						item.replaceWith(new File(get_full_path(tags[i].value)).toURI());
     						break;
     					case "tablet":
-    						var doc_table_template =  TextDocument.loadDocument(get_full_path(table_template_file));
+    						var doc_table_template = TextDocument.loadDocument(get_full_path(table_template_file));
     						var table_template = doc_table_template.getTableByName(table_template_name);
     						var tpl_rows = table_template.getRowCount();
     						var tpl_cols = table_template.getColumnCount();
     						var header_row_style = null;
     						var even_row_style = null;
     						var odd_row_style = null;
-    						if(tpl_rows == 3 && tpl_cols == 1){
+    						if (tpl_rows == 3 && tpl_cols == 1) {
     							header_row_style = extractTableStyles(table_template.getCellByPosition(0, 0));
     							even_row_style = extractTableStyles(table_template.getCellByPosition(0, 1));
     							odd_row_style = extractTableStyles(table_template.getCellByPosition(0, 2));
@@ -292,29 +294,29 @@ responseTimeout: 120
     						var hasRowHeader = tags[i].type == "tableh";
     						var hasTableTemplate = tags[i].type == "tablet";
     						var isHeader;
-    						const validHAlign = [ "CENTER", "DEFAULT", "FILLED", "JUSTIFY", "LEFT", "RIGHT" ];
-    						const validVAlign = [ "TOP", "BOTTOM", "MIDDLE", "DEFAULT" ];
+    						const validHAlign = ["CENTER", "DEFAULT", "FILLED", "JUSTIFY", "LEFT", "RIGHT"];
+    						const validVAlign = ["TOP", "BOTTOM", "MIDDLE", "DEFAULT"];
     						log.debug("Rows: " + rows);
     						log.debug("Cols: " + cols);
     						log.debug("Has row header? " + hasRowHeader);
     						log.debug("Has table template? " + hasTableTemplate);
-    						if(rows>0 && cols>0){
+    						if (rows > 0 && cols > 0) {
     							table1 = Table.newTable(fdoc, rows, cols);
     							table1.setTableName("table1");
-    							for(var r=0; r<rows; r++){
-    								for(var c=0; c<cols; c++){
+    							for (var r = 0; r < rows; r++) {
+    								for (var c = 0; c < cols; c++) {
     									var cell = table1.getCellByPosition(c, r);
-    									log.debug("row #"+r);
-    									log.debug("col #"+c);
-    									log.debug("val: "+values[r][c]);
-    									if(!hasTableTemplate){
+    									log.debug("row #" + r);
+    									log.debug("col #" + c);
+    									log.debug("val: " + values[r][c]);
+    									if (!hasTableTemplate) {
     										isHeader = r == 0 && hasRowHeader ? true : false;
     										setCellAttributes(cell, r, c, isHeader, validHAlign, validVAlign, tags[i].style);
     										cell.setFont(getCellFont(tags[i].style, r, c, isHeader));
     									} else {
-    										if(r == 0){
+    										if (r == 0) {
     											row_style = header_row_style;
-    										} else if(r % 2 === 0){
+    										} else if (r % 2 === 0) {
     											row_style = even_row_style;
     										} else {
     											row_style = odd_row_style;
@@ -349,17 +351,46 @@ responseTimeout: 120
     			}
     		}
     	}
-    	
+    
     	try {
     		var document = null;
-    		if(o_markers != null){
+    		if (o_markers != null) {
     			document = TextDocument.loadDocument(template_path);
     			replace_text(document, o_markers);
     		}
     	} catch (e) {
     		log.warn("ERROR: " + e);
     	} finally {
-    		if(document) document.save(output_path);
+    		if (document) {
+    			var meta = document.getOfficeMetadata();
+    			if (meta_title != null) meta.setTitle(meta_title);
+    			if (meta_subject != null) meta.setSubject(meta_subject);
+    			if (meta_keywords != null) meta.setKeywords(Arrays.asList(meta_keywords));
+    			//if(meta_creator != null) meta.setCreator(meta_creator);
+    			if (meta_initial_creator != null) meta.setInitialCreator(meta_initial_creator);
+    			if (meta_description != null) meta.setDescription(meta_description);
+    			if (meta_creation_date != null && meta_creation_date != "") {
+    				var new_creation_date = null;
+    				if (meta_creation_date == "now") {
+    					new_creation_date = java.util.GregorianCalendar();
+    				} else {
+    					try {
+    						// Convertir une date ISO 8601 fournie en GregorianCalendar
+    						var formatter = new java.text.SimpleDateFormat("yyyy-MM-dd''T''HH:mm:ss");
+    						var parsedDate = formatter.parse(meta_creation_date);
+    						var calendar = new java.util.GregorianCalendar();
+    						calendar.setTime(parsedDate);
+    						new_creation_date = calendar;
+    					} catch (e) {
+    						log.error("ERROR: Can not parse date: " + meta_creation_date);
+    						log.error("ERROR DETAILS: " + e);
+    					}
+    				}
+    				if(new_creation_date != null) meta.setCreationDate(new_creation_date);
+    			}
+    
+    			document.save(output_path);
+    		}
     	}
     }'
 ↓Element [steps.XMLElementStep-1739960996678]: 
@@ -409,6 +440,18 @@ responseTimeout: 120
 ↓break_before [variables.RequestableVariable-1770026149173]: 
   comment: Define the BreakBefore table style property. Can be 'auto', 'column' or 'page'. Default is set to 'page'.
   value: page
+↓meta_title [variables.RequestableVariable-1773158303826]: 
+  comment: Defines the Title metadata in the ODT Document. If null, does not change it. If empty, removes it.
+↓meta_subject [variables.RequestableVariable-1773158787765]: 
+  comment: Defines the Subject metadata in the ODT Document. If null, does not change it. If empty, removes it.
+↓meta_keywords [variables.RequestableMultiValuedVariable-1773159783472]: 
+  comment: Defines the Keywords metadata in the ODT Document. Multi-valued variable. Each entry is a keyword. If null, does not change it. If empty, removes it.
+↓meta_initial_creator [variables.RequestableVariable-1773160205035]: 
+  comment: Defines the Creator metadata in the ODT Document. If null, does not change it. If empty, removes it.
+↓meta_description [variables.RequestableVariable-1773244152838]: 
+  comment: Defines the Description metadata in the ODT Document. If null, does not change it. If empty, removes it.
+↓meta_creation_date [variables.RequestableVariable-1773249217927]: 
+  comment: 'Defines the Creation Date metadata in the ODT Document. ISO 8601 date format: yyy-MM-dd''T''HH:mm:ss. If null or empty, does not change it.'
 ↓Test_Case_marker_img [core.TestCase]: 
   ↓output_filename [variables.TestCaseVariable-1739973840643]: 
     required: true
@@ -430,12 +473,33 @@ responseTimeout: 120
 ↓Test_Case_marker_string [core.TestCase]: 
   ↓output_filename [variables.TestCaseVariable-1742291459033]: 
     required: true
-    value: .//outputs/test_span.odt
+    value: .//outputs/test_string.odt
   ↓input_filename [variables.TestCaseVariable-1742291459036]: 
     required: true
     value: .//templates/odf/template.odt
   ↓markers [variables.TestCaseVariable-1742291459039]: 
     value: '[ { "tag": "__c8o_date", "type": "string", "value": "February 25, 2025" }, { "tag": "__c8o_objet", "type": "string", "value": "Resignation Letter" }, { "tag": "__c8o_texte", "type": "string", "value": "Dear Sir,\nDear Madam,\nDear Miss" }, { "tag": "__c8o_signature", "type": "image", "value": "C:/Convertigo/Studio 8.3.2/workspace/.metadata/.plugins/com.twinsoft.convertigo.studio/git/c8oprj-lib-odftoolkit_master/templates/sarah_signature_sample.png" } ]'
+  ↓meta_title [variables.TestCaseVariable-1773158496464]: 
+    value: Brand New Title
+  ↓meta_subject [variables.TestCaseVariable-1773159014742]: 
+    value: Brand New Subject
+  ↓meta_keywords [variables.TestCaseMultiValuedVariable-1773159792364]: 
+    value: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: Brand
+          - java.lang.String: 
+            - ↑value: New
+          - java.lang.String: 
+            - ↑value: Keywords
+  ↓meta_initial_creator [variables.TestCaseVariable-1773160309820]: 
+    value: Brand New Initial Creator
+  ↓meta_description [variables.TestCaseVariable-1773247320245]: 
+    value: Brand New Description
+  ↓meta_creation_date [variables.TestCaseVariable-1773250162712]: 
+    value: now
 ↓Test_Case_marker_table [core.TestCase]: 
   ↓output_filename [variables.TestCaseVariable-1740505823647]: 
     required: true

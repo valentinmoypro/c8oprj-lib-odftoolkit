@@ -516,6 +516,24 @@ Can be an absolute path or a relative Convertigo path:
 ]></td>
 </tr>
 <tr>
+<td>meta_creation_date</td><td>Defines the Creation Date metadata in the ODT Document. ISO 8601 date format: yyy-MM-dd'T'HH:mm:ss. If null or empty, does not change it.</td>
+</tr>
+<tr>
+<td>meta_description</td><td>Defines the Description metadata in the ODT Document. If null, does not change it. If empty, removes it.</td>
+</tr>
+<tr>
+<td>meta_initial_creator</td><td>Defines the Creator metadata in the ODT Document. If null, does not change it. If empty, removes it.</td>
+</tr>
+<tr>
+<td>meta_keywords</td><td>Defines the Keywords metadata in the ODT Document. Multi-valued variable. Each entry is a keyword. If null, does not change it. If empty, removes it.</td>
+</tr>
+<tr>
+<td>meta_subject</td><td>Defines the Subject metadata in the ODT Document. If null, does not change it. If empty, removes it.</td>
+</tr>
+<tr>
+<td>meta_title</td><td>Defines the Title metadata in the ODT Document. If null, does not change it. If empty, removes it.</td>
+</tr>
+<tr>
 <td>output_filename</td><td>ODT output file path. 
 Can be an absolute path or a relative Convertigo path: 
 ".//" is relative to the project's path. 
