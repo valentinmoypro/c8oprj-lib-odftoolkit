@@ -255,6 +255,120 @@ responseTimeout: 120
     
     		return tb_styles;
     	}
+    	
+    	function processTagReplacement(fdoc, tag, item)
+    	{
+    		switch (tag.type) 
+    		{
+    			case "image":
+    				item.replaceWith(new File(get_full_path(tag.value)).toURI());
+    				break;
+    			case "tablet":
+    				var doc_table_template = TextDocument.loadDocument(get_full_path(table_template_file));
+    				var table_template = doc_table_template.getTableByName(table_template_name);
+    				var tpl_rows = table_template.getRowCount();
+    				var tpl_cols = table_template.getColumnCount();
+    				var header_row_style = null;
+    				var even_row_style = null;
+    				var odd_row_style = null;
+    				if (tpl_rows == 3 && tpl_cols == 1) {
+    					header_row_style = extractTableStyles(table_template.getCellByPosition(0, 0));
+    					even_row_style = extractTableStyles(table_template.getCellByPosition(0, 1));
+    					odd_row_style = extractTableStyles(table_template.getCellByPosition(0, 2));
+    				} else {
+    					log.error("Template table must be a 1*3 table");
+    				}
+    			case "table":
+    			case "tableh":
+    				var values = tag.value;
+    				var rows = values.length;
+    				var cols = values[0].length;
+    				var hasRowHeader = tag.type == "tableh";
+    				var hasTableTemplate = tag.type == "tablet";
+    				var isHeader;
+    				const validHAlign = ["CENTER", "DEFAULT", "FILLED", "JUSTIFY", "LEFT", "RIGHT"];
+    				const validVAlign = ["TOP", "BOTTOM", "MIDDLE", "DEFAULT"];
+    				log.debug("Rows: " + rows);
+    				log.debug("Cols: " + cols);
+    				log.debug("Has row header? " + hasRowHeader);
+    				log.debug("Has table template? " + hasTableTemplate);
+    				if (rows > 0 && cols > 0) {
+    					table1 = Table.newTable(fdoc, rows, cols);
+    					table1.setTableName("table1");
+    					for (var r = 0; r < rows; r++) {
+    						for (var c = 0; c < cols; c++) {
+    							var cell = table1.getCellByPosition(c, r);
+    							log.debug("row #" + r);
+    							log.debug("col #" + c);
+    							log.debug("val: " + values[r][c]);
+    							if (!hasTableTemplate) {
+    								isHeader = r == 0 && hasRowHeader ? true : false;
+    								setCellAttributes(cell, r, c, isHeader, validHAlign, validVAlign, tag.style);
+    								cell.setFont(getCellFont(tag.style, r, c, isHeader));
+    							} else {
+    								if (r == 0) {
+    									row_style = header_row_style;
+    								} else if (r % 2 === 0) {
+    									row_style = even_row_style;
+    								} else {
+    									row_style = odd_row_style;
+    								}
+    								cell.setCellBackgroundColor(row_style.cellBGColor);
+    								cell.setFont(row_style.font);
+    								cell.setHorizontalAlignment(row_style.horizontal);
+    							}
+    							cell.setStringValue(values[r][c]);
+    						}
+    					}
+    					var odfTable = table1.getOdfElement();
+    					var odfTableStyle = odfTable.getAutomaticStyle();
+    					odfTableStyle.setProperty(OdfTableProperties.BreakBefore, ((break_before && break_before != "") ? break_before : "page"));
+    					//odfTableStyle.setProperty(OdfTableProperties.BreakAfter, "page");
+    					odfTableStyle.setProperty(OdfTableProperties.KeepWithNext, "false");
+    					item.replaceWith(fdoc.getTableByName("table1"));
+    					table1.remove();
+    				}
+    				break;
+    			case "span":
+    				var span = Span.newSpan(item);
+    				var styleHandler = span.getStyleHandler();
+    				styleHandler.getTextPropertiesForWrite().setFont(setTextFont(tag.style));
+    				span.setTextContent(tag.value);
+    				break;
+    			case "array":
+    				var arrayValues = tag.value;			    
+    				var tempMarkers = [];
+    				    
+    			    for (var j = 0; j < arrayValues.length; j++) {
+    			        tempMarkers.push("##ARRAY_" + j + "_" + new Date().getTime() + "##");
+    			    }
+    			    item.replaceWith(tempMarkers.join(""));
+    			    
+    			    for (var j = 0; j < arrayValues.length; j++) {
+    			        var subTag = {
+    			            tag: tempMarkers[j],
+    			            type: arrayValues[j].type,
+    			            value: arrayValues[j].value,
+    			            style: arrayValues[j].style
+    			        };
+    			        var sub_nav = new TextNavigation(
+    			            java.util.regex.Pattern.quote(tempMarkers[j]), fdoc
+    			        );
+    			        while (sub_nav.hasNext()) {
+    			            var subItem = sub_nav.nextSelection();
+    			            processTagReplacement(fdoc, subTag, subItem);
+    			        }
+    			    }
+    				break;	
+    			case "newline":
+    			    item.replaceWith("\n");
+    			    break;
+    			case "paragraph":
+    			case "string":
+    			default:
+    				item.replaceWith(tag.value);
+    		}
+    	}
     
     	function replace_text(fdoc, tags) {
     		for (var i = 0; i < tags.length; i++) {
@@ -267,87 +381,7 @@ responseTimeout: 120
     				item = txt_nav.nextSelection();
     				log.debug("item Text: " + item.getText());
     				log.debug("item Index: " + item.getIndex());
-    				switch (tags[i].type) {
-    					case "image":
-    						item.replaceWith(new File(get_full_path(tags[i].value)).toURI());
-    						break;
-    					case "tablet":
-    						var doc_table_template = TextDocument.loadDocument(get_full_path(table_template_file));
-    						var table_template = doc_table_template.getTableByName(table_template_name);
-    						var tpl_rows = table_template.getRowCount();
-    						var tpl_cols = table_template.getColumnCount();
-    						var header_row_style = null;
-    						var even_row_style = null;
-    						var odd_row_style = null;
-    						if (tpl_rows == 3 && tpl_cols == 1) {
-    							header_row_style = extractTableStyles(table_template.getCellByPosition(0, 0));
-    							even_row_style = extractTableStyles(table_template.getCellByPosition(0, 1));
-    							odd_row_style = extractTableStyles(table_template.getCellByPosition(0, 2));
-    						} else {
-    							log.error("Template table must be a 1*3 table");
-    						}
-    					case "table":
-    					case "tableh":
-    						var values = tags[i].value;
-    						var rows = values.length;
-    						var cols = values[0].length;
-    						var hasRowHeader = tags[i].type == "tableh";
-    						var hasTableTemplate = tags[i].type == "tablet";
-    						var isHeader;
-    						const validHAlign = ["CENTER", "DEFAULT", "FILLED", "JUSTIFY", "LEFT", "RIGHT"];
-    						const validVAlign = ["TOP", "BOTTOM", "MIDDLE", "DEFAULT"];
-    						log.debug("Rows: " + rows);
-    						log.debug("Cols: " + cols);
-    						log.debug("Has row header? " + hasRowHeader);
-    						log.debug("Has table template? " + hasTableTemplate);
-    						if (rows > 0 && cols > 0) {
-    							table1 = Table.newTable(fdoc, rows, cols);
-    							table1.setTableName("table1");
-    							for (var r = 0; r < rows; r++) {
-    								for (var c = 0; c < cols; c++) {
-    									var cell = table1.getCellByPosition(c, r);
-    									log.debug("row #" + r);
-    									log.debug("col #" + c);
-    									log.debug("val: " + values[r][c]);
-    									if (!hasTableTemplate) {
-    										isHeader = r == 0 && hasRowHeader ? true : false;
-    										setCellAttributes(cell, r, c, isHeader, validHAlign, validVAlign, tags[i].style);
-    										cell.setFont(getCellFont(tags[i].style, r, c, isHeader));
-    									} else {
-    										if (r == 0) {
-    											row_style = header_row_style;
-    										} else if (r % 2 === 0) {
-    											row_style = even_row_style;
-    										} else {
-    											row_style = odd_row_style;
-    										}
-    										cell.setCellBackgroundColor(row_style.cellBGColor);
-    										cell.setFont(row_style.font);
-    										cell.setHorizontalAlignment(row_style.horizontal);
-    									}
-    									cell.setStringValue(values[r][c]);
-    								}
-    							}
-    							var odfTable = table1.getOdfElement();
-    							var odfTableStyle = odfTable.getAutomaticStyle();
-    							odfTableStyle.setProperty(OdfTableProperties.BreakBefore, ((break_before && break_before != "") ? break_before : "page"));
-    							//odfTableStyle.setProperty(OdfTableProperties.BreakAfter, "page");
-    							odfTableStyle.setProperty(OdfTableProperties.KeepWithNext, "false");
-    							item.replaceWith(fdoc.getTableByName("table1"));
-    							table1.remove();
-    						}
-    						break;
-    					case "span":
-    						var span = Span.newSpan(item);
-    						var styleHandler = span.getStyleHandler();
-    						styleHandler.getTextPropertiesForWrite().setFont(setTextFont(tags[i].style));
-    						span.setTextContent(tags[i].value);
-    						break;
-    					case "paragraph":
-    					case "string":
-    					default:
-    						item.replaceWith(tags[i].value);
-    				}
+    				processTagReplacement(fdoc, tags[i], item);
     			}
     		}
     	}
@@ -452,6 +486,15 @@ responseTimeout: 120
   comment: Defines the Description metadata in the ODT Document. If null, does not change it. If empty, removes it.
 ↓meta_creation_date [variables.RequestableVariable-1773249217927]: 
   comment: 'Defines the Creation Date metadata in the ODT Document. ISO 8601 date format: yyy-MM-dd''T''HH:mm:ss. If null or empty, does not change it.'
+↓Test_Case_marker_array [core.TestCase]: 
+  ↓markers [variables.TestCaseVariable-1782379173158]: 
+    value:  [{"tag":"__c8o_date","type":"string","value":"February 25, 2025"},{"tag":"__c8o_objet","type":"span","value":"Resignation Letter","style":{"fontName":"Arial","fontStyle":"ITALIC","fontSize":"12","fontColor":"RED"}},{"tag":"__c8o_texte","type":"array","value":[{"type":"span","value":"Resignation Letter","style":{"fontName":"Arial","fontStyle":"ITALIC","fontSize":"12","fontColor":"RED"}},{"type":"span","value":" ","style":{}},{"type":"newline"},{"tag":"__c8o_date","type":"string","value":"February 25, 2025"},{"tag":"__c8o_texte","type":"string","value":"Dear Sir, Madam, Miss,\r\n\r\nI am writing to inform you of my decision to resign from my position as a computer scientist at your company, effective from 04/05/2025.\r\n\r\nThis decision was not easy to make, and I would like to express my gratitude for the opportunities and professional experience I have gained at Convertigo. I have enjoyed working with a talented and passionate team, and I am thankful for the stimulating projects I have been able to contribute to.\r\n\r\nI am committed to respecting my notice period of 3 months and ensuring a smooth transition to facilitate the continuity of my responsibilities. I remain available to train my successor and provide all necessary information to ensure a successful handover.\r\n\r\nThank you for your understanding and attention to this request. Please accept, Dear Sir/Madam/Miss, my best regards.\r\n\r\nSincerely,\r\n\r\nSarah Palin"},{"tag":"{tableau_ens}","type":"tableh","style":{"header":{"fontName":"Arial","fontStyle":"BOLD","fontSize":"12","fontColor":"WHITE","cellBGColor":"#729fcf"},"defaults":{"fontName":"Times New Roman","fontStyle":"REGULAR","fontSize":"10","fontColor":"BLACK","cellVAlign":"MIDDLE"},"cells":{"1-2":{"fontName":"Arial","fontStyle":"BOLDITALIC","fontSize":"10","fontColor":"#ff0000","cellHAlign":"CENTER","cellBGColor":"YELLOW"},"2-3":{"fontName":"Arial","fontStyle":"BOLDITALIC","fontSize":"10","fontColor":"RED","cellHAlign":"CENTER","cellBGColor":"#ffff00"},"3-4":{"fontName":"Arial","fontStyle":"BOLDITALIC","fontSize":"10","fontColor":"RED","cellHAlign":"CENTER","cellBGColor":"#ffff00"},"4-5":{"fontName":"Arial","fontStyle":"BOLDITALIC","fontSize":"10","fontColor":"RED","cellHAlign":"CENTER","cellBGColor":"#ffff00"}}},"value":[["Section","Numéro de parcelle","Est situé en zone de préemption ENS","N'est pas situé en zone de préemption ENS","Est partiellement situé en zone de préemption ENS","Parcelle inconnue"],["Section01","Parcelle01","non","oui","oui","oui"],["Section02","Parcelle02","oui","non","oui","oui"],["Section03","Parcelle03","oui","oui","non","oui"],["Section04","Parcelle04","oui","oui","oui","non"]]}]},{"tag":"__c8o_signature","type":"image","value":".//templates/sarah_signature_sample.png"}]
+  ↓output_filename [variables.TestCaseVariable-1782379173161]: 
+    required: true
+    value: .//outputs/test_array.odt
+  ↓input_filename [variables.TestCaseVariable-1782379173164]: 
+    required: true
+    value: .//templates/odf/template.odt
 ↓Test_Case_marker_img [core.TestCase]: 
   ↓output_filename [variables.TestCaseVariable-1739973840643]: 
     required: true
